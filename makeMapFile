@@ -1,0 +1,11 @@
+#!/usr/bin/python3
+import sys
+from random import randrange
+max_coord = 20
+
+if(len(sys.argv) < 2):
+    print("Please provide an argument")
+    exit();
+
+for i in range(0, int(sys.argv[1])):
+    print(str(randrange(0,max_coord+1))+","+str(randrange(0,max_coord+1))+","+str(randrange(0,2))+","+str(randrange(0,6))+",None")

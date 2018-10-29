@@ -1,0 +1,24 @@
+Sample Frupal Game Map
+25
+######################
+12,12
+103
+1000
+Axe
+Axe
+Shears
+Pretty Rock
+######################
+0,1,1,1,None
+0,1,0,3,None
+9,7,1,4,None
+9,20,1,1,None
+6,12,0,5,None
+5,7,1,0,None
+4,5,0,3,None
+3,1,1,1,None
+14,6,1,0,None
+14,12,0,2,None
+13,16,0,0,None
+13,12,0,1,Tree
+12,12,1,1,None

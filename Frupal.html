@@ -1,0 +1,141 @@
+<html>
+<meta charset="utf-8" />
+<head>
+</head>
+<script src="mapLoad.js"></script>
+<script src="cellLoad.js"></script>
+
+<script>
+	/*
+		File: Frupal.html
+		Author: Henderson Hummel
+		Date 10/27/2018
+
+		Purpose: display the game to user.
+		Description: This is our managing javascript section, as well as the
+		page source. It's exceedingly preliminary, so much of this will change.
+		Also! This page is in active development, so if you're reading this 
+		because the page is broken, well, that's to be expected.
+	*/
+const MAX = 20;
+	var game = {
+		x_coord : 0,
+		y_coord : 0,
+
+		jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
+
+		//setting up the initial cell contents div.
+		go : function(direc) {
+			switch(direc) {
+				case 'n':
+					this.goNorth();
+					break;
+				case 'e':
+					this.goEast();
+					break;
+				case 'w':
+					this.goWest();
+					break;
+				case 's':
+					this.goSouth();
+					break;
+				default:
+					this.y_coord = 0;
+					this.x_coord = 0;
+					break;
+			}
+			this.dispLoc();
+			this.checkLoc();
+			if(this.atJewels())
+				alert("You've found the jewels!");
+		},
+
+		dispLoc : function() {
+			document.getElementById("loc").innerHTML = "Current Location:  " + this.x_coord + ',' + this.y_coord;
+		},
+
+		checkLoc : function() {
+			var cellContents = localStorage.getItem(this.x_coord + ',' + this.y_coord);
+			if(cellContents != null) {
+				document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
+			}
+			else {
+				document.getElementById("cell").innerHTML = "Cell Details: 0,0,0,0,None";
+			}
+		},
+
+		atJewels : function() {
+			if((this.x_coord == this.jewels.x) && (this.y_coord == this.jewels.y))
+				return true;
+			return false
+		},
+		
+		goNorth : function() {
+			if(this.x_coord > 0) {
+				--this.x_coord;
+			}
+			else {
+				this.x_coord = MAX;
+			}
+		},
+
+		goEast : function() {
+			if(this.y_coord < MAX) {
+				++this.y_coord;
+			}
+			else {
+				this.y_coord = 0;
+			}
+		},
+
+		goWest : function() {
+			if(this.y_coord > 0) {
+				--this.y_coord;
+			}
+			else {
+				this.y_coord = MAX;
+			}
+		},
+
+		goSouth : function() {
+			if(this.x_coord < MAX) {
+				++this.x_coord;
+			}
+			else {
+				this.x_coord = 0;
+			}
+		}
+	};
+</script>
+
+<body>
+<h1>Frupal - the game ...</h1>
+<br><br>
+<div style="width:25%;">
+	<div>
+	<div align="middle">
+		<button onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
+	</div>
+	<div align="left">
+		<button onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">EAST</button>
+		<button onclick="game.go('w')" type="submit" form="form1" value="Submit">WEST</button>
+	</div>
+	<div align="middle">
+		<button onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
+	</div>
+</div>
+<br><br><br>
+
+<div><p id="loc">Current Location:  0,0</p> </div>
+<div><p id="cell">Cell Details: </p> </div>
+<div><p id="whif">Whiffles: </p> </div>
+<div><p id="energy">Energy: </p> </div>
+
+	<script>
+		console.log(game.jewels.x + ',' + game.jewels.y);
+		game.checkLoc(); //displaying the cell contents of the initial location.
+	</script>
+
+</body>
+
+</html>
