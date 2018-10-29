@@ -1,4 +1,21 @@
 #!/usr/bin/python3
+
+###############################################################################
+#
+#   File: makeMapFile
+#   Authors: Henderson Hummel
+#
+#   Purpose: generate random strings that match the map format.
+#   Description: This script simply generates random numbers that fit the 
+#       format laid out in Frupal Project Packet #1, and outputs them to the
+#       terminal. NOTE: This can create duplicate coordinates. As a result, I
+#       recommend piping the output through uniq ("man uniq" if you aren't 
+#       familiar!) Here's the command I ran: 
+#           ./makeMapFile | uniq --check-char=5 >> map_file
+#       
+###############################################################################
+
+
 import sys
 from random import randrange
 max_coord = 20
