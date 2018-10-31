@@ -10,9 +10,9 @@ contents to the cells themselves, which we then store as key-value pairs,
 where the key is the x,y coordinates of the cell, and the cell contents are
 the value portion.
 */
-var map_string = localStorage.getItem('map');
-map_string = map_string.slice(1, map_string.length - 1) //removes start and ending [].
-var split_string = map_string.split("][");
+var mapString = localStorage.getItem('map');
+mapString = mapString.slice(1, mapString.length - 1) //removes start and ending [].
+var splitString = mapString.split("][");
 
 
 var i = 3;
@@ -23,18 +23,21 @@ var i = 3;
 	TODO - rather than skip the first data elements, we should store them.
 */
 
-while(split_string[i][0] != '#') {  //stop once we hit the second string of hashes.
+while(splitString[i][0] != '#') {  //stop once we hit the second string of hashes.
 	++i;
 }
 
 ++i; //go once further to pass the second string of hashes.
-var coord_keys = [];
+//var coord_keys = [];
 
-for (var iLen=split_string.length; i<iLen; i++) {
-	split_cell = split_string[i].split(',');
-	coord_key = split_cell[0] + ',' + split_cell[1]; //set coord_key to coords with comma.
+for (var iLen=splitString.length; i<iLen; i++) {
+	splitCell = splitString[i].split(',');
+	localStorage.setItem(splitCell[0] + ',' + splitCell[1], splitString[i]); //notice we store the entire cell! 
+/*
+	coord_key = splitCell[0] + ',' + splitCell[1]; //set coord_key to coords with comma.
 	coord_keys.push(coord_key);
-	localStorage.setItem(coord_key, split_string[i]); //notice we store the entire cell! 
+	localStorage.setItem(coord_key, splitString[i]); //notice we store the entire cell! 
+*/
 	}
 
 /* loop to display items.
