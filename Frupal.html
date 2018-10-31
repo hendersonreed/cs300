@@ -21,8 +21,6 @@ const MAX = 20;
 	var game = {
 		x_coord : 0,
 		y_coord : 0,
-		localStorage.setItem('x_coord', x_coord);
-		localStorage.setItem('y_coord', y_coord);
 
 		jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 
@@ -46,6 +44,9 @@ const MAX = 20;
 					this.x_coord = 0;
 					break;
 			}
+			localStorage.setItem('x_coord', this.x_coord),
+			localStorage.setItem('y_coord', this.y_coord),
+
 			this.dispLoc();
 			this.checkLoc();
 			if(this.atJewels())
