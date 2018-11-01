@@ -76,6 +76,24 @@ const MAX = 20;
 		},
 		
 		goNorth : function() {
+            if(this.y_coord > 0) {
+				--this.y_coord;
+			}
+			else {
+				this.y_coord = MAX;
+			}
+		},
+
+		goEast : function() {
+			if(this.x_coord < MAX) {
+				++this.x_coord;
+			}
+			else {
+				this.x_coord = 0;
+			}
+		},
+
+		goWest : function() {
 			if(this.x_coord > 0) {
 				--this.x_coord;
 			}
@@ -84,30 +102,12 @@ const MAX = 20;
 			}
 		},
 
-		goEast : function() {
+		goSouth : function() {
 			if(this.y_coord < MAX) {
 				++this.y_coord;
 			}
 			else {
 				this.y_coord = 0;
-			}
-		},
-
-		goWest : function() {
-			if(this.y_coord > 0) {
-				--this.y_coord;
-			}
-			else {
-				this.y_coord = MAX;
-			}
-		},
-
-		goSouth : function() {
-			if(this.x_coord < MAX) {
-				++this.x_coord;
-			}
-			else {
-				this.x_coord = 0;
 			}
 		},
 
@@ -120,13 +120,14 @@ const MAX = 20;
                 for(let j = 0; j < MAX; j++ )
                 {
                     let currCell = localStorage.getItem(j + ',' + i);
-                    if(currCell != null)
+                    if( j == this.x_coord && i == this.y_coord)
+                        tempMapString += 'C';
+                    else if(currCell != null)
                     {
                         currCell = currCell.split(",");
+
                         if(currCell[2] == '0')
                             tempMapString += 'X'
-                        else if( j == this.x_coord && i == this.y_coord)
-                            tempMapString += 'C'
                         else switch(currCell[3])
                         {
                             case '0':
