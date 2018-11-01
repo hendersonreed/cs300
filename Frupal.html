@@ -22,8 +22,8 @@ const MAX = 20;
 		x_coord : 0,
 		y_coord : 0,
         mapString: "",
-		localStorage.setItem('x_coord', x_coord);
-		localStorage.setItem('y_coord', y_coord);
+		//localStorage.setItem("x_coord", x_coord);
+		//localStorage.setItem("y_coord", y_coord);
 
 		jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 
@@ -121,7 +121,7 @@ const MAX = 20;
                     let currCell = localStorage.getItem(j + ',' + i);
                     if(currCell != null)
                     {
-                        currCell = currCell.Split(",");
+                        currCell = currCell.split(",");
                         if(currCell[2] == '0')
                             tempMapString += 'X'
                         else if( j == this.x_coord && i == this.y_coord)
@@ -152,11 +152,15 @@ const MAX = 20;
 
                         }
                     }
+                    else
+                    {
+                        tempMapString += 'X';
+                    }
                 }
                 tempMapString += '\n';
             }
             this.mapString = tempMapString;
-            document.getElementById("map").innerHTML = "MAP: \n" + this.mapString;
+            document.getElementById("map").innerHTML = "MAP: " + '\n' + this.mapString;
             
         }
 	};
@@ -184,7 +188,7 @@ const MAX = 20;
 <div><p id="cell">Cell Details: </p> </div>
 <div><p id="whif">Whiffles: </p> </div>
 <div><p id="energy">Energy: </p> </div>
-<div><p id="map"></P>MAP: </div>
+<div><p id="map"></P></div>
 
 	<script>
 		console.log(game.jewels.x + ',' + game.jewels.y);
