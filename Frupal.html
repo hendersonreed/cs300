@@ -2,6 +2,7 @@
 <meta charset="utf-8" />
 <head>
 </head>
+<script>localStorage.clear();</script>
 <script src="mapLoad.js"></script>
 <script src="cellLoad.js"></script>
 
@@ -78,8 +79,9 @@ const MAX = 20;
 			else {
 				this.x_coord = MAX;
 			}
-			--this.energy;
 			this.checkEnergy();
+			this.updateVisibility();
+			this.displayMap();
 		},
 
 		goEast : function() {
@@ -89,8 +91,9 @@ const MAX = 20;
 			else {
 				this.y_coord = 0;
 			}
-			--this.energy;
 			this.checkEnergy();
+			this.updateVisibility();
+			this.displayMap();
 		},
 
 		goWest : function() {
@@ -100,8 +103,9 @@ const MAX = 20;
 			else {
 				this.y_coord = MAX;
 			}
-			--this.energy;
 			this.checkEnergy();
+			this.updateVisibility();
+			this.displayMap();
 		},
 
 		goSouth : function() {
@@ -111,14 +115,26 @@ const MAX = 20;
 			else {
 				this.x_coord = 0;
 			}
-			--this.energy;
 			this.checkEnergy();
+			this.updateVisibility();
+			this.displayMap();
 		},
 
 		displayEnergy : function() {
 			document.getElementById("energy").innerHTML = "Energy: " + this.energy;
 		},
 		checkEnergy : function() {
+			cellContents = localStorage.getItem(this.x_coord + ',' + this.y_coord);
+			if(cellContents != null)
+			{	
+				var cell = cellContents.split(',');
+				if((cell[3] == 4) || (cell[3] == 5))
+					this.energy = this.energy-2;
+				else
+					--this.energy;
+			}
+			else
+				--this.energy;
 			if(this.energy < 1) {
 				alert("You are out of energy!");
 				this.gameOver();
@@ -128,7 +144,143 @@ const MAX = 20;
 		gameOver : function() {
 		
 			window.location.reload(false);
-		}
+		},
+		displayMap : function() {
+			var DISPLAYSIZE = 11;
+			var x = [0];
+			var y = [0];
+			var i,j;
+			var horizBuffer = 5;
+			var vertBuffer = 5;
+			if(this.x_coord < horizBuffer)
+				x[0] = this.x_coord + MAX-(horizBuffer-1);
+			else
+				x[0] = this.x_coord - horizBuffer;
+			
+			for(i = 1;i<DISPLAYSIZE;++i)
+			{
+				if(x[i-1] < MAX)
+					x[i] = (x[i-1]+1);
+				else
+					x[i] = 0;
+			}
+			
+			if(this.y_coord < vertBuffer)
+				y[0] = this.y_coord + MAX-(vertBuffer-1);
+			else
+				y[0] = this.y_coord - vertBuffer;
+			
+			for(i = 1;i<DISPLAYSIZE;++i)
+			{
+				if(y[i-1] < MAX)
+					y[i] = (y[i-1]+1);
+				else
+					y[i] = 0;
+			}
+			console.log(x);
+			console.log(y);
+			var mapString = "";
+			var mapRow = "";
+			var currentCell;
+			for(i = 0;i < y.length; i++)
+			{
+				for(j = 0;j < x.length; j++)
+				{
+					if((x[j] == this.x_coord) && (y[i] == this.y_coord))
+						mapString += "[H] ";
+					else
+					{
+						currentCell = localStorage.getItem(x[i] + ',' + y[j]);		
+						if(currentCell != null)
+						{
+							currentCell = currentCell.split(',');
+							mapString += '[';
+							if(currentCell[2] == 0)
+								mapString += 'X';
+							else if(currentCell[3] == 0)
+								mapString += 'M';
+							else if(currentCell[3] == 1)
+								mapString += 'F';
+							else if(currentCell[3] == 2)
+								mapString += '~';
+							else if(currentCell[3] == 3)
+								mapString += 'W';
+							else if(currentCell[3] == 4)
+								mapString += 'B';
+							else
+								mapString += 'S';
+
+							mapString += "] ";
+						
+						}
+
+						else
+							mapString += "[X] ";
+					}
+				}
+				mapRow = "map" + i;
+				document.getElementById(mapRow).innerHTML = mapString;
+				mapString = "";
+			}
+
+				
+		},
+
+		updateVisibility : function() 
+		{
+			x_cells = [];
+			y_cells = [];
+			var key = "";
+			var newCell = "";
+
+			if(this.x_coord == 0)
+				x_cells[0] = 20;
+			else
+				x_cells[0] = this.x_coord-1;
+			x_cells[1] = this.x_coord;
+			if(this.x_coord == 20)
+				x_cells[2] = 0;
+			else
+				x_cells[2] = this.x_coord+1;
+
+			if(this.y_coord == 0)
+				y_cells[0] = 20;
+			else
+				y_cells[0] = this.y_coord-1;
+			
+			y_cells[1] = this.y_coord;
+			
+			if(this.y_coord == 20)
+				y_cells[2] = 0;
+			else
+				y_cells[2] = this.y_coord+1;
+
+			for(i=0;i<x_cells.length;++i)
+			{
+				for(j=0;j<y_cells.length;++j)
+				{
+					key = (x_cells[i] + ',' + y_cells[j]);
+					cellContents = localStorage.getItem(key);
+					if(cellContents != null)
+					{
+						cellContents = cellContents.split(',');
+						cellContents[2] = 1;
+						newCell = cellContents[0] + ',' + cellContents[1] + ',' + cellContents[2] + ',' + cellContents[3] +',' + cellContents[4];
+						localStorage.setItem(key, newCell);
+					}
+					else
+					{
+						newCell = x_cells[i] + ',' + y_cells[j] + ",1,0,None";
+						localStorage.setItem(key, newCell);
+					}
+
+						
+				}
+			}
+			
+		},
+			
+
 	};
 </script>
 
@@ -154,12 +306,28 @@ const MAX = 20;
 <div><p id="cell">Cell Details: </p> </div>
 <div><p id="whif">Whiffles: </p> </div>
 <div><p id="energy">Energy: </p> </div>
+<div>Key: H=Hero X=Unexplored M=Meadow F=Forest ~=Water W=Wall B=Bog S=Swamp</div> 
+<div id="map" style="font-size:90%;text-align:justify;width="1500px""> 
+	<p id="map0"></p>
+	<p id="map1"></p>
+	<p id="map2"></p>
+	<p id="map3"></p>
+	<p id="map4"></p>
+	<p id="map5"></p>
+	<p id="map6"></p>
+	<p id="map7"></p>
+	<p id="map8"></p>
+	<p id="map9"></p>
+	<p id="map10"></p>
+</div>
 
 	<script>
 		
 		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.checkLoc(); //displaying the cell contents of the initial location.
 		game.displayEnergy();
+		game.updateVisibility();
+		game.displayMap();
 	</script>
 
 </body>
