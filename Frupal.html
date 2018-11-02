@@ -44,8 +44,8 @@ const MAX = 20;
 					this.x_coord = 0;
 					break;
 			}
-			localStorage.setItem('x_coord', this.x_coord),
-			localStorage.setItem('y_coord', this.y_coord),
+			localStorage.setItem('x_coord', this.x_coord);
+			localStorage.setItem('y_coord', this.y_coord);
 
 			this.dispLoc();
 			this.checkLoc();
@@ -74,38 +74,35 @@ const MAX = 20;
 		},
 		
 		goNorth : function() {
-			if(this.x_coord > 0) {
-				--this.x_coord;
-			}
-			else {
-				this.x_coord = MAX;
-			}
-		},
-
-		goEast : function() {
-			if(this.y_coord < MAX) {
-				++this.y_coord;
-			}
-			else {
-				this.y_coord = 0;
-			}
-		},
-
-		goWest : function() {
 			if(this.y_coord > 0) {
 				--this.y_coord;
 			}
 			else {
-				this.y_coord = MAX;
+				this.y_coord = MAX - 1;
 			}
 		},
-
-		goSouth : function() {
-			if(this.x_coord < MAX) {
+		goWest : function() {
+			if(this.x_coord > 0) {
+				--this.x_coord;
+			}
+			else {
+				this.x_coord = MAX - 1;
+			}
+		},
+		goEast : function() {
+			if(this.x_coord < MAX - 1) {
 				++this.x_coord;
 			}
 			else {
 				this.x_coord = 0;
+			}
+		},		
+		goSouth : function() {
+			if(this.y_coord < MAX - 1) {
+				++this.y_coord;
+			}
+			else {
+				this.y_coord = 0;
 			}
 		}
 	};
