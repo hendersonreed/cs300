@@ -20,9 +20,11 @@
 	*/
 const MAX = 20;
 var cellFlags = [[MAX], [MAX]];
+var cellFlagsCMP = [[MAX], [MAX]];
 for (let i = 0; i < MAX; i++) {
 	for (let j = 0; j < MAX; j++) {
 		cellFlags[[i],[j]] = 0;
+		cellFlagsCMP[[i],[j]] = 0;
 	}
 }
 
@@ -83,7 +85,7 @@ for (let i = 0; i < MAX; i++) {
 				yminusone = MAX - 1;
 				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
 			}
-			if (yplusone < MAX - 1) {
+			if (yplusone > MAX - 1) {
 				yplusone = 0;
 				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
 			}
@@ -102,7 +104,8 @@ for (let i = 0; i < MAX; i++) {
 			cellFlags[[x], [yplusone]] = 1;
 			cellFlags[[xplusone], [yplusone]] = 1;
 			
-			document.getElementById("test").innerHTML = "Newly dicovered cells/blcoks etc (X/Y):  " + '(' + (x-1) + ',' + yminusone + ") " + '(' + x + ',' + yminusone + ") " + '(' + (x+1) + ',' + yminusone + ") " +  '(' + (x-1) + ',' + y + ") " +  '(' + x + ',' + y + ") " + '(' + (x+1) + ',' + y + ") " +  '(' + (x-1) + ',' +(y+1) + ") " + '(' + (x) + ',' +(y+1) + ") " + '(' + (x+1) + ',' +(y+1) + ") "  
+			document.getElementById("test").innerHTML = "Newly dicovered cells/blcoks etc (X/Y):  " + '(' + xminusone + ',' + yminusone + ") " + '(' + x + ',' + yminusone + ") " + '(' + xplusone + ',' + yminusone + ") " + "<br>" + '(' + xminusone + ',' + y + ") " +  '(' + x + ',' + y + ") " + '(' + xplusone + ',' + y + ") " + "<br>" +  '(' + xminusone + ',' + yplusone + ") " + '(' + x + ',' + yplusone + ") " + '(' + xminusone + ',' + yplusone + ") "  
+
 			//document.getElementById("test").innterHTML = "THIS IS A TEST" + "update";
 			//alert(localStorage.getItem('x_coord'));
 		},
