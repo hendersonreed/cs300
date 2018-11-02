@@ -6,6 +6,7 @@
 <script src="cellLoad.js"></script>
 
 <script>
+
 	/*
 		File: Frupal.html
 		Authors: Henderson Hummel
@@ -18,6 +19,14 @@
 		because the page is broken, well, that's to be expected.
 	*/
 const MAX = 20;
+var cellFlags = [[MAX], [MAX]];
+for (let i = 0; i < MAX; i++) {
+	for (let j = 0; j < MAX; j++) {
+		cellFlags[[i],[j]] = 0;
+	}
+}
+
+
 	var game = {
 		x_coord : 0,
 		y_coord : 0,
@@ -46,17 +55,61 @@ const MAX = 20;
 			}
 			localStorage.setItem('x_coord', this.x_coord);
 			localStorage.setItem('y_coord', this.y_coord);
-
+			
+			this.alterFlags();
 			this.dispLoc();
 			this.checkLoc();
 			if(this.atJewels())
 				alert("You've found the jewels!");
 		},
 
+		alterFlags : function() {
+			//cellFlags[localStorage.getItem('x_coord')][localStorage.getItem('y_coord')] = 100;
+			//for(let i = 0; i < MAX; 
+			let x = this.x_coord; let y = this.y_coord;
+			let xminusone = x-1; let yminusone = y-1;
+			let xplusone = x+1; let yplusone = y+1;
+			//alert("xplusone is: " + xplusone);
+			//This section of the code will adjust the X,Y values whenever they're out of bounds, to keep us from trying to access an out-of-bound index 
+			if (xminusone < 0) {
+				xminusone = MAX - 1;
+				//alert("OUT OF BOUNDS");
+			}
+			if (xplusone > MAX - 1) {
+				//alert("xplusone is OUT OF BOUNDS");
+				xplusone = 0;
+			}
+			if (yminusone < 0) {
+				yminusone = MAX - 1;
+				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
+			}
+			if (yplusone < MAX - 1) {
+				yplusone = 0;
+				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
+			}
+
+
+			//Switch the visibility flag for Y-1 matrix row
+			cellFlags[[xminusone], [yminusone]] = 1;
+			cellFlags[[x], [yminusone]] = 1;
+			cellFlags[[xplusone], [yminusone]] = 1;
+			//Switch the visibility flag for Y matrix row
+			cellFlags[[xminusone], [y]] = 1;
+			cellFlags[[x], [y]] = 1;
+			cellFlags[[xplusone], [y]] = 1;
+			//Switch the visibility flag for Y matrix row
+			cellFlags[[xminusone], [yplusone]] = 1;
+			cellFlags[[x], [yplusone]] = 1;
+			cellFlags[[xplusone], [yplusone]] = 1;
+			
+			document.getElementById("test").innerHTML = "Newly dicovered cells/blcoks etc (X/Y):  " + '(' + (x-1) + ',' + yminusone + ") " + '(' + x + ',' + yminusone + ") " + '(' + (x+1) + ',' + yminusone + ") " +  '(' + (x-1) + ',' + y + ") " +  '(' + x + ',' + y + ") " + '(' + (x+1) + ',' + y + ") " +  '(' + (x-1) + ',' +(y+1) + ") " + '(' + (x) + ',' +(y+1) + ") " + '(' + (x+1) + ',' +(y+1) + ") "  
+			//document.getElementById("test").innterHTML = "THIS IS A TEST" + "update";
+			//alert(localStorage.getItem('x_coord'));
+		},
 		dispLoc : function() {
 			document.getElementById("loc").innerHTML = "Current Location:  " + this.x_coord + ',' + this.y_coord;
 		},
-
+		
 		checkLoc : function() {
 			var cellContents = localStorage.getItem(this.x_coord + ',' + this.y_coord);
 			if(cellContents != null) {
@@ -126,6 +179,7 @@ const MAX = 20;
 </div>
 <br><br><br>
 
+<div><p id="test"> test </p> </div>
 <div><p id="loc">Current Location:  0,0</p> </div>
 <div><p id="cell">Cell Details: </p> </div>
 <div><p id="whif">Whiffles: </p> </div>
