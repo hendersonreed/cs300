@@ -2,6 +2,7 @@
 <meta charset="utf-8" />
 <head>
 </head>
+<script>localStorage.clear();</script>
 <script src="mapLoad.js"></script>
 <script src="cellLoad.js"></script>
 
@@ -21,7 +22,7 @@ const MAX = 20;
 	var game = {
 		x_coord : 0,
 		y_coord : 0,
-
+		energy : 100,
 		jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 
 		//setting up the initial cell contents div.
@@ -49,6 +50,7 @@ const MAX = 20;
 
 			this.dispLoc();
 			this.checkLoc();
+			this.displayEnergy();
 			if(this.atJewels())
 				alert("You've found the jewels!");
 		},
@@ -80,6 +82,7 @@ const MAX = 20;
 			else {
 				this.y_coord = MAX - 1;
 			}
+			this.checkEnergy();
 		},
 		goWest : function() {
 			if(this.x_coord > 0) {
@@ -88,6 +91,7 @@ const MAX = 20;
 			else {
 				this.x_coord = MAX - 1;
 			}
+			this.checkEnergy();
 		},
 		goEast : function() {
 			if(this.x_coord < MAX - 1) {
@@ -96,7 +100,9 @@ const MAX = 20;
 			else {
 				this.x_coord = 0;
 			}
-		},		
+			this.checkEnergy();
+		},
+
 		goSouth : function() {
 			if(this.y_coord < MAX - 1) {
 				++this.y_coord;
@@ -104,7 +110,33 @@ const MAX = 20;
 			else {
 				this.y_coord = 0;
 			}
-		}
+			this.checkEnergy();
+		},
+
+		displayEnergy : function() {
+			document.getElementById("energy").innerHTML = "Energy: " + this.energy;
+		},
+		checkEnergy : function() {
+			cellContents = localStorage.getItem(this.x_coord + ',' + this.y_coord);
+			if(cellContents != null)
+			{	
+				var cell = cellContents.split(',');
+				if((cell[3] == 4) || (cell[3] == 5))
+					this.energy = this.energy-2;
+				else
+					--this.energy;
+			}
+			else
+				--this.energy;
+			if(this.energy < 1) {
+				alert("You are out of energy!");
+				this.gameOver();
+			}
+		},
+
+		gameOver : function() {
+			window.location.reload(false);
+		},
 	};
 </script>
 
@@ -130,11 +162,12 @@ const MAX = 20;
 <div><p id="cell">Cell Details: </p> </div>
 <div><p id="whif">Whiffles: </p> </div>
 <div><p id="energy">Energy: </p> </div>
-
 	<script>
+		
 		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
 		game.checkLoc(); //displaying the cell contents of the initial location.
+		game.displayEnergy();
 	</script>
 
 </body>
