@@ -59,6 +59,7 @@ for (let i = 0; i < MAX; i++) {
 			localStorage.setItem('y_coord', this.y_coord);
 			
 			//this.alterFlagsARRAY();
+			this.alterFlags();
 			this.dispLoc();
 			this.checkLoc();
 			if(this.atJewels())
@@ -87,6 +88,24 @@ for (let i = 0; i < MAX; i++) {
 				yplusone = 0;
 				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
 			}
+			/*
+			for (let i = 0; i < 6; i++) {
+				cell = localStorage.getItem(x + ',' + y);
+				if (cell == null) {
+					//alert("IS NULL");
+					break;
+				}
+				else {	
+					cell = cell.split(",");
+					cell[2] = 1;
+					let coord = cell[0] + ',' + cell[1];
+					//alert(coord);
+					localStorage.SetItem(coord, cell);	
+					
+				}
+			}
+			*/
+
 			
 		},
 		//This function is probably not going to be used due to the use of a 2D array. But i will keep it here as a refrence
