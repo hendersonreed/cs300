@@ -20,16 +20,18 @@ var mapIdentifier = splitString[i];
 ++i;
 var mapSize= splitString[i];
 i += 2 //skip the first hash mark separator.
-var startingX = splitString[i].split(',')[0];
-var startingY = splitString[i].split(',')[1];
+var playerCoords = splitString[i].split(',');
+var startingX = playerCoords[0];
+var startingY = playerCoords[1];
 var startingEnergy = splitString[i];
 ++i;
 var startingWhiffles = splitString[i];
 ++i;
 
 var inventory = []
-while (split_string[i][0] != '#' ) { //store the players inventory.
-	inventory.push(splitString[i];
+while (splitString[i][0] != '#' ) { //store the players inventory.
+	inventory.push(splitString[i]);
+	++i;
 }
 ++i //skip the last hash mark separator.
 
