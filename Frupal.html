@@ -58,7 +58,7 @@ for (let i = 0; i < MAX; i++) {
 			localStorage.setItem('x_coord', this.x_coord);
 			localStorage.setItem('y_coord', this.y_coord);
 			
-			this.alterFlags();
+			//this.alterFlagsARRAY();
 			this.dispLoc();
 			this.checkLoc();
 			if(this.atJewels())
@@ -66,6 +66,31 @@ for (let i = 0; i < MAX; i++) {
 		},
 
 		alterFlags : function() {
+			let x = this.x_coord; let y = this.y_coord;
+			let xminusone = x-1; let yminusone = y-1;
+			let xplusone = x+1; let yplusone = y+1;
+			//alert("xplusone is: " + xplusone);
+			//This section of the code will adjust the X,Y values whenever they're out of bounds, to keep us from trying to access an out-of-bound index 
+			if (xminusone < 0) {
+				xminusone = MAX - 1;
+				//alert("OUT OF BOUNDS");
+			}
+			if (xplusone > MAX - 1) {
+				//alert("xplusone is OUT OF BOUNDS");
+				xplusone = 0;
+			}
+			if (yminusone < 0) {
+				yminusone = MAX - 1;
+				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
+			}
+			if (yplusone > MAX - 1) {
+				yplusone = 0;
+				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
+			}
+			
+		},
+		//This function is probably not going to be used due to the use of a 2D array. But i will keep it here as a refrence
+		alterFlagsARRAY : function() {
 			//cellFlags[localStorage.getItem('x_coord')][localStorage.getItem('y_coord')] = 100;
 			//for(let i = 0; i < MAX; 
 			let x = this.x_coord; let y = this.y_coord;
