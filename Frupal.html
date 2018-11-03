@@ -5,6 +5,7 @@
 <script src="cellLoad.js"></script>
 
 <script>
+
 	/*
 		File: Frupal.html
 		Authors: Henderson Hummel
@@ -45,7 +46,9 @@ const MAX = 20;
 			}
 			localStorage.setItem('x_coord', this.x_coord);
 			localStorage.setItem('y_coord', this.y_coord);
-
+			
+			//this.alterFlagsARRAY();
+			this.alterFlags();
 			this.dispLoc();
 			this.checkLoc();
 			this.displayEnergy();
@@ -53,10 +56,80 @@ const MAX = 20;
 				alert("You've found the jewels! Use them wisely!");
 		},
 
+		alterFlags : function() {
+			//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
+
+			let x = this.x_coord; let y = this.y_coord;
+			let xminusone = x-1; let yminusone = y-1;
+			let xplusone = x+1; let yplusone = y+1;
+			//alert("xplusone is: " + xplusone);
+
+			//This section of the code will adjust the X,Y values whenever they're out of bounds, to keep us from trying to access an out-of-bound index 
+
+			if (xminusone < 0) {
+				xminusone = MAX - 1;
+				//alert("OUT OF BOUNDS");
+			}
+			if (xplusone > MAX - 1) {
+				//alert("xplusone is OUT OF BOUNDS");
+				xplusone = 0;
+			}
+			if (yminusone < 0) {
+				yminusone = MAX - 1;
+				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
+			}
+			if (yplusone > MAX - 1) {
+				yplusone = 0;
+				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
+			}
+			
+			//stores the 3X3 matrix of surronding coords in a 1-D array
+			let surroundingCellsCoord = [9];
+			surroundingCellsCoord[0] = xminusone + ',' + yminusone;
+			surroundingCellsCoord[1] = x + ',' + yminusone;
+			surroundingCellsCoord[2] = xplusone + ',' + yminusone;
+			surroundingCellsCoord[3] = xminusone + ',' + y;
+			surroundingCellsCoord[4] = x + ',' + y;
+			surroundingCellsCoord[5] = xplusone + ',' + y;
+			surroundingCellsCoord[6] = xminusone + ',' + yplusone;
+			surroundingCellsCoord[7] = x + ',' + yplusone;
+			surroundingCellsCoord[8] = xplusone + ',' + yplusone;
+
+			//A for loop that goes through the 1-D array, and pushes/modfies cells to the local storage
+			//All the new/modfies cells that are pushed have their visibility flag value set to 1
+
+			for (let i = 0; i < 9; i++) {
+				//alert(surroundingCellsCoord[i]);
+				
+				let cell = localStorage.getItem(surroundingCellsCoord[i]);
+				if (cell == null) {
+					//If the coord doesn't exist in local storage, then a new cell will be made and pushed to local storage
+
+					//alert("This coord is NULL in local storage!");	
+					cell = surroundingCellsCoord[i]+",1,0,None";
+					//alert("This is what will be PUSHED to local storage: " + cell);
+					localStorage.setItem(surroundingCellsCoord, cell);
+				}
+				else {	
+					//If the coord already has a cell in local storage, then this function will only modify the visibility flag, and then push the change to local storage again
+					cell = cell.split(",");
+					cell[2] = 1;
+					//alert("Current coord is NOT NULL in local storage (it exits)");
+					//alert("This is what will be PUSHED to local storage: " + cell);
+					localStorage.setItem(surroundingCellsCoord, cell);	
+					
+				}
+				
+			}
+			
+
+			
+		},
+
 		dispLoc : function() {
 			document.getElementById("loc").innerHTML = "Current Location:  " + this.x_coord + ',' + this.y_coord;
 		},
-
+		
 		checkLoc : function() {
 			var key = this.x_coord + ',' + this.y_coord;
 			var cellContents = localStorage.getItem(key);
