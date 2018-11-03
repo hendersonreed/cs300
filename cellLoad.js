@@ -14,34 +14,30 @@ var mapString = localStorage.getItem('map');
 mapString = mapString.slice(1, mapString.length - 1) //removes start and ending [].
 var splitString = mapString.split("][");
 
+//parsing and storing map contents.
+var i = 0;
+var mapIdentifier = splitString[i];
+++i;
+var mapSize= splitString[i];
+i += 2 //skip the first hash mark separator.
+var playerCoords = splitString[i].split(',');
+var startingX = playerCoords[0];
+var startingY = playerCoords[1];
+var startingEnergy = splitString[i];
+++i;
+var startingWhiffles = splitString[i];
+++i;
 
-var i = 3;
-/* 
-	start i=3, so that we skip the first set of hashmarks
-	this is probably safe because each map should have first an identifier, 
-	then a size, then a row of hashmarks. 
-	TODO - rather than skip the first data elements, we should store them.
-*/
-
-while(splitString[i][0] != '#') {  //stop once we hit the second string of hashes.
+var inventory = []
+while (splitString[i][0] != '#' ) { //store the players inventory.
+	inventory.push(splitString[i]);
 	++i;
 }
+++i //skip the last hash mark separator.
 
-++i; //go once further to pass the second string of hashes.
-//var coord_keys = [];
-
+//here we run through the last section of the map_file, storing each cell
+// in local storage.
 for (var iLen=splitString.length; i<iLen; i++) {
 	splitCell = splitString[i].split(',');
-	localStorage.setItem(splitCell[0] + ',' + splitCell[1], splitString[i]); //notice we store the entire cell! 
-/*
-	coord_key = splitCell[0] + ',' + splitCell[1]; //set coord_key to coords with comma.
-	coord_keys.push(coord_key);
-	localStorage.setItem(coord_key, splitString[i]); //notice we store the entire cell! 
-*/
+	localStorage.setItem(splitCell[0] + ',' + splitCell[1], splitCell); //notice we store the entire cell as an array!
 	}
-
-/* loop to display items.
-for(var i = 0, iLen = coord_keys.length; i < iLen; ++i) {
-	document.write(localStorage.getItem(coord_keys[i]) + "<br>");
-}
-*/
