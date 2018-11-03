@@ -67,11 +67,15 @@ for (let i = 0; i < MAX; i++) {
 		},
 
 		alterFlags : function() {
+			//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
+
 			let x = this.x_coord; let y = this.y_coord;
 			let xminusone = x-1; let yminusone = y-1;
 			let xplusone = x+1; let yplusone = y+1;
 			//alert("xplusone is: " + xplusone);
+
 			//This section of the code will adjust the X,Y values whenever they're out of bounds, to keep us from trying to access an out-of-bound index 
+
 			if (xminusone < 0) {
 				xminusone = MAX - 1;
 				//alert("OUT OF BOUNDS");
@@ -89,6 +93,7 @@ for (let i = 0; i < MAX; i++) {
 				//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
 			}
 			
+			//stores the 3X3 matrix of surronding coords in a 1-D array
 			let surroundingCellsCoord = [9];
 			surroundingCellsCoord[0] = xminusone + ',' + yminusone;
 			surroundingCellsCoord[1] = x + ',' + yminusone;
@@ -100,20 +105,24 @@ for (let i = 0; i < MAX; i++) {
 			surroundingCellsCoord[7] = x + ',' + yplusone;
 			surroundingCellsCoord[8] = xplusone + ',' + yplusone;
 
+			//A for loop that goes through the 1-D array, and pushes/modfies cells to the local storage
+			//All the new/modfies cells that are pushed have their visibility flag value set to 1
 
 			for (let i = 0; i < 9; i++) {
 				alert(surroundingCellsCoord[i]);
 				
 				let cell = localStorage.getItem(surroundingCellsCoord[i]);
 				if (cell == null) {
-					alert("This coord is NULL in local storage!");
-					
+					//If the coord doesn't exist in local storage, then a new cell will be made and pushed to local storage
+
+					alert("This coord is NULL in local storage!");	
 					cell = surroundingCellsCoord[i]+",1,0,None";
 					alert("This is what will be PUSHED to local storage: " + cell);
 					localStorage.setItem(surroundingCellsCoord, cell);
 					//break;
 				}
 				else {	
+					//If the coord already has a cell in local storage, then this function will only modify the visibility flag, and then push the change to local storage again
 					cell = cell.split(",");
 					cell[2] = 1;
 					alert("Current coord is NOT NULL in local storage (it exits)");
@@ -127,7 +136,9 @@ for (let i = 0; i < MAX; i++) {
 
 			
 		},
+
 		//This function is probably not going to be used due to the use of a 2D array. But i will keep it here as a refrence
+
 		alterFlagsARRAY : function() {
 			//cellFlags[localStorage.getItem('x_coord')][localStorage.getItem('y_coord')] = 100;
 			//for(let i = 0; i < MAX; 
