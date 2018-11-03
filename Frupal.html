@@ -50,7 +50,7 @@ const MAX = 20;
 			this.dispLoc();
 			this.checkLoc();
 			if(this.atJewels())
-				alert("You've found the jewels!");
+				alert("You've found the jewels! Use them wisely!");
 		},
 
 		dispLoc : function() {
@@ -58,12 +58,17 @@ const MAX = 20;
 		},
 
 		checkLoc : function() {
-			var cellContents = localStorage.getItem(this.x_coord + ',' + this.y_coord);
+			var key = this.x_coord + ',' + this.y_coord;
+			var cellContents = localStorage.getItem(key);
 			if(cellContents != null) {
+				cellContents = cellContents.split(',');
+				cellContents[2] = 1;
+				localStorage.setItem(key, cellContents);
 				document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
 			}
 			else {
-				document.getElementById("cell").innerHTML = "Cell Details: 0,0,0,0,None";
+				var newCell = key + ",1,0,None";
+                localStorage.setItem(key, newCell);
 			}
 		},
 
