@@ -32,7 +32,7 @@ while(splitString[i][0] != '#') {  //stop once we hit the second string of hashe
 
 for (var iLen=splitString.length; i<iLen; i++) {
 	splitCell = splitString[i].split(',');
-	localStorage.setItem(splitCell[0] + ',' + splitCell[1], splitString[i]); //notice we store the entire cell! 
+	localStorage.setItem(splitCell[0] + ',' + splitCell[1], splitCell); //notice we store the entire cell as an array!
 /*
 	coord_key = splitCell[0] + ',' + splitCell[1]; //set coord_key to coords with comma.
 	coord_keys.push(coord_key);
