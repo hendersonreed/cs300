@@ -22,6 +22,8 @@ const MAX = 20;
 		x_coord : 0,
 		y_coord : 0,
 		energy : 100,
+        mapString: "",
+
 		jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 
 		//setting up the initial cell contents div.
@@ -47,11 +49,11 @@ const MAX = 20;
 			localStorage.setItem('x_coord', this.x_coord);
 			localStorage.setItem('y_coord', this.y_coord);
 			
-			//this.alterFlagsARRAY();
 			this.alterFlags();
 			this.dispLoc();
 			this.checkLoc();
 			this.displayEnergy();
+            this.displayMap();
 			if(this.atJewels())
 				alert("You've found the jewels! Use them wisely!");
 		},
@@ -217,6 +219,63 @@ const MAX = 20;
 		gameOver : function() {
 			window.location.reload(false);
 		},
+=======
+		},
+
+        //0=meadow, 1=forest, 2=water, 3=wall, 4=bog, 5=swamp
+        displayMap : function()
+        {
+            let tempMapString = "";
+            for(let i = 0; i < MAX; i++)
+            {
+                for(let j = 0; j < MAX; j++ )
+                {
+                    let currCell = localStorage.getItem(j + ',' + i);
+                    if( j == this.x_coord && i == this.y_coord)
+                        tempMapString += 'C';
+                    else if(currCell != null)
+                    {
+                        currCell = currCell.split(",");
+
+                        if(currCell[2] == '0')
+                            tempMapString += 'X'
+                        else switch(currCell[3])
+                        {
+                            case '0':
+                                tempMapString += 'M';
+                                break;
+                            case '1':
+                                tempMapString += 'F';
+                                break;
+                            case '2':
+                                tempMapString += 'w';
+                                break;
+                            case '3':
+                                tempMapString += 'W';
+                                break;
+                            case '4':
+                                tempMapString += 'B';
+                                break;
+                            case '5':
+                                tempMapString += 'S';
+                                break;
+                            default:
+                                tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
+                                break;
+
+                        }
+                    }
+                    else
+                    {
+                        tempMapString += 'X';
+                    }
+                }
+                tempMapString += '\n';
+            }
+            this.mapString = tempMapString;
+            document.getElementById("map").innerHTML = "MAP: " + '\n' + this.mapString;
+            
+        }
 	};
 </script>
 
@@ -226,7 +285,7 @@ const MAX = 20;
 <div style="width:25%;">
 	<div>
 	<div align="middle">
-		<button onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
+        <button onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
 	</div>
 	<div align="left">
 		<button onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">EAST</button>
@@ -242,12 +301,15 @@ const MAX = 20;
 <div><p id="cell">Cell Details: </p> </div>
 <div><p id="whif">Whiffles: </p> </div>
 <div><p id="energy">Energy: </p> </div>
+<div><p id="map"></P></div>
+
 	<script>
 		
 		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
 		game.checkLoc(); //displaying the cell contents of the initial location.
 		game.displayEnergy();
+        game.displayMap();
 	</script>
 
 </body>
