@@ -277,14 +277,14 @@ var game = {
           tempMapString += 'X';
         }
       }
-      tempMapString += '\n';
+	  tempMapString += '<br>';
     }
     this.mapString = tempMapString;
     document.getElementById("map").innerHTML = "MAP: " + '<br>' + this.mapString;
 
   }
 };
-  </script>
+</script>
 
   <body>
     <h1>Frupal - the game ...</h1>
@@ -311,13 +311,12 @@ var game = {
       <div><p id="map"></P></div>
 
       <script>
-
         console.log(game.jewels.x + ',' + game.jewels.y);
-game.go() //by passing no arguments, we ensure we get the default on the switch statement.
-game.checkLoc(); //displaying the cell contents of the initial location.
-game.displayEnergy();
-game.displayMap();
-      </script>
+		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
+		game.checkLoc(); //displaying the cell contents of the initial location.
+		game.displayEnergy();
+		game.displayMap();
+	  </script>
 
   </body>
 
