@@ -430,6 +430,7 @@ const MAPSIZE = 5; //Distance from the player that tiles should be drawn
 </script>
 
 <body>
+<script>game.checkFrom()</script>
 <h1>Frupal - the game ...</h1>
 <br><br>
 <div><p id="map"></p></div>
@@ -457,7 +458,6 @@ const MAPSIZE = 5; //Distance from the player that tiles should be drawn
 <div>
 
 	<script>
-		game.checkFrom();	
 		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
 		game.energy++; //Energy was decrementing by 1 on startup
