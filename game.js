@@ -42,7 +42,7 @@ var game = {
 		}
 		localStorage.setItem('x_coord', this.x_coord);
 		localStorage.setItem('y_coord', this.y_coord);
-		
+
 		this.alterFlags();
 		this.dispLoc();
 		this.checkLoc();
@@ -81,7 +81,7 @@ var game = {
 			yplusone = 0;
 			//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
 		}
-		
+
 		//stores the 3X3 matrix of surronding coords in a 1-D array
 		let surroundingCellsCoord = [9];
 		surroundingCellsCoord[0] = xminusone + ',' + yminusone;
@@ -99,7 +99,7 @@ var game = {
 
 		for (let i = 0; i < 9; i++) {
 			//alert(surroundingCellsCoord[i]);
-			
+
 			let cell = localStorage.getItem(surroundingCellsCoord[i]);
 			if (cell == null) {
 				//If the coord doesn't exist in local storage, then a new cell will be made and pushed to local storage
@@ -116,19 +116,19 @@ var game = {
 				//alert("Current coord is NOT NULL in local storage (it exits)");
 				//alert("This is what will be PUSHED to local storage: " + cell);
 				localStorage.setItem(surroundingCellsCoord[i], cell);	
-				
-			}
-			
-		}
-		
 
-		
+			}
+
+		}
+
+
+
 	},
 
 	dispLoc : function() {
 		document.getElementById("loc").innerHTML = "Current Location:  " + this.x_coord + ',' + this.y_coord;
 	},
-	
+
 	checkLoc : function() {
 		var key = this.x_coord + ',' + this.y_coord;
 		var cellContents = localStorage.getItem(key);
@@ -138,7 +138,7 @@ var game = {
 			localStorage.setItem(key, cellContents);
 			document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
 			//if(this.x_coord > 0 && this.y_coord > 0){
-				
+
 			//}
 		}
 		else {
@@ -153,7 +153,7 @@ var game = {
 			return true;
 		return false
 	},
-	
+
 	goNorth : function() {
 		if(this.y_coord > 0) {
 			--this.y_coord;
@@ -216,50 +216,21 @@ var game = {
 	//0=meadow, 1=forest, 2=water, 3=wall, 4=bog, 5=swamp
 	displayMap : function()
 	{
-	var rowSize = (2*MAPSIZE)+1;
-	let tempMapString = "";
-	if(this.mapMode == 0)
-	{
-			var x = [0];
-			var y = [0];
-		if(this.x_coord < MAPSIZE)
-			x[0] = this.x_coord + MAX - MAPSIZE;
-		else
-			x[0] = this.x_coord - MAPSIZE;
-		for(i=1;i<rowSize;++i)
-		{
-			if(x[i-1] < MAX-1)
-				x[i] = (x[i-1]+1);
-			else
-				x[i] = 0;
-		}
-
-		if(this.y_coord < MAPSIZE)
-			y[0] = this.y_coord + MAX - MAPSIZE;
-		else
-			y[0] = this.y_coord - MAPSIZE;
-
-		for(i=1;i<rowSize;++i)
-		{
-			if(y[i-1] < MAX-1)
-				y[i] = (y[i-1]+1);
-			else
-				y[i] = 0;
-		}
-		
-		for(i = 0;i < y.length; i++)
-		{
-			for(j = 0;j < x.length; j++)
+		var rowSize = (2*MAPSIZE)+1;
+		let tempMapString = "";
+			for(let i = 0; i < MAX; i++)
 			{
-				if((x[j] == this.x_coord) && (y[i] == this.y_coord))
-					tempMapString += "C";
-				else
-				{	currCell = localStorage.getItem(x[j] + ',' + y[i]);
-					if(currCell != null)
+				for(let j = 0; j < MAX; j++ )
+				{
+					let currCell = localStorage.getItem(j + ',' + i);
+					if( j == this.x_coord && i == this.y_coord)
+						tempMapString += 'C';
+					else if(currCell != null)
 					{
-						currCell = currCell.split(',');
+						currCell = currCell.split(",");
+
 						if(currCell[2] == '0')
-							tempMapString += 'X';
+							tempMapString += 'X'
 						else switch(currCell[3])
 						{
 							case '0':
@@ -281,129 +252,31 @@ var game = {
 								tempMapString += 'S';
 								break;
 							default:
-								tempMapString += 'E';
+								tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
 								break;
-								
+
 						}
 					}
 					else
-						tempMapString += 'X'
-				}
-			}
-		}
-	}
-	else
-	{
-		for(let i = 0; i < MAX; i++)
-		{
-			for(let j = 0; j < MAX; j++ )
-			{
-				let currCell = localStorage.getItem(j + ',' + i);
-				if( j == this.x_coord && i == this.y_coord)
-					tempMapString += 'C';
-				else if(currCell != null)
-				{
-					currCell = currCell.split(",");
-
-					if(currCell[2] == '0')
-						tempMapString += 'X'
-					else switch(currCell[3])
 					{
-						case '0':
-							tempMapString += 'M';
-							break;
-						case '1':
-							tempMapString += 'F';
-							break;
-						case '2':
-							tempMapString += 'w';
-							break;
-						case '3':
-							tempMapString += 'W';
-							break;
-						case '4':
-							tempMapString += 'B';
-							break;
-						case '5':
-							tempMapString += 'S';
-							break;
-						default:
-							tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
-							break;
-
+						tempMapString += 'X';
 					}
 				}
-				else
-				{
-					tempMapString += 'X';
-				}
+				tempMapString += "<br>";
 			}
-			
-		}
-}
 		this.mapString = tempMapString;
-		this.drawMap(this.mapString);
-	},
-	drawMap : function(mapString)
-	{
-		var img;
-		var counter = 0;
-		var mapImage = document.getElementById("map");
-		var stringPos;
-		if(this.mapMode == 0)
-			document.getElementById("map").style.width = (((MAPSIZE*2)+1)*32) + "px";
-		else
-			document.getElementById("map").style.width = (MAX*32) + "px"; 
-		while(mapImage.firstChild) {
-			mapImage.removeChild(mapImage.firstChild);
-		}
+		document.getElementById("map").innerHTML = this.mapString;
 		
-		for(i = 0; i < MAX;i++)
-		{
-			for(j = 0; j < MAX; j++)
-			{
-				stringPos = (i*MAX) + j;
-				img = document.createElement("img");
-				switch(mapString.charAt(stringPos))
-				{
-					case 'X':
-						img.src = "/tiles/unexplored.png";
-						break;
-					case 'C':
-						img.src = "/tiles/hero.png";
-						break;
-					case 'F':
-						img.src = "/tiles/forest.png";
-						break;
-					case 'M':
-						img.src = "/tiles/meadow.png";
-						break;
-					case 'w':
-						img.src = "/tiles/water.png";
-						break;
-					case 'W':
-						img.src = "/tiles/wall.png";
-						break;
-					case 'B':
-						img.src = "/tiles/bog.png";
-						break;
-					case 'S':
-						img.src = "/tiles/swamp.png";
-						break;
-				}
-				mapImage.appendChild(img);
-			}
-		}
 	},
-changeMapMode : function()
-{
-	if(this.mapMode == 0)
-		this.mapMode = 1;
-	else
-		this.mapMode = 0;
-	this.displayMap();
-},
-checkFrom : function()
+	changeMapMode : function()
+	{
+		if(this.mapMode == 0)
+			this.mapMode = 1;
+		else
+			this.mapMode = 0;
+		this.displayMap();
+	},
+	checkFrom : function()
 	{
 		if(document.referrer.includes("Frupalsplash.html") == false)
 			window.location.href = "Frupalsplash.html";
