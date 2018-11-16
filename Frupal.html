@@ -221,6 +221,8 @@ const MAPSIZE = 5; //Distance from the player that tiles should be drawn
 			else
 				--this.energy;
 			if(this.energy < 1) {
+				var wilhelm = new Audio('wilhelm.mp3');
+				wilhelm.play();
 				alert("You are out of energy!");
 				this.gameOver();
 			}
