@@ -1,27 +1,31 @@
 /*
 	File: Frupal.html
-	Authors: Henderson Hummel, James Hiebert
+	Authors: Henderson Hummel, James Hiebert,
 	Date 10/27/2018
 
 	Purpose: display the game to user.
-	Description: This is our managing javascript section, as well as the
-	page source. It's exceedingly preliminary, so much of this will change.
+	Description: This is our managing javascript section. It's exceedingly 
+	preliminary, so much of this will change.
+
 	Also! This page is in active development, so if you're reading this 
 	because the page is broken, well, that's to be expected.
 */
+
 const MAX = 20;
 const MAPSIZE = 5; //Distance from the player that tiles should be drawn
 var game = {
 	x_coord : 0,
 	y_coord : 0,
+	whiffles: 10000
 	energy : 100,
+
 	mapString: "",
 	mapMode : 0, //0 for mini-map, 1 for full map
 
 	jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 
-	//setting up the initial cell contents div.
-	go : function(direc) {
+	//This is our "main" function. It is run every time a button is pressed on our html page.
+	go : function(direc) { 
 		switch(direc) {
 			case 'n':
 				this.goNorth();
@@ -40,21 +44,23 @@ var game = {
 				this.x_coord = 0;
 				break;
 		}
+		//technically, the below statements are just to satisfy the packet. 
+		// It required that we save the user's data in a state file.
 		localStorage.setItem('x_coord', this.x_coord);
 		localStorage.setItem('y_coord', this.y_coord);
 
-		this.alterFlags();
-		this.dispLoc();
-		this.checkLoc();
-		this.checkEnergy();
-		this.displayEnergy();
-		this.displayMap();
+		this.alterFlags(); //edits visibility for fog of war.
+		this.dispLoc(); //adds player location to <div> in html.
+		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
+		this.displayEnergy(); //adds energy to <div> in html.
+		this.checkEnergy(); //checks energy and alerts user if energy < 0.
+		this.displayMap(); //creates our map string, and displays to user.
 		if(this.atJewels()){
 			alert("You've found the jewels! Use them wisely!");
 			this.gameOver();
 		}
 	},
-
+	//edits visibility for fog of war.
 	alterFlags : function() {
 		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
 
@@ -129,6 +135,7 @@ var game = {
 		document.getElementById("loc").innerHTML = "Current Location:  " + this.x_coord + ',' + this.y_coord;
 	},
 
+	//displays cell contents to user in html page. TODO: shouldn't be in final product.
 	checkLoc : function() {
 		var key = this.x_coord + ',' + this.y_coord;
 		var cellContents = localStorage.getItem(key);
@@ -205,6 +212,8 @@ var game = {
 			--this.energy;
 		if(this.energy < 1) {
 			alert("You are out of energy!");
+			var scream = new Audio("wilhelm.mp3");
+			scream.play();
 			this.gameOver();
 		}
 	},
@@ -268,6 +277,7 @@ var game = {
 		document.getElementById("map").innerHTML = this.mapString;
 		
 	},
+
 	changeMapMode : function()
 	{
 		if(this.mapMode == 0)
@@ -276,10 +286,11 @@ var game = {
 			this.mapMode = 0;
 		this.displayMap();
 	},
+
+	//redirects us to the splash page if we didn't come from it.
 	checkFrom : function()
 	{
 		if(document.referrer.includes("Frupalsplash.html") == false)
 			window.location.href = "Frupalsplash.html";
 	}
-
 };
