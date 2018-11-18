@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<style type="text/css"><!--
+			/*MCECS stylesheet... sections from www.pdx.edu/lib/cecs/css/cecs.css*/
+			p {
+				font-family:Courier New, courier,monospace;
+				font-size:18px;
+			}
+		--></style>
+		<meta charset="utf-8" />
+	</head>
+<script>localStorage.clear();</script>
+<script src="mapLoad.js"></script>
+<script src="cellLoad.js"></script>
+<script src="game.js"></script>
+
+
+<body>
+<script>game.checkFrom()</script>
+<h1>Frupal - the game ...</h1>
+<br><br>
+<div style="float:right"><p id="map"></p></div>
+<br><br>
+<div style="width:25%;">
+	<div>
+	<div align="middle">
+        <button onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
+	</div>
+	<div align="left">
+		<button onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">EAST</button>
+		<button onclick="game.go('w')" type="submit" form="form1" value="Submit">WEST</button>
+	</div>
+	<div align="middle">
+		<button onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
+	</div>
+</div>
+<div><button onclick="game.changeMapMode()" type="submit" form="form1" value="Submit">CHANGE MAP VIEW</button></div>
+<br>
+<div>Key: Gold=Hero ?=Unexplored Light Green=Meadow Green=Forest Blu=Water Grey=Wall Dark Green=Bog Purple=Swamp</div>
+<div><p id="loc">Current Location:  0,0</p> </div>
+<div><p id="cell">Cell Details: </p> </div>
+<div><p id="whif">Whiffles: </p> </div>
+<div><p id="energy">Energy: </p> </div>
+<div><p id="Hatchet">Hatchets: 0</p> </div>
+<div><p id="Hammer">Hammers: 0</p> </div>
+<div><p id="Boat">Boats: 0</p> </div>
+<div>
+
+	<script>
+		console.log(game.jewels.x + ',' + game.jewels.y);
+		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
+		game.energy++; //Energy was decrementing by 1 on startup // why do this instead of +1 on starting energy
+		game.checkLoc(); //displaying the cell contents of the initial location.
+		game.displayEnergy();
+        game.displayMap();
+	</script>
+
+</body>
+
+</html>
