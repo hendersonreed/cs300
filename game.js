@@ -149,8 +149,6 @@ var game = {
 		 cellContents = cellContents.split(',');
 		 
 		 switch (cellContents[4]){
-			 case 'None':
-				break;
 			case 'Hatchet':
 				localStorage.setItem(inventory[0], localStorage.getItem(inventory[0])+1);
 				document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
@@ -162,6 +160,34 @@ var game = {
 			case 'Boat':
 				localStorage.setItem(inventory[2], localStorage.getItem(inventory[2])+1);
 				document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(inventory[2]);
+				break;
+			case 'Axe':
+				localStorage.setItem(inventory[3], localStorage.getItem(inventory[3])+1);
+				document.getElementById("Axe").innerHTML = 'Axes: ' + localStorage.getItem(inventory[3]);
+				break;
+			case 'Chainsaw':
+				localStorage.setItem(inventory[4], localStorage.getItem(inventory[4])+1);
+				document.getElementById("Chainsaw").innerHTML = 'Chainsaws: ' + localStorage.getItem(inventory[4]);
+				break;
+			case 'Chisel':
+				localStorage.setItem(inventory[5], localStorage.getItem(inventory[5])+1);
+				document.getElementById("Chisel").innerHTML = 'Chisels: ' + localStorage.getItem(inventory[5]);
+				break;
+			case 'Sledge':
+				localStorage.setItem(inventory[6], localStorage.getItem(inventory[6])+1);
+				document.getElementById("Sledge").innerHTML = 'Sledges: ' + localStorage.getItem(inventory[6]);
+				break;
+			case 'Machete':
+				localStorage.setItem(inventory[7], localStorage.getItem(inventory[7])+1);
+				document.getElementById("Machete").innerHTML = 'Machetes: ' + localStorage.getItem(inventory[7]);
+				break;
+			case 'Jackhammer':
+				localStorage.setItem(inventory[8], localStorage.getItem(inventory[8])+1);
+				document.getElementById("Jackhammer").innerHTML = 'Jackhammers: ' + localStorage.getItem(inventory[8]);
+				break;
+			case 'Shear':
+				localStorage.setItem(inventory[9], localStorage.getItem(inventory[9])+1);
+				document.getElementById("Shear").innerHTML = 'Shears: ' + localStorage.getItem(inventory[9]);
 				break;
 		 }
 		 cellContents[4] = 'None';

@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<script type="text/javascript" src="http://livejs.com/live.js"></script> <!-- this script auto reloads the page on every change. used for testing-->
 		<style type="text/css"><!--
 			/*MCECS stylesheet... sections from www.pdx.edu/lib/cecs/css/cecs.css*/
 			p {
@@ -37,14 +38,24 @@
 <div><button onclick="game.changeMapMode()" type="submit" form="form1" value="Submit">CHANGE MAP VIEW</button></div>
 <br>
 <div>Key: Gold=Hero ?=Unexplored Light Green=Meadow Green=Forest Blu=Water Grey=Wall Dark Green=Bog Purple=Swamp</div>
-<div><p id="loc">Current Location:  0,0</p> </div>
-<div><p id="cell">Cell Details: </p> </div>
-<div><p id="whif">Whiffles: </p> </div>
-<div><p id="energy">Energy: </p> </div>
-<div><p id="Hatchet">Hatchets: 0</p> </div>
-<div><p id="Hammer">Hammers: 0</p> </div>
-<div><p id="Boat">Boats: 0</p> </div>
-<div>
+<div id=stats>
+	<div><p id="loc">Current Location:  0,0</p> </div>
+	<div><p id="cell">Cell Details: </p> </div>
+	<div><p id="whif">Whiffles: </p> </div>
+	<div><p id="energy">Energy: </p> </div>
+</div <!--end stats-->
+<div id=inventory>
+	<div><p id="Hatchet">Hatchets: 0</p> </div>
+	<div><p id="Hammer">Hammers: 0</p> </div>
+	<div><p id="Boat">Boats: 0</p> </div>
+	<div><p id="">s: 0</p> </div>
+	<div><p id="">s: 0</p> </div>
+	<div><p id="">s: 0</p> </div>
+	<div><p id="">s: 0</p> </div>
+	<div><p id="">s: 0</p> </div>
+	<div><p id="">s: 0</p> </div>
+	<div><p id="">s: 0</p> </div>
+</div <!--end inventory>
 
 	<script>
 		console.log(game.jewels.x + ',' + game.jewels.y);
