@@ -1,6 +1,5 @@
 /*
 	File: Frupal.html
-<<<<<<< HEAD
 	Authors: Henderson Hummel, James Hiebert,
 	Date 10/27/2018
 
@@ -17,7 +16,7 @@ const MAPSIZE = 5; //Distance from the player that tiles should be drawn
 var game = {
 	x_coord : 0,
 	y_coord : 0,
-	whiffles: 10000
+	whiffles: 10000,
 	energy : 100,
 
 	mapString: "",
@@ -54,19 +53,10 @@ var game = {
 		this.alterFlags(); //edits visibility for fog of war.
 		this.dispLoc(); //adds player location to <div> in html.
 		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
-		this.displayEnergy(); //adds energy to <div> in html.
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
+		this.displayEnergy(); //adds energy to <div> in html.
 		this.displayMap(); //creates our map string, and displays to user.
 		
-		localStorage.setItem('x_coord', this.x_coord);
-		localStorage.setItem('y_coord', this.y_coord);
-
-		this.alterFlags();
-		this.dispLoc();
-		this.checkLoc();
-		this.checkEnergy();
-		this.displayEnergy();
-		this.displayMap();
 		if(this.atJewels()){
 			alert("You've found the jewels! Use them wisely!");
 			this.gameOver();
@@ -144,10 +134,11 @@ var game = {
 		document.getElementById("loc").innerHTML = "Current Location:  " + this.x_coord + ',' + this.y_coord;
 	},
 
+	dispWhif : function() {
+		document.getElementById("whif").innerHTML = "Whiffles: " + this.whiffles;
+	},
+
 	//displays cell contents to user in html page. TODO: shouldn't be in final product.
-	checkLoc : function() {
-		var key = this.x_coord + ',' + this.y_coord;
-		var cellContents = localStorage.getItem(key);
 	checkLoc : function() {
 		var key = this.x_coord + ',' + this.y_coord;
 		let cellContents = localStorage.getItem(key);
@@ -175,20 +166,39 @@ var game = {
 			 case 'None':
 				break;
 			case 'Hatchet':
-				localStorage.setItem(inventory[0], localStorage.getItem(inventory[0])+1);
-				document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
+				if(this.promptPurchase("Hatchet", 50)) {
+					localStorage.setItem(inventory[0], localStorage.getItem(inventory[0])+1);
+					document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
+					this.whiffles -= 50;
+				}
 				break;
 			case 'Hammer':
-				localStorage.setItem(inventory[1], localStorage.getItem(inventory[1])+1);
-				document.getElementById("Hammer").innerHTML = 'Hammers: ' + localStorage.getItem(inventory[1]);
+				if(this.promptPurchase("Hammer", 50)) {
+					localStorage.setItem(inventory[1], localStorage.getItem(inventory[1])+1);
+					document.getElementById("Hammer").innerHTML = 'Hammers: ' + localStorage.getItem(inventory[1]);
+					this.whiffles -= 50;
+				}
 				break;
 			case 'Boat':
-				localStorage.setItem(inventory[2], localStorage.getItem(inventory[2])+1);
-				document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(inventory[2]);
+				if(this.promptPurchase("Boat", 100)) {
+					localStorage.setItem(inventory[2], localStorage.getItem(inventory[2])+1);
+					document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(inventory[2]);
+					this.whiffles -= 100;
+				}
+				break;
+			case 'Power Bar':
+				if(this.promptPurchase("Power Bar", 20)) {
+					this.energy += 20;
+					this.whiffles -= 20;
+				}
 				break;
 		 }
 		 cellContents[4] = 'None';
 		 localStorage.setItem(key, cellContents);
+	},
+
+	promptPurchase : function(name, price) {                                           
+		return confirm("You found a " + name + "!\n\n" + "Would you like to purchase it for " + price + " whiffles?");
 	},
 
 	atJewels : function() {
@@ -247,9 +257,9 @@ var game = {
 		else
 			--this.energy;
 		if(this.energy < 1) {
-			alert("You are out of energy!");
 			var scream = new Audio("wilhelm.mp3");
 			scream.play();
+			alert("You are out of energy!");
 			this.gameOver();
 		}
 	},
@@ -299,6 +309,7 @@ var game = {
 							default:
 								tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
 								break;
+						}
 					}
 					else
 					{
