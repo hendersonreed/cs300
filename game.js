@@ -1,5 +1,6 @@
 /*
 	File: Frupal.html
+<<<<<<< HEAD
 	Authors: Henderson Hummel, James Hiebert,
 	Date 10/27/2018
 
@@ -21,11 +22,12 @@ var game = {
 
 	mapString: "",
 	mapMode : 0, //0 for mini-map, 1 for full map
+	inventoryCount : 0,
 
 	jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 
 	//This is our "main" function. It is run every time a button is pressed on our html page.
-	go : function(direc) { 
+	go : function(direc) {
 		switch(direc) {
 			case 'n':
 				this.goNorth();
@@ -55,11 +57,22 @@ var game = {
 		this.displayEnergy(); //adds energy to <div> in html.
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
 		this.displayMap(); //creates our map string, and displays to user.
+		
+		localStorage.setItem('x_coord', this.x_coord);
+		localStorage.setItem('y_coord', this.y_coord);
+
+		this.alterFlags();
+		this.dispLoc();
+		this.checkLoc();
+		this.checkEnergy();
+		this.displayEnergy();
+		this.displayMap();
 		if(this.atJewels()){
 			alert("You've found the jewels! Use them wisely!");
 			this.gameOver();
 		}
 	},
+
 	//edits visibility for fog of war.
 	alterFlags : function() {
 		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
@@ -124,11 +137,7 @@ var game = {
 				localStorage.setItem(surroundingCellsCoord[i], cell);	
 
 			}
-
 		}
-
-
-
 	},
 
 	dispLoc : function() {
@@ -139,20 +148,47 @@ var game = {
 	checkLoc : function() {
 		var key = this.x_coord + ',' + this.y_coord;
 		var cellContents = localStorage.getItem(key);
+	checkLoc : function() {
+		var key = this.x_coord + ',' + this.y_coord;
+		let cellContents = localStorage.getItem(key);
 		if(cellContents != null) {
 			cellContents = cellContents.split(',');
 			cellContents[2] = 1;
 			localStorage.setItem(key, cellContents);
 			document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
 			//if(this.x_coord > 0 && this.y_coord > 0){
-
-			//}
+			this.addInventory(); //adds to inventory duh..bad comment i know
 		}
 		else {
 			var newCell = key + ",1,0,None";
 			localStorage.setItem(key, newCell);
 			document.getElementById("cell").innerHTML = "Cell Details: " + newCell;
 		}
+	},
+	
+	addInventory : function() {
+		let key = this.x_coord + ',' + this.y_coord; //dumb repeat but making it work
+		let cellContents = localStorage.getItem(key);
+		 cellContents = cellContents.split(',');
+		 
+		 switch (cellContents[4]){
+			 case 'None':
+				break;
+			case 'Hatchet':
+				localStorage.setItem(inventory[0], localStorage.getItem(inventory[0])+1);
+				document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
+				break;
+			case 'Hammer':
+				localStorage.setItem(inventory[1], localStorage.getItem(inventory[1])+1);
+				document.getElementById("Hammer").innerHTML = 'Hammers: ' + localStorage.getItem(inventory[1]);
+				break;
+			case 'Boat':
+				localStorage.setItem(inventory[2], localStorage.getItem(inventory[2])+1);
+				document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(inventory[2]);
+				break;
+		 }
+		 cellContents[4] = 'None';
+		 localStorage.setItem(key, cellContents);
 	},
 
 	atJewels : function() {
@@ -263,8 +299,6 @@ var game = {
 							default:
 								tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
 								break;
-
-						}
 					}
 					else
 					{
@@ -277,7 +311,6 @@ var game = {
 		document.getElementById("map").innerHTML = this.mapString;
 		
 	},
-
 	changeMapMode : function()
 	{
 		if(this.mapMode == 0)

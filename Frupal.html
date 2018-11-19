@@ -41,12 +41,15 @@
 <div><p id="cell">Cell Details: </p> </div>
 <div><p id="whif">Whiffles: </p> </div>
 <div><p id="energy">Energy: </p> </div>
+<div><p id="Hatchet">Hatchets: 0</p> </div>
+<div><p id="Hammer">Hammers: 0</p> </div>
+<div><p id="Boat">Boats: 0</p> </div>
 <div>
 
 	<script>
 		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
-		game.energy++; //Energy was decrementing by 1 on startup
+		game.energy++; //Energy was decrementing by 1 on startup // why do this instead of +1 on starting energy
 		game.checkLoc(); //displaying the cell contents of the initial location.
 		game.displayEnergy();
         game.displayMap();
