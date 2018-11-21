@@ -41,8 +41,8 @@ var game = {
 				this.goSouth();
 				break;
 			default:
-				this.y_coord = 0;
-				this.x_coord = 0;
+				this.y_coord = 14;
+				this.x_coord = 6;
 				break;
 		}
 		//technically, the below statements are just to satisfy the packet. 
@@ -86,42 +86,21 @@ var game = {
 	},
 	alterFlags : function() {
 
-		let CanSee = true;
-		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
+		// If true, then the player can see two coords in each direction. this line will change later and will be linked to the inventory system
+		let hasBinoculars = true; 
 
+		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
 		let x = this.x_coord; let y = this.y_coord;
-		let xminusone = x-1; let yminusone = y-1;
-		let xplusone = x+1; let yplusone = y+1;
+		let xminusone = this.correctCoord(x-1); let yminusone = this.correctCoord(y-1);
+		let xplusone = this.correctCoord(x+1); let yplusone = this.correctCoord(y+1);
+		let xplustwo = this.correctCoord(x+2); let yplustwo = this.correctCoord(y+2);
 		let xminustwo = this.correctCoord(x-2); let yminustwo = this.correctCoord(y-2);
 
+		//the player can see a total of 9 blocks initially, this may change depending on the posssesion of binoculars
 
-		let xminusonetest = this.correctCoord(x-1); let yminusonetest = this.correctCoord (y-1);
-		let xminustwotest = this.correctCoord(x-2); let yminustwotest = this.correctCoord(y-2);
-		let xplusonetest = this.correctCoord (x+1); let yplusonetest = this.correctCoord (y+1);
-		
+		let MaxVisibility = 9;
 
-		//alert("xplusone is: " + xplusone);
-
-		//This section of the code will adjust the X,Y values whenever they're out of bounds, to keep us from trying to access an out-of-bound index 
-
-		if (xminusone < 0) {
-			xminusone = MAX - 1;
-			//alert("OUT OF BOUNDS");
-		}
-		if (xplusone > MAX - 1) {
-			//alert("xplusone is OUT OF BOUNDS");
-			xplusone = 0;
-		}
-		if (yminusone < 0) {
-			yminusone = MAX - 1;
-			//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
-		}
-		if (yplusone > MAX - 1) {
-			yplusone = 0;
-			//alert("OUT OF BOUNDS, YMINUSONE IS: " + yminusone );
-		}
-
-		//stores the 3X3 matrix of surronding coords in a 1-D array
+		//stores the 3X3(base) matrix of surronding coords in a 1-D array
 		let surroundingCellsCoord = [9];
 		surroundingCellsCoord[0] = xminusone + ',' + yminusone;
 		surroundingCellsCoord[1] = x + ',' + yminusone;
@@ -135,32 +114,40 @@ var game = {
 		surroundingCellsCoord[7] = x + ',' + yplusone;
 		surroundingCellsCoord[8] = xplusone + ',' + yplusone;
 
-		//A for loop that goes through the 1-D array, and pushes/modfies cells to the local storage
-		//All the new/modfies cells that are pushed have their visibility flag value set to 1
-		let MaxVisibility = 9;
-		if (CanSee) {
-			alert("xminustwo is: " + xminustwo);
-			alert("yminustwo is: " + yminustwo);
-			//surroundingCellsCoord[9] = xminustwo + ',' + yminustwo;
-			//surroundingCellsCoord[10] = xminusone + ',' + yminustwo;
-			//surroundingCellsCoord[11] = x + ',' + yminustwo;
-			//surroundingCellsCoord[12] = xplusone + ',' + yminustwo;
-			//surroundingCellsCoord[13] = xplustwo + ',' + yminustwo;
+		//if the player has binoculars, then the player will be able to see more blocks (25 total)
+		//this if-statment changes the MaxVisibility variable to 25 which will be used in a for-loop later
+		//also, it will store every new(non-base) x,y into the 1-D array
+		if (hasBinoculars) {
+			MaxVisibility = 25;
 
-			//surroundingCellsCoord[14] = xminustwo + ',' + yminusone;
-			//surroundingCellsCoord[15] = xplustwo + ',' + yminusone;
+			surroundingCellsCoord[9] = xminustwo + ',' + yminustwo;
+			surroundingCellsCoord[10] = xminusone + ',' + yminustwo;
+			surroundingCellsCoord[11] = x + ',' + yminustwo;
+			surroundingCellsCoord[12] = xplusone + ',' + yminustwo;
+			surroundingCellsCoord[13] = xplustwo + ',' + yminustwo;
 
-			//surroundingCellsCoord[16] = xminustwo + ',' + y;
-			//surroundingCellsCoord[17] = xplustwo + ',' + y;
+			surroundingCellsCoord[14] = xminustwo + ',' + yminusone;
+			surroundingCellsCoord[15] = xplustwo + ',' + yminusone;
 
-			//surroundingCellsCoord[18] = xminustwo + ',' + yplusone;
-			//surroundingCellsCoord[19] = xplustwo + ',' + yplusone;
+			surroundingCellsCoord[16] = xminustwo + ',' + y;
+			surroundingCellsCoord[17] = xplustwo + ',' + y;
+
+			surroundingCellsCoord[18] = xminustwo + ',' + yplusone;
+			surroundingCellsCoord[19] = xplustwo + ',' + yplusone;
+			
+			surroundingCellsCoord[20] = xminustwo + ',' + yplustwo;
+			surroundingCellsCoord[21] = xminusone + ',' + yplustwo;
+			surroundingCellsCoord[22] = x + ',' + yplustwo;
+			surroundingCellsCoord[23] = xplusone + ',' + yplustwo;
+			surroundingCellsCoord[24] = xplustwo + ',' + yplustwo;
 		}
 		
+		//A for loop that goes through the 1-D array, and pushes/modfies cells to the local storage
+		//All the new/modfied cells that are pushed have their visibility flag value set to 1
+		
 		for (let i = 0; i < MaxVisibility; i++) {
-			//alert(surroundingCellsCoord[i]);
-
 			let cell = localStorage.getItem(surroundingCellsCoord[i]);
+
 			if (cell == null) {
 				//If the coord doesn't exist in local storage, then a new cell will be made and pushed to local storage
 
