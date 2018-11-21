@@ -64,12 +64,42 @@ var game = {
 	},
 
 	//edits visibility for fog of war.
+	correctCoord : function(coord) {
+		// sometimes X/Y can be either -1 or -2, the next two statments statment fixes this problem since we can wrap around the map and we can't have negative coord  
+		if (coord == -2) { 
+			//alert("WE ARE IN X-2 OR Y-2");
+			return (MAX - 2);
+		}
+		if (coord == -1) { 
+			return (MAX - 1);
+		}
+
+		if (coord == MAX) {
+			return 0;
+		}
+		if (coord == MAX + 1) {
+			//alert("WE ARE IN MAX + 1");
+			return 1;
+		}
+		return coord;
+
+	},
 	alterFlags : function() {
+
+		let CanSee = true;
 		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
 
 		let x = this.x_coord; let y = this.y_coord;
 		let xminusone = x-1; let yminusone = y-1;
 		let xplusone = x+1; let yplusone = y+1;
+		let xminustwo = this.correctCoord(x-2); let yminustwo = this.correctCoord(y-2);
+
+
+		let xminusonetest = this.correctCoord(x-1); let yminusonetest = this.correctCoord (y-1);
+		let xminustwotest = this.correctCoord(x-2); let yminustwotest = this.correctCoord(y-2);
+		let xplusonetest = this.correctCoord (x+1); let yplusonetest = this.correctCoord (y+1);
+		
+
 		//alert("xplusone is: " + xplusone);
 
 		//This section of the code will adjust the X,Y values whenever they're out of bounds, to keep us from trying to access an out-of-bound index 
@@ -96,17 +126,38 @@ var game = {
 		surroundingCellsCoord[0] = xminusone + ',' + yminusone;
 		surroundingCellsCoord[1] = x + ',' + yminusone;
 		surroundingCellsCoord[2] = xplusone + ',' + yminusone;
+
 		surroundingCellsCoord[3] = xminusone + ',' + y;
 		surroundingCellsCoord[4] = x + ',' + y;
 		surroundingCellsCoord[5] = xplusone + ',' + y;
+
 		surroundingCellsCoord[6] = xminusone + ',' + yplusone;
 		surroundingCellsCoord[7] = x + ',' + yplusone;
 		surroundingCellsCoord[8] = xplusone + ',' + yplusone;
 
 		//A for loop that goes through the 1-D array, and pushes/modfies cells to the local storage
 		//All the new/modfies cells that are pushed have their visibility flag value set to 1
+		let MaxVisibility = 9;
+		if (CanSee) {
+			alert("xminustwo is: " + xminustwo);
+			alert("yminustwo is: " + yminustwo);
+			//surroundingCellsCoord[9] = xminustwo + ',' + yminustwo;
+			//surroundingCellsCoord[10] = xminusone + ',' + yminustwo;
+			//surroundingCellsCoord[11] = x + ',' + yminustwo;
+			//surroundingCellsCoord[12] = xplusone + ',' + yminustwo;
+			//surroundingCellsCoord[13] = xplustwo + ',' + yminustwo;
 
-		for (let i = 0; i < 9; i++) {
+			//surroundingCellsCoord[14] = xminustwo + ',' + yminusone;
+			//surroundingCellsCoord[15] = xplustwo + ',' + yminusone;
+
+			//surroundingCellsCoord[16] = xminustwo + ',' + y;
+			//surroundingCellsCoord[17] = xplustwo + ',' + y;
+
+			//surroundingCellsCoord[18] = xminustwo + ',' + yplusone;
+			//surroundingCellsCoord[19] = xplustwo + ',' + yplusone;
+		}
+		
+		for (let i = 0; i < MaxVisibility; i++) {
 			//alert(surroundingCellsCoord[i]);
 
 			let cell = localStorage.getItem(surroundingCellsCoord[i]);
