@@ -23,6 +23,8 @@ var game = {
 	mapMode : 0, //0 for mini-map, 1 for full map
 	inventoryCount : 0,
 
+	// Comment the below line, if we choose to add the jewels as an
+	//  item in the map file.
 	jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 
 	//This is our "main" function. It is run every time a button is pressed on our html page.
