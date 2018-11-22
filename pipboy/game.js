@@ -149,45 +149,19 @@ var game = {
 		 cellContents = cellContents.split(',');
 		 
 		 switch (cellContents[4]){
+			 case 'None':
+				break;
 			case 'Hatchet':
-				localStorage.setItem(Hatchet, localStorage.getItem(Hatchet)+1);
-				document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(Hatchet);
+				localStorage.setItem(inventory[0], localStorage.getItem(inventory[0])+1);
+				document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
 				break;
 			case 'Hammer':
-				localStorage.setItem(Hammer, localStorage.getItem(Hammer)+1);
-				document.getElementById("Hammer").innerHTML = 'Hammers: ' + localStorage.getItem(Hammer);
+				localStorage.setItem(inventory[1], localStorage.getItem(inventory[1])+1);
+				document.getElementById("Hammer").innerHTML = 'Hammers: ' + localStorage.getItem(inventory[1]);
 				break;
 			case 'Boat':
-				localStorage.setItem(Boat, localStorage.getItem(Boat)+1);
-				document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(Boat);
-				break;
-			case 'Axe':
-				localStorage.setItem(Axe, localStorage.getItem(Axe)+1);
-				document.getElementById("Axe").innerHTML = 'Axes: ' + localStorage.getItem(Axe);
-				break;
-			case 'Chainsaw':
-				localStorage.setItem(Chainsaw, localStorage.getItem(Chainsaw)+1);
-				document.getElementById("Chainsaw").innerHTML = 'Chainsaws: ' + localStorage.getItem(Chainsaw);
-				break;
-			case 'Chisel':
-				localStorage.setItem(Chisel, localStorage.getItem(Chisel)+1);
-				document.getElementById("Chisel").innerHTML = 'Chisels: ' + localStorage.getItem(Chisel);
-				break;
-			case 'Sledge':
-				localStorage.setItem(Sledge, localStorage.getItem(Sledge)+1);
-				document.getElementById("Sledge").innerHTML = 'Sledges: ' + localStorage.getItem(Sledge);
-				break;
-			case 'Machete':
-				localStorage.setItem(Machete, localStorage.getItem(Machete)+1);
-				document.getElementById("Machete").innerHTML = 'Machetes: ' + localStorage.getItem(Machete);
-				break;
-			case 'Jackhammer':
-				localStorage.setItem(Jackhammer, localStorage.getItem(Jackhammer)+1);
-				document.getElementById("Jackhammer").innerHTML = 'Jackhammers: ' + localStorage.getItem(Jackhammer);
-				break;
-			case 'Shear':
-				localStorage.setItem(Shear, localStorage.getItem(Shear)+1);
-				document.getElementById("Shear").innerHTML = 'Shears: ' + localStorage.getItem(Shear);
+				localStorage.setItem(inventory[2], localStorage.getItem(inventory[2])+1);
+				document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(inventory[2]);
 				break;
 		 }
 		 cellContents[4] = 'None';
