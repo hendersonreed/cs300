@@ -150,44 +150,44 @@ var game = {
 		 
 		 switch (cellContents[4]){
 			case 'Hatchet':
-				localStorage.setItem(Hatchet, localStorage.getItem(Hatchet)+1);
-				document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(Hatchet);
+				localStorage.setItem(Hatchet, 1);
+				document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + 1;
 				break;
 			case 'Hammer':
-				localStorage.setItem(Hammer, localStorage.getItem(Hammer)+1);
-				document.getElementById("Hammer").innerHTML = 'Hammers: ' + localStorage.getItem(Hammer);
+				localStorage.setItem(Hammer, 1);
+				document.getElementById("Hammer").innerHTML = 'Hammers: ' + 1;
 				break;
 			case 'Boat':
-				localStorage.setItem(Boat, localStorage.getItem(Boat)+1);
-				document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(Boat);
+				localStorage.setItem(Boat, 1);
+				document.getElementById("Boat").innerHTML = 'Boats: ' + 1;
 				break;
 			case 'Axe':
-				localStorage.setItem(Axe, localStorage.getItem(Axe)+1);
-				document.getElementById("Axe").innerHTML = 'Axes: ' + localStorage.getItem(Axe);
+				localStorage.setItem(Axe, 1);
+				document.getElementById("Axe").innerHTML = 'Axes: ' + 1;
 				break;
 			case 'Chainsaw':
-				localStorage.setItem(Chainsaw, localStorage.getItem(Chainsaw)+1);
-				document.getElementById("Chainsaw").innerHTML = 'Chainsaws: ' + localStorage.getItem(Chainsaw);
+				localStorage.setItem(Chainsaw, 1);
+				document.getElementById("Chainsaw").innerHTML = 'Chainsaws: ' + 1;
 				break;
 			case 'Chisel':
-				localStorage.setItem(Chisel, localStorage.getItem(Chisel)+1);
-				document.getElementById("Chisel").innerHTML = 'Chisels: ' + localStorage.getItem(Chisel);
+				localStorage.setItem(Chisel, 1);
+				document.getElementById("Chisel").innerHTML = 'Chisels: ' + 1;
 				break;
 			case 'Sledge':
-				localStorage.setItem(Sledge, localStorage.getItem(Sledge)+1);
-				document.getElementById("Sledge").innerHTML = 'Sledges: ' + localStorage.getItem(Sledge);
+				localStorage.setItem(Sledge, 1);
+				document.getElementById("Sledge").innerHTML = 'Sledges: ' + 1;
 				break;
 			case 'Machete':
-				localStorage.setItem(Machete, localStorage.getItem(Machete)+1);
-				document.getElementById("Machete").innerHTML = 'Machetes: ' + localStorage.getItem(Machete);
+				localStorage.setItem(Machete, 1);
+				document.getElementById("Machete").innerHTML = 'Machetes: ' + 1;
 				break;
 			case 'Jackhammer':
-				localStorage.setItem(Jackhammer, localStorage.getItem(Jackhammer)+1);
-				document.getElementById("Jackhammer").innerHTML = 'Jackhammers: ' + localStorage.getItem(Jackhammer);
+				localStorage.setItem(Jackhammer, 1);
+				document.getElementById("Jackhammer").innerHTML = 'Jackhammers: ' + 1;
 				break;
 			case 'Shear':
-				localStorage.setItem(Shear, localStorage.getItem(Shear)+1);
-				document.getElementById("Shear").innerHTML = 'Shears: ' + localStorage.getItem(Shear);
+				localStorage.setItem(Shear, 1);
+				document.getElementById("Shear").innerHTML = 'Shears: ' + 1;
 				break;
 		 }
 		 cellContents[4] = 'None';
