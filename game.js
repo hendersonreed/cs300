@@ -16,15 +16,13 @@ const MAPSIZE = 5; //Distance from the player that tiles should be drawn
 var game = {
 	x_coord : 0,
 	y_coord : 0,
-	whiffles: 10000,
+	whiffles: 1000,
 	energy : 100,
 	invArray: [0,0,0,0,0,0,0,0,0],
 
 	mapString: "",
 	mapMode : 0, //0 for mini-map, 1 for full map
 
-	// Comment the below line, if we choose to add the jewels as an
-	//  item in the map file.
 	jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 
 	//This is our "main" function. It is run every time a button is pressed on our html page.
@@ -54,7 +52,6 @@ var game = {
 
 		this.alterFlags(); //edits visibility for fog of war.
 		this.dispLoc(); //adds player location to <div> in html.
-		this.dispWhif();
 		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
 		this.displayEnergy(); //adds energy to <div> in html.
@@ -151,7 +148,7 @@ var game = {
 			localStorage.setItem(key, cellContents);
 			document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
 			//if(this.x_coord > 0 && this.y_coord > 0){
-				this.addInventory(); //adds to inventory duh..bad comment i know
+			this.addInventory(); //adds to inventory duh..bad comment i know
 		}
 		else {
 			var newCell = key + ",1,0,None";
@@ -167,11 +164,13 @@ var game = {
 		 
 		 switch (cellContents[4]){
 			case 'Hatchet':
-				if(this.promptPurchase("Hatchet", 50)) {
-					localStorage.setItem(inventory[0], localStorage.getItem(inventory[0])+1);
-					document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
-					this.whiffles -= 50;
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Hatchet", 50)) {
+						localStorage.setItem(Hatchet, ++this.invArray[0]);
+						document.getElementById("Hatchet").innerHTML = '<br>' + this.invArray[0];
+						this.whiffles -= 50;
 				}
+			}
 				break;
 			case 'Hammer':
 				if(this.whiffles >= 50){
@@ -183,10 +182,10 @@ var game = {
 				}
 				break;
 			case 'Boat':
-				if(this.whiffles >=100) {
+				if(this.whiffles >= 100){
 					if(this.promptPurchase("Boat", 100)) {
-						localStorage.setItem("Boat", ++this.invArray[2]);
-						document.getElementById("Boat").innerHTML = 'Boats: ' + this.invArray[2];
+						localStorage.setItem(Boat, ++this.invArray[2]);
+						document.getElementById("Boat").innerHTML = '<br>' + this.invArray[2];
 						this.whiffles -= 100;
 					}
 				}
@@ -199,33 +198,33 @@ var game = {
 					}
 				}
 			case 'Axe':
-				if(this.whiffles >= 50) {
+				if(this.whiffles >= 50){
 					if(this.promptPurchase("Axe", 50)) {
-						localStorage.setItem("Axe", ++this.invArray[3]);
+						localStorage.setItem(Axe, ++this.invArray[3]);
 						document.getElementById("Axe").innerHTML = '<br>' + this.invArray[3];
 					}
 				}
 				break;
 			case 'Chainsaw':
-				if(this.whiffles >= 50) {
+				if(this.whiffles >= 50){
 					if(this.promptPurchase("Chainsaw", 50)) {
-						localStorage.setItem("Chainsaw", 1);
+						localStorage.setItem(Chainsaw, ++this.invArray[4]);
 						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
 					}
 				}
 				break;
 			case 'Chisel':
-				if(this.whiffles >= 50) {
+				if(this.whiffles >= 50){
 					if(this.promptPurchase("Chisel", 50)) {
-						localStorage.setItem("Chisel", ++this.invArray[5]);
+						localStorage.setItem(Chisel, ++this.invArray[5]);
 						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
 					}
 				}
 				break;
 			case 'Sledge':
-				if(this.whiffles >= 50) {
+				if(this.whiffles >= 50){
 					if(this.promptPurchase("Sledge", 50)) {
-						localStorage.setItem("Sledge", 1);
+						localStorage.setItem(Sledge, ++this.invArray[6]);
 						document.getElementById("Sledge").innerHTML = '<br>' + this.invArray[6];
 					}
 				}
@@ -233,7 +232,7 @@ var game = {
 			case 'Machete':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Machete", 50)) {
-						localStorage.setItem("Machete", ++this.invArray[7]);
+						localStorage.setItem(Machete, ++this.invArray[7]);
 						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
 					}
 				}
@@ -241,23 +240,23 @@ var game = {
 			case 'Jackhammer':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Jackhammer", 50)) {
-						localStorage.setItem("Jackhammer", 1);
+						localStorage.setItem(Jackhammer, ++this.invArray[8]);
 						document.getElementById("Jackhammer").innerHTML = '<br>' + this.invArray[8];
 					}
 				}
 				break;
 			case 'Shear':
 			if(this.whiffles >= 50){
-					if(this.promptPurchase("Shear", 50)) {
-						localStorage.setItem(Shear, ++this.invArray[9]);
-						document.getElementById("Shear").innerHTML = '<br>' + this.invArray[9];
-					}
+				if(this.promptPurchase("Shear", 50)) {
+					localStorage.setItem(Shear, ++this.invArray[9]);
+					document.getElementById("Shear").innerHTML = '<br>' + this.invArray[9];
 				}
+			}
 				break;
 		 }
 		 cellContents[4] = 'None';
 		 localStorage.setItem(key, cellContents);
-		 this.dispWhif();
+		 document.getElementById("whif").innerHTML = 'Whiffles: ' + this.whiffles;
 	},
 
 	promptPurchase : function(name, price) {         
