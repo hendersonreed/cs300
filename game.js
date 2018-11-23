@@ -87,7 +87,7 @@ var game = {
 	alterFlags : function() {
 
 		// If true, then the player can see two coords in each direction. this line will change later and will be linked to the inventory system
-		let hasBinoculars = true; 
+		let hasBinoculars = localStorage.getItem("binocular");
 
 		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
 		let x = this.x_coord; let y = this.y_coord;
