@@ -41,8 +41,8 @@ var game = {
 				this.goSouth();
 				break;
 			default:
-				this.y_coord = 14;
-				this.x_coord = 6;
+				this.y_coord = 0;
+				this.x_coord = 0;
 				break;
 		}
 		//technically, the below statements are just to satisfy the packet. 
