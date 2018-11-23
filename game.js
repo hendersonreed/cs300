@@ -54,6 +54,7 @@ var game = {
 
 		this.alterFlags(); //edits visibility for fog of war.
 		this.dispLoc(); //adds player location to <div> in html.
+		this.dispWhif();
 		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
 		this.displayEnergy(); //adds energy to <div> in html.
@@ -236,6 +237,7 @@ var game = {
 		 }
 		 cellContents[4] = 'None';
 		 localStorage.setItem(key, cellContents);
+		 this.dispWhif();
 	},
 
 	promptPurchase : function(name, price) {                                           
