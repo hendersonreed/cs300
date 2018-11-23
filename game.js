@@ -1,27 +1,31 @@
 /*
 	File: Frupal.html
-	Authors: Henderson Hummel, James Hiebert
+	Authors: Henderson Hummel, James Hiebert,
 	Date 10/27/2018
 
 	Purpose: display the game to user.
-	Description: This is our managing javascript section, as well as the
-	page source. It's exceedingly preliminary, so much of this will change.
+	Description: This is our managing javascript section. It's exceedingly 
+	preliminary, so much of this will change.
+
 	Also! This page is in active development, so if you're reading this 
 	because the page is broken, well, that's to be expected.
 */
+
 const MAX = 20;
 const MAPSIZE = 5; //Distance from the player that tiles should be drawn
 var game = {
 	x_coord : 0,
 	y_coord : 0,
+	whiffles: 100,
 	energy : 100,
+
 	mapString: "",
 	mapMode : 0, //0 for mini-map, 1 for full map
 	inventoryCount : 0,
 
 	jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 
-	//setting up the initial cell contents div.
+	//This is our "main" function. It is run every time a button is pressed on our html page.
 	go : function(direc) {
 		switch(direc) {
 			case 'n':
@@ -41,21 +45,25 @@ var game = {
 				this.x_coord = 0;
 				break;
 		}
+		//technically, the below statements are just to satisfy the packet. 
+		// It required that we save the user's data in a state file.
 		localStorage.setItem('x_coord', this.x_coord);
 		localStorage.setItem('y_coord', this.y_coord);
 
-		this.alterFlags();
-		this.dispLoc();
-		this.checkLoc();
-		this.checkEnergy();
-		this.displayEnergy();
-		this.displayMap();
+		this.alterFlags(); //edits visibility for fog of war.
+		this.dispLoc(); //adds player location to <div> in html.
+		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
+		this.checkEnergy(); //checks energy and alerts user if energy < 0.
+		this.displayEnergy(); //adds energy to <div> in html.
+		this.displayMap(); //creates our map string, and displays to user.
+		
 		if(this.atJewels()){
 			alert("You've found the jewels! Use them wisely!");
 			this.gameOver();
 		}
 	},
 
+	//edits visibility for fog of war.
 	alterFlags : function() {
 		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
 
@@ -126,6 +134,11 @@ var game = {
 		document.getElementById("loc").innerHTML = "Current Location:  " + this.x_coord + ',' + this.y_coord;
 	},
 
+	dispWhif : function() {
+		document.getElementById("whif").innerHTML = "Whiffles: " + this.whiffles;
+	},
+
+	//displays cell contents to user in html page. TODO: shouldn't be in final product.
 	checkLoc : function() {
 		var key = this.x_coord + ',' + this.y_coord;
 		let cellContents = localStorage.getItem(key);
@@ -134,6 +147,7 @@ var game = {
 			cellContents[2] = 1;
 			localStorage.setItem(key, cellContents);
 			document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
+			//if(this.x_coord > 0 && this.y_coord > 0){
 			this.addInventory(); //adds to inventory duh..bad comment i know
 		}
 		else {
@@ -150,48 +164,81 @@ var game = {
 		 
 		 switch (cellContents[4]){
 			case 'Hatchet':
-				localStorage.setItem(Hatchet, 1);
-				document.getElementById("Hatchet").innerHTML = '' + 1;
+				if(this.promptPurchase("Hatchet", 50)) {
+					localStorage.setItem(Hatchet, 1);
+					document.getElementById("Hatchet").innerHTML = '<br>1';
+					this.whiffles -= 50;
+				}
 				break;
 			case 'Hammer':
-				localStorage.setItem(Hammer, 1);
-				document.getElementById("Hammer").innerHTML = 'Hammers: ' + 1;
+				if(this.promptPurchase("Hammer", 50)) {
+					localStorage.setItem(Hammer, 1);
+					document.getElementById("Hammer").innerHTML = '<br>1';
+					this.whiffles -= 50;
+				}
 				break;
 			case 'Boat':
-				localStorage.setItem(Boat, 1);
-				document.getElementById("Boat").innerHTML = 'Boats: ' + 1;
+				if(this.promptPurchase("Boat", 100)) {
+					localStorage.setItem(Boat, 1);
+					document.getElementById("Boat").innerHTML = '<br>1';
+					this.whiffles -= 100;
+				}
 				break;
+			case 'Power Bar':
+				if(this.promptPurchase("Power Bar", 20)) {
+					this.energy += 20;
+					this.whiffles -= 20;
+				}
 			case 'Axe':
-				localStorage.setItem(Axe, 1);
-				document.getElementById("Axe").innerHTML = 'Axes: ' + 1;
+				if(this.promptPurchase("Axe", 50)) {
+					localStorage.setItem(Axe, 1);
+					document.getElementById("Axe").innerHTML = '<br>1';
+				}
 				break;
 			case 'Chainsaw':
-				localStorage.setItem(Chainsaw, 1);
-				document.getElementById("Chainsaw").innerHTML = 'Chainsaws: ' + 1;
+				if(this.promptPurchase("Chainsaw", 50)) {
+					localStorage.setItem(Chainsaw, 1);
+					document.getElementById("Chainsaw").innerHTML = '<br>1';
+				}
 				break;
 			case 'Chisel':
-				localStorage.setItem(Chisel, 1);
-				document.getElementById("Chisel").innerHTML = 'Chisels: ' + 1;
+				if(this.promptPurchase("Chisel", 50)) {
+					localStorage.setItem(Chisel, 1);
+					document.getElementById("Chisel").innerHTML = '<br>1';
+				}
 				break;
 			case 'Sledge':
-				localStorage.setItem(Sledge, 1);
-				document.getElementById("Sledge").innerHTML = 'Sledges: ' + 1;
+				if(this.promptPurchase("Sledge", 50)) {
+					localStorage.setItem(Sledge, 1);
+					document.getElementById("Sledge").innerHTML = '<br>1';
+				}
 				break;
 			case 'Machete':
-				localStorage.setItem(Machete, 1);
-				document.getElementById("Machete").innerHTML = 'Machetes: ' + 1;
+				if(this.promptPurchase("Machete", 50)) {
+					localStorage.setItem(Machete, 1);
+					document.getElementById("Machete").innerHTML = '<br>1';
+				}
 				break;
 			case 'Jackhammer':
-				localStorage.setItem(Jackhammer, 1);
-				document.getElementById("Jackhammer").innerHTML = 'Jackhammers: ' + 1;
+				if(this.promptPurchase("Jackhammer", 50)) {
+					localStorage.setItem(Jackhammer, 1);
+					document.getElementById("Jackhammer").innerHTML = '<br>1';
+				}
 				break;
 			case 'Shear':
-				localStorage.setItem(Shear, 1);
-				document.getElementById("Shear").innerHTML = 'Shears: ' + 1;
+				if(this.promptPurchase("Shear", 50)) {
+					localStorage.setItem(Shear, 1);
+					document.getElementById("Shear").innerHTML = '<br>1';
+				}
 				break;
 		 }
 		 cellContents[4] = 'None';
 		 localStorage.setItem(key, cellContents);
+		 document.getElementById("whif").innerHTML = 'Whiffles: ' + this.whiffles;
+	},
+
+	promptPurchase : function(name, price) {         
+		return confirm("You found a " + name + "!\n\n" + "Would you like to purchase it for " + price + " whiffles?");
 	},
 
 	atJewels : function() {
@@ -250,6 +297,8 @@ var game = {
 		else
 			--this.energy;
 		if(this.energy < 1) {
+			var scream = new Audio("wilhelm.mp3");
+			scream.play();
 			alert("You are out of energy!");
 			this.gameOver();
 		}
@@ -321,10 +370,11 @@ var game = {
 			this.mapMode = 0;
 		this.displayMap();
 	},
+
+	//redirects us to the splash page if we didn't come from it.
 	checkFrom : function()
 	{
 		if(document.referrer.includes("Frupalsplash.html") == false)
 			window.location.href = "Frupalsplash.html";
 	}
-
 };
