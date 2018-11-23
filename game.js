@@ -183,10 +183,12 @@ var game = {
 				}
 				break;
 			case 'Boat':
-				if(this.promptPurchase("Boat", 100)) {
-					localStorage.setItem(inventory[2], localStorage.getItem(inventory[2])+1);
-					document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(inventory[2]);
-					this.whiffles -= 100;
+				if(this.whiffles >=100) {
+					if(this.promptPurchase("Boat", 100)) {
+						localStorage.setItem("Boat", ++this.invArray[2]);
+						document.getElementById("Boat").innerHTML = 'Boats: ' + this.invArray[2];
+						this.whiffles -= 100;
+					}
 				}
 				break;
 			case 'Power Bar':
@@ -197,54 +199,60 @@ var game = {
 					}
 				}
 			case 'Axe':
-				if(this.whiffles >= 50){
+				if(this.whiffles >= 50) {
 					if(this.promptPurchase("Axe", 50)) {
-						localStorage.setItem(Axe, ++this.invArray[3]);
+						localStorage.setItem("Axe", ++this.invArray[3]);
 						document.getElementById("Axe").innerHTML = '<br>' + this.invArray[3];
 					}
 				}
 				break;
 			case 'Chainsaw':
-				if(this.promptPurchase("Chainsaw", 50)) {
-					localStorage.setItem(Chainsaw, 1);
-					document.getElementById("Chainsaw").innerHTML = 'Chainsaws: ' + 1;
+				if(this.whiffles >= 50) {
+					if(this.promptPurchase("Chainsaw", 50)) {
+						localStorage.setItem("Chainsaw", 1);
+						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
+					}
 				}
 				break;
 			case 'Chisel':
-				if(this.whiffles >= 50){
+				if(this.whiffles >= 50) {
 					if(this.promptPurchase("Chisel", 50)) {
-						localStorage.setItem(Chisel, ++this.invArray[5]);
+						localStorage.setItem("Chisel", ++this.invArray[5]);
 						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
 					}
 				}
 				break;
 			case 'Sledge':
-				if(this.promptPurchase("Sledge", 50)) {
-					localStorage.setItem(Sledge, 1);
-					document.getElementById("Sledge").innerHTML = 'Sledges: ' + 1;
+				if(this.whiffles >= 50) {
+					if(this.promptPurchase("Sledge", 50)) {
+						localStorage.setItem("Sledge", 1);
+						document.getElementById("Sledge").innerHTML = '<br>' + this.invArray[6];
+					}
 				}
 				break;
 			case 'Machete':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Machete", 50)) {
-						localStorage.setItem(Machete, ++this.invArray[7]);
+						localStorage.setItem("Machete", ++this.invArray[7]);
 						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
 					}
 				}
 				break;
 			case 'Jackhammer':
-				if(this.promptPurchase("Jackhammer", 50)) {
-					localStorage.setItem(Jackhammer, 1);
-					document.getElementById("Jackhammer").innerHTML = 'Jackhammers: ' + 1;
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Jackhammer", 50)) {
+						localStorage.setItem("Jackhammer", 1);
+						document.getElementById("Jackhammer").innerHTML = '<br>' + this.invArray[8];
+					}
 				}
 				break;
 			case 'Shear':
 			if(this.whiffles >= 50){
-				if(this.promptPurchase("Shear", 50)) {
-					localStorage.setItem(Shear, ++this.invArray[9]);
-					document.getElementById("Shear").innerHTML = '<br>' + this.invArray[9];
+					if(this.promptPurchase("Shear", 50)) {
+						localStorage.setItem(Shear, ++this.invArray[9]);
+						document.getElementById("Shear").innerHTML = '<br>' + this.invArray[9];
+					}
 				}
-			}
 				break;
 		 }
 		 cellContents[4] = 'None';
