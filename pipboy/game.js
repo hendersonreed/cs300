@@ -149,19 +149,45 @@ var game = {
 		 cellContents = cellContents.split(',');
 		 
 		 switch (cellContents[4]){
-			 case 'None':
-				break;
 			case 'Hatchet':
-				localStorage.setItem(inventory[0], localStorage.getItem(inventory[0])+1);
-				document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
+				localStorage.setItem(Hatchet, 1);
+				document.getElementById("Hatchet").innerHTML = '' + 1;
 				break;
 			case 'Hammer':
-				localStorage.setItem(inventory[1], localStorage.getItem(inventory[1])+1);
-				document.getElementById("Hammer").innerHTML = 'Hammers: ' + localStorage.getItem(inventory[1]);
+				localStorage.setItem(Hammer, 1);
+				document.getElementById("Hammer").innerHTML = 'Hammers: ' + 1;
 				break;
 			case 'Boat':
-				localStorage.setItem(inventory[2], localStorage.getItem(inventory[2])+1);
-				document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(inventory[2]);
+				localStorage.setItem(Boat, 1);
+				document.getElementById("Boat").innerHTML = 'Boats: ' + 1;
+				break;
+			case 'Axe':
+				localStorage.setItem(Axe, 1);
+				document.getElementById("Axe").innerHTML = 'Axes: ' + 1;
+				break;
+			case 'Chainsaw':
+				localStorage.setItem(Chainsaw, 1);
+				document.getElementById("Chainsaw").innerHTML = 'Chainsaws: ' + 1;
+				break;
+			case 'Chisel':
+				localStorage.setItem(Chisel, 1);
+				document.getElementById("Chisel").innerHTML = 'Chisels: ' + 1;
+				break;
+			case 'Sledge':
+				localStorage.setItem(Sledge, 1);
+				document.getElementById("Sledge").innerHTML = 'Sledges: ' + 1;
+				break;
+			case 'Machete':
+				localStorage.setItem(Machete, 1);
+				document.getElementById("Machete").innerHTML = 'Machetes: ' + 1;
+				break;
+			case 'Jackhammer':
+				localStorage.setItem(Jackhammer, 1);
+				document.getElementById("Jackhammer").innerHTML = 'Jackhammers: ' + 1;
+				break;
+			case 'Shear':
+				localStorage.setItem(Shear, 1);
+				document.getElementById("Shear").innerHTML = 'Shears: ' + 1;
 				break;
 		 }
 		 cellContents[4] = 'None';

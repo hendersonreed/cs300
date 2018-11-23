@@ -18,10 +18,10 @@ var game = {
 	y_coord : 0,
 	whiffles: 10000,
 	energy : 100,
+	invArray: [0,0,0,0,0,0,0,0,0],
 
 	mapString: "",
 	mapMode : 0, //0 for mini-map, 1 for full map
-	inventoryCount : 0,
 
 	// Comment the below line, if we choose to add the jewels as an
 	//  item in the map file.
@@ -151,7 +151,7 @@ var game = {
 			localStorage.setItem(key, cellContents);
 			document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
 			//if(this.x_coord > 0 && this.y_coord > 0){
-			this.addInventory(); //adds to inventory duh..bad comment i know
+				this.addInventory(); //adds to inventory duh..bad comment i know
 		}
 		else {
 			var newCell = key + ",1,0,None";
@@ -174,10 +174,12 @@ var game = {
 				}
 				break;
 			case 'Hammer':
-				if(this.promptPurchase("Hammer", 50)) {
-					localStorage.setItem(inventory[1], localStorage.getItem(inventory[1])+1);
-					document.getElementById("Hammer").innerHTML = 'Hammers: ' + localStorage.getItem(inventory[1]);
-					this.whiffles -= 50;
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Hammer", 50)) {
+						localStorage.setItem(Hammer, ++this.invArray[1]);
+						document.getElementById("Hammer").innerHTML = '<br>' + this.invArray[1];
+						this.whiffles -= 50;
+					}
 				}
 				break;
 			case 'Boat':
@@ -188,14 +190,18 @@ var game = {
 				}
 				break;
 			case 'Power Bar':
-				if(this.promptPurchase("Power Bar", 20)) {
-					this.energy += 20;
-					this.whiffles -= 20;
+				if(this.whiffles >= 20){
+					if(this.promptPurchase("Power Bar", 20)) {
+						this.energy += 20;
+						this.whiffles -= 20;
+					}
 				}
 			case 'Axe':
-				if(this.promptPurchase("Axe", 50)) {
-					localStorage.setItem(Axe, 1);
-					document.getElementById("Axe").innerHTML = 'Axes: ' + 1;
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Axe", 50)) {
+						localStorage.setItem(Axe, ++this.invArray[3]);
+						document.getElementById("Axe").innerHTML = '<br>' + this.invArray[3];
+					}
 				}
 				break;
 			case 'Chainsaw':
@@ -205,9 +211,11 @@ var game = {
 				}
 				break;
 			case 'Chisel':
-				if(this.promptPurchase("Chisel", 50)) {
-					localStorage.setItem(Chisel, 1);
-					document.getElementById("Chisel").innerHTML = 'Chisels: ' + 1;
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Chisel", 50)) {
+						localStorage.setItem(Chisel, ++this.invArray[5]);
+						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
+					}
 				}
 				break;
 			case 'Sledge':
@@ -217,9 +225,11 @@ var game = {
 				}
 				break;
 			case 'Machete':
-				if(this.promptPurchase("Machete", 50)) {
-					localStorage.setItem(Machete, 1);
-					document.getElementById("Machete").innerHTML = 'Machetes: ' + 1;
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Machete", 50)) {
+						localStorage.setItem(Machete, ++this.invArray[7]);
+						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
+					}
 				}
 				break;
 			case 'Jackhammer':
@@ -229,10 +239,12 @@ var game = {
 				}
 				break;
 			case 'Shear':
+			if(this.whiffles >= 50){
 				if(this.promptPurchase("Shear", 50)) {
-					localStorage.setItem(Shear, 1);
-					document.getElementById("Shear").innerHTML = 'Shears: ' + 1;
+					localStorage.setItem(Shear, ++this.invArray[9]);
+					document.getElementById("Shear").innerHTML = '<br>' + this.invArray[9];
 				}
+			}
 				break;
 		 }
 		 cellContents[4] = 'None';
@@ -240,7 +252,7 @@ var game = {
 		 this.dispWhif();
 	},
 
-	promptPurchase : function(name, price) {                                           
+	promptPurchase : function(name, price) {         
 		return confirm("You found a " + name + "!\n\n" + "Would you like to purchase it for " + price + " whiffles?");
 	},
 
