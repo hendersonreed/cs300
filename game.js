@@ -57,7 +57,7 @@ var game = {
 		this.dispLoc(); //adds player location to <div> in html.
 		this.dispWhif();
 		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
-        this.checkObstacles();
+        this.checkObstacle();
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
 		this.displayEnergy(); //adds energy to <div> in html.
 		this.displayMap(); //creates our map string, and displays to user.
@@ -523,6 +523,8 @@ var game = {
                     break;
                 default:
                     break;
+            }
+        }
     }
 };
 
