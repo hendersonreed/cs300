@@ -162,14 +162,14 @@ var game = {
 		let key = this.x_coord + ',' + this.y_coord; //dumb repeat but making it work
 		let cellContents = localStorage.getItem(key);
 		 cellContents = cellContents.split(',');
-		 
+		let count = 0;
 		 switch (cellContents[4]){
 			case 'Hatchet':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Hatchet", 50)) {
 						localStorage.setItem(Hatchet, ++this.invArray[0]);
 						document.getElementById("Hatchet").innerHTML = '<br>' + this.invArray[0];
-						this.whiffles -= 50;
+						this.whiffles -= 50; this.count=1;
 				}
 			}
 				break;
@@ -178,7 +178,7 @@ var game = {
 					if(this.promptPurchase("Hammer", 50)) {
 						localStorage.setItem(Hammer, ++this.invArray[1]);
 						document.getElementById("Hammer").innerHTML = '<br>' + this.invArray[1];
-						this.whiffles -= 50;
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
@@ -187,7 +187,7 @@ var game = {
 					if(this.promptPurchase("Boat", 100)) {
 						localStorage.setItem(Boat, ++this.invArray[2]);
 						document.getElementById("Boat").innerHTML = '<br>' + this.invArray[2];
-						this.whiffles -= 100;
+						this.whiffles -= 100; this.count=1;
 					}
 				}
 				break;
@@ -195,7 +195,7 @@ var game = {
 				if(this.whiffles >= 20){
 					if(this.promptPurchase("Power Bar", 20)) {
 						this.energy += 20;
-						this.whiffles -= 20;
+						this.whiffles -= 20; this.count=1;
 					}
 				}
 			case 'Axe':
@@ -203,6 +203,7 @@ var game = {
 					if(this.promptPurchase("Axe", 50)) {
 						localStorage.setItem(Axe, ++this.invArray[3]);
 						document.getElementById("Axe").innerHTML = '<br>' + this.invArray[3];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
@@ -211,6 +212,7 @@ var game = {
 					if(this.promptPurchase("Chainsaw", 50)) {
 						localStorage.setItem(Chainsaw, ++this.invArray[4]);
 						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
@@ -219,6 +221,7 @@ var game = {
 					if(this.promptPurchase("Chisel", 50)) {
 						localStorage.setItem(Chisel, ++this.invArray[5]);
 						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
@@ -227,6 +230,7 @@ var game = {
 					if(this.promptPurchase("Sledge", 50)) {
 						localStorage.setItem(Sledge, ++this.invArray[6]);
 						document.getElementById("Sledge").innerHTML = '<br>' + this.invArray[6];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
@@ -235,6 +239,7 @@ var game = {
 					if(this.promptPurchase("Machete", 50)) {
 						localStorage.setItem(Machete, ++this.invArray[7]);
 						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
@@ -243,6 +248,7 @@ var game = {
 					if(this.promptPurchase("Jackhammer", 50)) {
 						localStorage.setItem(Jackhammer, ++this.invArray[8]);
 						document.getElementById("Jackhammer").innerHTML = '<br>' + this.invArray[8];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
@@ -251,13 +257,16 @@ var game = {
 				if(this.promptPurchase("Shear", 50)) {
 					localStorage.setItem(Shear, ++this.invArray[9]);
 					document.getElementById("Shear").innerHTML = '<br>' + this.invArray[9];
+					this.whiffles -= 50; this.count=1;
 				}
 			}
 				break;
 		 }
-		 cellContents[4] = 'None';
-		 localStorage.setItem(key, cellContents);
-		 document.getElementById("whif").innerHTML = 'Whiffles: ' + this.whiffles;
+		if(this.count == 1){
+			cellContents[4] = 'None';
+			localStorage.setItem(key, cellContents);
+			document.getElementById("whif").innerHTML = 'Whiffles: ' + this.whiffles;
+		}
 	},
 
 	promptPurchase : function(name, price) {         
