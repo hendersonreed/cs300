@@ -5,10 +5,10 @@
 	width:95%;
 	margin-left:2.5%;
 	position:relative;
-	background-color:green;
+
 	}
 	
-#container {
+#container1 {
 position:fixed;
     top: 18%;
     left: 0px;
@@ -41,7 +41,11 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 	z-index: 1;
 }
 
-#map {float:right;
+#mapi {
+	position: absolute;
+	height:100px;
+	width:100px;
+background-image: url("i.imgur.com/6ro0m3w.gifv");
 	}
 .button{
 	
@@ -61,4 +65,14 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 
 }
 
-.pip{width:630px;height:400px;background:#8b7867;background: linear-gradient(#8b7867,#4f4138);margin:100px auto 0 auto;border-radius:50px;border-bottom-right-radius:90px;border-top:2px solid #c3bfb4;position:absolute;}
+.pip{
+	width:630px;
+	height:400px;
+	background:#8b7867;
+	background: linear-gradient(#8b7867,#4f4138);
+	margin:100px auto 0 auto;
+	border-radius:50px;
+	border-bottom-right-radius:90px;
+	border-top:2px solid #c3bfb4;
+	position:absolute;
+	}
