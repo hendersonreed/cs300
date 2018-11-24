@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   <html>
     <head>
       <script type="text/javascript" src="http://livejs.com/live.js"></script> <!-- this script auto reloads the page on every change. used for testing-->
@@ -86,6 +87,127 @@
       <div class="bar6"></div>
     </div>
   <div class="supplies"><span>Stimpak (0)</span><span>Radaway (0)</span><span>Stix</span>
+=======
+<html>
+	<head>
+		<script type="text/javascript" src="http://livejs.com/live.js">
+		</script> <!-- this script auto reloads the page on every change. used for testing-->
+
+		<link rel="stylesheet" style type="text/css" href="pipstyles.css">
+		<link rel="stylesheet" style type="text/css" href="frupalStyle.css">
+		</style>
+		<meta charset="utf-8" />
+	</head>
+<script>localStorage.clear();</script>
+<script src="mapLoad.js"></script>
+<script src="cellLoad.js"></script>
+<script src="game.js"></script>
+
+
+<body>
+
+<!--<script>game.checkFrom()</script>-->
+<header>
+	<div id=title>
+		<h1>Frupal - the game ...</h1>
+	</div>
+</header>
+
+<div id=wrapper>
+
+	<br><br>
+	<div id="map"></div>
+	<br><br>
+	<!--<div id = "buttons" style="width:25%;">
+	<div>
+	<div align="middle">
+        <button onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
+	</div>
+	<div align="left">
+		<button onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">EAST</button>
+		<button onclick="game.go('w')" type="submit" form="form1" value="Submit">WEST</button>
+	</div>
+	<div align="middle">
+		<button onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
+	</div>
+	</div>-->
+	<div><button onclick="game.changeMapMode()" type="submit" form="form1" value="Submit">CHANGE MAP VIEW</button></div>
+	</div><br>
+	<!--<div>Key: Gold=Hero ?=Unexplored Light Green=Meadow Green=Forest Blu=Water Grey=Wall Dark Green=Bog Purple=Swamp</div-->
+	<div><p id="loc">Current Location:  0,0</p> </div>
+	<div><p id="cell">Cell Details: </p> </div>
+	<!--<div><p id="whif">Whiffles: </p> </div>-->
+	<!--div><p id="energy">Energy: </p> </div-->
+	<div><p id="Hammer">Hammers: 0</p> </div>
+	<div><p id="Boat">Boats: 0</p> </div>
+	<!--<div><p id="Axe">Axes: 0</p> </div>-->
+	<div><p id="Chainsaw">Chainsaws: 0</p> </div>
+	<div><p id="Chisel">Chisels: 0</p> </div>
+	<div><p id="Sledge">Sledges: 0</p> </div>
+	<div><p id="Machete">Machetes: 0</p> </div>
+	<div><p id="Jackhammer">Jackhammers: 0</p> </div>
+	<div><p id="Shear">Shears: 0</p> </div>
+
+
+
+<div id="map">map side</div>
+	<div class="grow2" id="container">
+	 <button class="pipNorth" onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
+	 <button class="pipSouth" onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
+	 <button class="pipEast" onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">-EAST . </button>
+	 <button class="pipWest" onclick="game.go('w')" type="submit" form="form1" value="Submit">-WEST-</button>
+<div class="pip">
+<div class="pipfront">
+<div class="top">
+  <div class="top-panel"></div>
+</div>
+<div class="top-button"></div>  
+<div class="screw1"></div><div class="screw2"></div>
+<div class="screen-border">
+<div class="screen">
+  <div class="screen-reflection"></div>
+  <div class="scan"></div>
+  <nav><span class="active stat"></span><span class="inv"></span><span class="data"></span><span class="map"></span><span class="radio"></span><p><span class="status"></span><span class="off special"></span></p>
+</nav>
+  <div class="vaultboy">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <div class="bar4"></div>
+    <div class="bar5"></div>
+    <div class="bar6"></div>
+  </div>
+<div class="supplies"><span></span><span></span><span></span>
+</div>
+  <div class="info-bar">
+    <span class="weapon"></span>
+    <span class="Axe"><p>0</p></span>
+    <span id="Hatchet"><br>0</span>
+    <span class="shield"><p>110</p></span>
+    <span class="voltage"><p>126</p></span>
+    <span class="nuclear"><p>35</p></span>
+  </div>
+<div class="hud-bar">
+  <div id="energy"></div>
+  <div id="whif"></div><!--need to update with Reed's whiffle function-->
+</div>
+</div></div>
+<div class="power"></div><div class="screw4"></div><div class="screw5"></div>
+</div>
+<div class="left-wheel">
+  <div class="left-wheel-shadow"></div><div class="left-wheel-shadow"></div><div class="left-wheel-shadow"></div><div class="left-wheel-shadow"></div>
+</div>
+<div class="wheel">
+  <div class="tab-names"><li class="stat"></li><li class="inv"></li><li class="data"></li><li class="map"></li><li class="radio"></li></div>
+  <div class="wheel-shadow"></div><div class="wheel-shadow"></div><div class="wheel-shadow"></div><div class="wheel-shadow"></div><div class="wheel-shadow"></div>
+  <div class="wheel-plug"></div>
+  <div class="wheel-wire"></div>
+</div>
+<div class="rads">
+  <div class="rads-meter">
+   <div class="rads-value"></div>
+   <div class="bump1"></div>
+>>>>>>> 93f5c146b79bf17e66db9e1f8944484a1b85a995
   </div>
     <div class="info-bar">
       <span class="weapon"></span>
@@ -137,6 +259,7 @@
     <div class="top-right"></div>
     <div class="spike-wheel"></div>
   </div>
+<<<<<<< HEAD
 
 
 
@@ -152,6 +275,25 @@
       game.displayEnergy();
       game.displayMap();
     </script>
+=======
+  <div class="roulette"></div>
+  <div class="top-right"></div>
+  <div class="spike-wheel"></div>
+  <p><h2><span class="copyright">Pip Boy Template created by STIX and found at https://codepen.io/stix/pen/KdJEwB/</span><h2></p>
+</div><br><br>
+ </div> <!--end pipdiv-->
+	</div><!--end container 1-->
+
+</div><!--end wrapper-->
+	<script>
+		console.log(game.jewels.x + ',' + game.jewels.y);
+		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
+		game.energy++; //Energy was decrementing by 1 on startup // why do this instead of +1 on starting energy
+		game.checkLoc(); //displaying the cell contents of the initial location.
+		game.displayEnergy();
+        game.displayMap();
+	</script>
+>>>>>>> 93f5c146b79bf17e66db9e1f8944484a1b85a995
 
   </body>
 
