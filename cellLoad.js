@@ -23,6 +23,7 @@ i += 2 //skip the first hash mark separator.
 var playerCoords = splitString[i].split(',');
 var startingX = playerCoords[0];
 var startingY = playerCoords[1];
+++i;
 var startingEnergy = splitString[i];
 ++i;
 var startingWhiffles = splitString[i];
