@@ -207,7 +207,7 @@ var game = {
 		 switch (cellContents[4]){
 			case 'Hatchet':
 				if(this.promptPurchase("Hatchet", 50)) {
-					localStorage.setItem(inventory[0], localStorage.getItem(inventory[0])+1);
+					localStorage.setItem(inventory[0], ++this.invArray[0]);
 					document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
 					this.whiffles -= 50;
 				}
@@ -248,8 +248,9 @@ var game = {
 			case 'Chainsaw':
 				if(this.whiffles >= 50) {
 					if(this.promptPurchase("Chainsaw", 50)) {
-						localStorage.setItem("Chainsaw", 1);
+						localStorage.setItem("Chainsaw", ++this.invArray[4]);
 						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
+						this.whiffles -= 50;
 					}
 				}
 				break;
@@ -258,14 +259,16 @@ var game = {
 					if(this.promptPurchase("Chisel", 50)) {
 						localStorage.setItem("Chisel", ++this.invArray[5]);
 						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
+						this.whiffles -= 50;
 					}
 				}
 				break;
 			case 'Sledge':
 				if(this.whiffles >= 50) {
 					if(this.promptPurchase("Sledge", 50)) {
-						localStorage.setItem("Sledge", 1);
+						localStorage.setItem("Sledge", ++this.invArray[6]);
 						document.getElementById("Sledge").innerHTML = '<br>' + this.invArray[6];
+						this.whiffles -= 50;
 					}
 				}
 				break;
@@ -274,14 +277,16 @@ var game = {
 					if(this.promptPurchase("Machete", 50)) {
 						localStorage.setItem("Machete", ++this.invArray[7]);
 						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
+						this.whiffles -= 50;
 					}
 				}
 				break;
 			case 'Jackhammer':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Jackhammer", 50)) {
-						localStorage.setItem("Jackhammer", 1);
+						localStorage.setItem("Jackhammer", ++this.invArray[8]);
 						document.getElementById("Jackhammer").innerHTML = '<br>' + this.invArray[8];
+						this.whiffles -= 50;
 					}
 				}
 				break;
@@ -290,6 +295,7 @@ var game = {
 					if(this.promptPurchase("Shear", 50)) {
 						localStorage.setItem(Shear, ++this.invArray[9]);
 						document.getElementById("Shear").innerHTML = '<br>' + this.invArray[9];
+						this.whiffles -= 50;
 					}
 				}
 				break;
