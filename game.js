@@ -13,6 +13,7 @@
 
 const MAX = 20;
 const MAPSIZE = 5; //Distance from the player that tiles should be drawn
+
 var game = {
 	x_coord : 0,
 	y_coord : 0,

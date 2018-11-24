@@ -41,3 +41,9 @@ for (var iLen=splitString.length; i<iLen; i++) {
 	splitCell = splitString[i].split(',');
 	localStorage.setItem(splitCell[0] + ',' + splitCell[1], splitCell); //notice we store the entire cell as an array!
 	}
+//This sets
+var invArray2 = ['Hatchet', 'Hammer', 'Boat', 'Axe', 'Chainsaw', 'Chisel', 'Sledge', 'Machete', 'Jackhammer', 'Shear', 'Binoluclars']
+
+for (var i=0; i<10; ++i) {
+	localStorage.setItem(this.invArray2[i], 0);
+}

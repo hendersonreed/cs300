@@ -80,12 +80,12 @@ nav .off{color:#172f18;position:relative;left:-5px;}
 #energy{display:inline-block;margin-left:-30px;}
 #whif{display:inline-block;margin-left:30px;}
 .exp:after{content:"";display:inline-block;width:99px;height:4px;border:1px solid lightgreen;margin-left:2px;}
-.weapon{background:url('pipboy/pickaxe.png') no-repeat;width:23px;height:auto;}
+.weapon{background:url('pickaxe.png') no-repeat;width:23px;height:auto;}
 .aim{background:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/184191/pipboy-aim2.png')}
-.shield{background:url('pipboy/pickaxe.png')}
+.shield{background:url('pickaxe.png')}
 .voltage{background:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/184191/pipboy-voltage2.png');}
 .nuclear{background:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/184191/pipboy-nuclear2.png')}
-#hatchet{background:url('pipboy/hatchet.png');background-size:13px;height:auto;width:23px;background-repeat:no-repeat;}
+#hatchet{background:url('hatchet.png');background-size:13px;height:auto;width:23px;background-repeat:no-repeat;}
 .aim,.shield,.voltage,.nuclear{width:10px;background-size:10px 10px;height:auto;background-repeat:no-repeat;background-position:3px 0px;}
 .weapon{background-size:27px;height:auto;width:23px;background-repeat:no-repeat;}
 
