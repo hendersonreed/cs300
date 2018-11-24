@@ -7,11 +7,12 @@
 		<link rel="stylesheet" style type="text/css" href="pipboy/pipstyles.css">
 		</style>
 		<meta charset="utf-8" />
+		<script>localStorage.clear();</script>
+	<script src="mapLoad.js"></script>
+	<script src="cellLoad.js"></script>
+	<script src="game.js"></script>
+		
 	</head>
-<script>localStorage.clear();</script>
-<script src="mapLoad.js"></script>
-<script src="cellLoad.js"></script>
-<script src="game.js"></script>
 
 
 <body>
@@ -20,6 +21,16 @@
 		<div id=title><h1>Frupal - the game ...</h1></div>
 	</header>
 
+	<div><p id="loc">Current Location:  0,0</p> </div>
+	<div><p id="cell">Cell Details: </p> </div>
+	<div><p id="Hammer"></p> </div>
+	<div><p id="Boat"></p> </div>
+	<div><p id="Chainsaw"></p> </div>
+	<div><p id="Chisel"></p> </div>
+	<div><p id="Sledge"></p> </div>
+	<div><p id="Machete"></p> </div>
+	<div><p id="Jackhammer"></p> </div>
+	<div><p id="Shear"></p> </div>
 	<div id=wrapper>
 	
 		<div class="grow2" id="container1">
@@ -61,10 +72,8 @@
 								<span class="nuclear"><p>35</p></span>
 							</div>
 							<div class="hud-bar">
-								<div id="energy">
-								</div>
-								<div id="whif">
-								</div>
+								<div id="energy"></div>
+								<div id="whif"></div>
 							</div>
 						</div><!--end screen-->
 					</div><!--end screen-border-->

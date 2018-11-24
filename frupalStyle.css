@@ -1,10 +1,12 @@
 @charset "utf-8";
-
+bodt{
+	position:relative;
+}
 #wrapper{
 	height:100%;
 	width:95%;
 	margin-left:2.5%;
-	position:relative;
+	position:absolute;
 
 	}
 	
@@ -61,8 +63,6 @@ background-image: url("i.imgur.com/6ro0m3w.gifv");
 }
 .grow2:hover {
 	-webkit-transform: scale(1) translate(49px, 60px);
-
-
 }
 
 .pip{
