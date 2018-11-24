@@ -205,6 +205,14 @@ var game = {
 		 cellContents = cellContents.split(',');
 		 
 		 switch (cellContents[4]){
+			case 'Chest1':
+				alert("You have visited a site with treasure! Adding 100 whiffles to your stash."); //adding treasure cases here itself just to reduce code bloat
+				this.whiffles += 100;
+				break;
+			case 'Chest2':
+				alert("This site contains a trap! All your whiffles are lost!");
+				this.whiffles = 0;
+				break;
 			case 'Hatchet':
 				if(this.promptPurchase("Hatchet", 50)) {
 					localStorage.setItem(inventory[0], ++this.invArray[0]);
