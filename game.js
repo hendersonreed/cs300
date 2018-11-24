@@ -57,6 +57,7 @@ var game = {
 		this.dispLoc(); //adds player location to <div> in html.
 		this.dispWhif();
 		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
+        this.checkObstacles();
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
 		this.displayEnergy(); //adds energy to <div> in html.
 		this.displayMap(); //creates our map string, and displays to user.
@@ -444,5 +445,99 @@ var game = {
 	{
 		if(document.referrer.includes("Frupalsplash.html") == false)
 			window.location.href = "Frupalsplash.html";
-	}
+	},
+
+    checkObstacle : function()
+    {
+		let currCell = localStorage.getItem(this.x_coord + ',' + this.y_coord);
+		if(currCell != null)
+		{	
+			currCell = currCell.split(',');
+            switch(currCell[4])
+            {
+                case "Tree":
+                    if(this.invArray[4] > 0) //if user has chainsaw
+                    {
+                        this.invArray[4]--;
+                        this.energy -= 2;
+                    }
+                    else if(this.invArray[3] > 0) // if axe
+                    {
+                        this.invArray[3]--;
+                        this.energy -= 5;
+                    }
+                    else if(this.invArray[0] > 0) // if hatchet
+                    {
+                        this.invArray[0]--;
+                        this.energy -= 8;
+                    }
+                    else // no tools
+                        this.energy -= 10;
+
+                    currCell[4] = "None";
+                    localStorage.setItem(this.x_coord + ',' + this.y_coord, currCell);
+                    break;
+                case "Boulder":
+                    if(this.invArray[8] > 0)// if jackhammer
+                    {
+                        this.invArray[8]--;
+                        this.energy -= 4;
+                    }
+                    else if(this.invArray[6] > 0)// if sledge hammer
+                    {
+                        this.invArray[6]--;
+                        this.energy -= 9;
+                    }
+                    else if(this.invArray[1] > 0) //if hammer
+                    {
+                        this.invArray[1]--;
+                        this.energy -= 12;
+                    }
+                    else if(this.invArray[5] > 0) // if chisel
+                    {
+                        this.invArray[5]--;
+                        this.energy -= 14;
+                    }
+                    else // no tools
+                        this.energy -= 16;
+
+                    currCell[4] = "None";
+                    localStorage.setItem(this.x_coord + ',' + this.y_coord, currCell);
+                    break;
+                case "Blackberry Bushes":
+                    if(this.invArray[9] > 0) // if shears
+                    {
+                        this.invArray[9]--;
+                        this.energy -= 1;
+                    }
+                    else if(this.invArray[7] > 0) // if machete
+                    {
+                        this.invArray[7]--;
+                        this.energy -= 3;
+                    }
+                    else
+                        this.energy -= 4;
+
+                    currCell[4] = "None";
+                    localStorage.setItem(this.x_coord + ',' + this.y_coord, currCell);
+                    break;
+                default:
+                    break;
+    }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
