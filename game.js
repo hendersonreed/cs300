@@ -109,15 +109,6 @@ var game = {
 	x_coord: 0,
 	y_coord: 0,
 	whiffles: 10000,
-<<<<<<< HEAD
-	energy: 100,
-
-	mapString: "",
-	mapMode: 0, //0 for mini-map, 1 for full map
-	inventoryCount: 0,
-
-	jewels: { x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1)) },
-=======
 	energy : 100,
 	invArray: [0,0,0,0,0,0,0,0,0],
 
@@ -128,7 +119,6 @@ var game = {
 	//  item in the map file.
 	//jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
 	jewels: {x: 15, y: 9},
->>>>>>> 93f5c146b79bf17e66db9e1f8944484a1b85a995
 
 	//This is our "main" function. It is run every time a button is pressed on our html page.
 	go: function (direc) {
@@ -197,10 +187,6 @@ var game = {
 	},
 
 	//edits visibility for fog of war.
-<<<<<<< HEAD
-	alterFlags: function () {
-		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
-=======
 	correctCoord : function(coord) {
 		// sometimes X/Y can be either -1 or -2, the next two statments statment fixes this problem since we can wrap around the map and we can't have negative coord  
 		if (coord == -2) { 
@@ -222,23 +208,16 @@ var game = {
 
 	},
 	alterFlags : function() {
->>>>>>> 93f5c146b79bf17e66db9e1f8944484a1b85a995
 
 		// If true, then the player can see two coords in each direction. this line will change later and will be linked to the inventory system
 		let hasBinoculars = localStorage.getItem("Binocular");
 
 		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
 		let x = this.x_coord; let y = this.y_coord;
-<<<<<<< HEAD
-		let xminusone = x - 1; let yminusone = y - 1;
-		let xplusone = x + 1; let yplusone = y + 1;
-		//alert("xplusone is: " + xplusone);
-=======
 		let xminusone = this.correctCoord(x-1); let yminusone = this.correctCoord(y-1);
 		let xplusone = this.correctCoord(x+1); let yplusone = this.correctCoord(y+1);
 		let xplustwo = this.correctCoord(x+2); let yplustwo = this.correctCoord(y+2);
 		let xminustwo = this.correctCoord(x-2); let yminustwo = this.correctCoord(y-2);
->>>>>>> 93f5c146b79bf17e66db9e1f8944484a1b85a995
 
 		//the player can see a total of 9 blocks initially, this may change depending on the posssesion of binoculars
 
@@ -346,86 +325,13 @@ var game = {
 
 		switch (cellContents[4]) {
 			case 'Hatchet':
-<<<<<<< HEAD
-				if (this.promptPurchase("Hatchet", 50)) {
-					localStorage.setItem(inventory[0], localStorage.getItem(inventory[0]) + 1);
-=======
 				if(this.promptPurchase("Hatchet", 50)) {
 					localStorage.setItem(inventory[0], ++this.invArray[0]);
->>>>>>> 93f5c146b79bf17e66db9e1f8944484a1b85a995
 					document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
 					this.whiffles -= 50;
 				}
 				break;
 			case 'Hammer':
-<<<<<<< HEAD
-				if (this.promptPurchase("Hammer", 50)) {
-					localStorage.setItem(inventory[1], localStorage.getItem(inventory[1]) + 1);
-					document.getElementById("Hammer").innerHTML = 'Hammers: ' + localStorage.getItem(inventory[1]);
-					this.whiffles -= 50;
-				}
-				break;
-			case 'Boat':
-				if (this.promptPurchase("Boat", 100)) {
-					localStorage.setItem(inventory[2], localStorage.getItem(inventory[2]) + 1);
-					document.getElementById("Boat").innerHTML = 'Boats: ' + localStorage.getItem(inventory[2]);
-					this.whiffles -= 100;
-				}
-				break;
-			case 'Power Bar':
-				if (this.promptPurchase("Power Bar", 20)) {
-					this.energy += 20;
-					this.whiffles -= 20;
-				}
-			case 'Axe':
-				if (this.promptPurchase("Axe", 50)) {
-					localStorage.setItem(Axe, 1);
-					document.getElementById("Axe").innerHTML = 'Axes: ' + 1;
-				}
-				break;
-			case 'Chainsaw':
-				if (this.promptPurchase("Chainsaw", 50)) {
-					localStorage.setItem(Chainsaw, 1);
-					document.getElementById("Chainsaw").innerHTML = 'Chainsaws: ' + 1;
-				}
-				break;
-			case 'Chisel':
-				if (this.promptPurchase("Chisel", 50)) {
-					localStorage.setItem(Chisel, 1);
-					document.getElementById("Chisel").innerHTML = 'Chisels: ' + 1;
-				}
-				break;
-			case 'Sledge':
-				if (this.promptPurchase("Sledge", 50)) {
-					localStorage.setItem(Sledge, 1);
-					document.getElementById("Sledge").innerHTML = 'Sledges: ' + 1;
-				}
-				break;
-			case 'Machete':
-				if (this.promptPurchase("Machete", 50)) {
-					localStorage.setItem(Machete, 1);
-					document.getElementById("Machete").innerHTML = 'Machetes: ' + 1;
-				}
-				break;
-			case 'Jackhammer':
-				if (this.promptPurchase("Jackhammer", 50)) {
-					localStorage.setItem(Jackhammer, 1);
-					document.getElementById("Jackhammer").innerHTML = 'Jackhammers: ' + 1;
-				}
-				break;
-			case 'Shear':
-				if (this.promptPurchase("Shear", 50)) {
-					localStorage.setItem(Shear, 1);
-					document.getElementById("Shear").innerHTML = 'Shears: ' + 1;
-				}
-				break;
-		}
-		cellContents[4] = 'None';
-		localStorage.setItem(key, cellContents);
-	},
-
-	promptPurchase: function (name, price) {
-=======
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Hammer", 50)) {
 						localStorage.setItem(Hammer, ++this.invArray[1]);
@@ -519,7 +425,6 @@ var game = {
 	},
 
 	promptPurchase : function(name, price) {         
->>>>>>> 93f5c146b79bf17e66db9e1f8944484a1b85a995
 		return confirm("You found a " + name + "!\n\n" + "Would you like to purchase it for " + price + " whiffles?");
 	},
 
@@ -665,9 +570,7 @@ var game = {
 			var cell = cellContents.split(',');
 			check = localStorage.getItem('Boat');
 			if (cell[3] == 2){
-				//alert(check);
 				if (check > 0){
-					//alert("Testing for boat: ", check);
 					return true;
 				}
 				else{
