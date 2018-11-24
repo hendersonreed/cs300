@@ -13,26 +13,32 @@
 
 const MAX = 20;
 const MAPSIZE = 5; //Distance from the player that tiles should be drawn
-/*var gameCanvas = {
+/*var canvas = {
 	width: 400, 
 	height: 400,
 };*/
 
-/*var canvas;
-var canvasContext;*/
+var canvas;
+var canvasContext;
 
-var canvas = document.getElementById('canvas');
-var canvasContext = canvas.getContext('2d');
+/*document.addEventListener('DOMContentLoaded',function(){
+	canvas = document.getElementById('gameCanvas');
+	canvasContext = canvas.getContext('2d');
+	//colorRect(0, 0, canvas.width, canvas.height, 'grey')
+	//game.displayMap();
 
-canvas.width = 400;
-canvas.height = 400;
+
+})*/
+
+//canvas.width = 400;
+//canvas.height = 400;
 var leftX = 0;
 var topY = 0;
 const tileWidth = 20;
 const tileHeight = 20;
 
 function drawEverything() {
-	colorRect(0, 0, canvas.width, canvas.height, 'white')
+	colorRect(0, 0, canvas.width, canvas.height, 'grey')
 	drawMeadow();
 	drawForest();
 	drawWater();
@@ -113,18 +119,44 @@ var game = {
 
 	//This is our "main" function. It is run every time a button is pressed on our html page.
 	go: function (direc) {
+		var water = false;
 		switch (direc) {
 			case 'n':
+				this.goNorth();
+				water = this.checkWater(this.x_coord, this.y_coord);
+				if(water == true){
+					break;
+				}
+				this.goSouth();
+				water = this.checkWater(this.x_coord, this.y_coord);
+				if(water == true){
+					break;
+				}
 				this.goNorth();
 				break;
 			case 'e':
 				this.goEast();
+				water = this.checkWater(this.x_coord, this.y_coord);
+				if(water == true){
+					break;
+				}
+				this.goWest();
 				break;
 			case 'w':
 				this.goWest();
+				water = this.checkWater(this.x_coord, this.y_coord);
+				if(water == true){
+					break;
+				}
+				this.goEast();
 				break;
 			case 's':
 				this.goSouth();
+				water = this.checkWater(this.x_coord, this.y_coord);
+				if(water == true){
+					break;
+				}
+				this.goNorth();
 				break;
 			default:
 				this.y_coord = 0;
@@ -141,6 +173,7 @@ var game = {
 		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
 		this.displayEnergy(); //adds energy to <div> in html.
+		//drawEverything();
 		this.displayMap(); //creates our map string, and displays to user.
 
 		if (this.atJewels()) {
@@ -409,21 +442,27 @@ var game = {
 					else switch (currCell[3]) {
 						case '0':
 							tempMapString += 'M';
+							//drawMeadow();
 							break;
 						case '1':
 							tempMapString += 'F';
+							//drawForest();
 							break;
 						case '2':
 							tempMapString += 'w';
+							//drawWater();
 							break;
 						case '3':
 							tempMapString += 'W';
+							//drawWall();
 							break;
 						case '4':
 							tempMapString += 'B';
+							//drawBog();
 							break;
 						case '5':
 							tempMapString += 'S';
+							//drawSwap();
 							break;
 						default:
 							tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
@@ -455,11 +494,30 @@ var game = {
 			window.location.href = "Frupalsplash.html";
 	},
 
+	// Returns true if no water or water and has boat is true.
 	checkWater: function (xcoord, ycoord){
+		cellContents = localStorage.getItem(xcoord + ',' + ycoord);
+		if (cellContents != null) {
+			var cell = cellContents.split(',');
+			check = localStorage.getItem('Boat');
+			if (cell[3] == 2){
+				//alert(check);
+				if (check > 0){
+					//alert("Testing for boat: ", check);
+					return true;
+				}
+				else{
+					alert("You encoutered water without a boat!");
+					--this.energy;
+					return false;
+				}
+				
+			}
+			else{
+				return true;
+			}
 
-		if(xcoord){
-			return;
 		}
-	}
+	},
 };
 
