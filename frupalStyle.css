@@ -15,7 +15,15 @@ position:fixed;
     top: 18%;
     left: 0px;
 background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font-weight:700;text-transform:uppercase;
-	
+}
+
+#container2 {
+  background-image: url("mario-trimet.jpg"); /* The image used */
+
+  height:80%; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: contain;
 }
 
 .pipNorth{
@@ -43,18 +51,112 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 	z-index: 1;
 }
 
-#mapi {
-	position: absolute;
-	height:100px;
-	width:100px;
-background-image: url("i.imgur.com/6ro0m3w.gifv");
-	}
+.inventory-icon{
+		position: fixed;height: auto;z-index: 1;background-size: contain;background-repeat: no-repeat;text-align: right;text-align: bottom;
+}
+
+#Hatchet {
+	width: 30px;
+	top: 155px;
+	right: -160px;
+	background-image: url("pipboy/hatchet.png");
+
+}
+
+#Hammer {
+	width: 40px;
+	top: 217px;
+	right: -160px;
+	background-image: url("pipboy/hammer.png");
+
+}
+
+#boat {
+	width: 43px;
+	top: 263px;
+	right: -160px;
+	background-image: url("pipboy/boat.png");
+}
+
+#Pickaxe {
+	width: 30px;
+	top: 275px;
+	right: -225px;
+	background-image: url("pipboy/pickaxe.png");
+}
+
+#ChainsawOuter {
+	width: 80px;
+	height:40;
+	top: 275px;
+	right: -350px;
+	background-image: url("pipboy/chainsaw.png");
+}
+
+#Chainsaw {
+	position: fixed;
+	top: 288px;
+	right: -300px;
+}
+
+#Chisel {
+	width: 50px;
+	height:40;
+	top: 251px;
+	right: -395px;
+	background-image: url("pipboy/chisel.png");
+}
+
+#Sledge {
+	width: 40px;
+	height: 50px;
+	top: 272px;
+	right: -395px;
+	background-image: url("pipboy/sledge.png");
+}
+
+#Jackhammer {
+	width: 30px;
+	height: 60px;
+	top: 175px;
+	right: -395px;
+	background-image: url("pipboy/jackhammer.png");
+}
+
+#Machete {
+	width: 40px;
+	height: 60px;
+	top: 150px;
+	right: -335px;
+	background-image: url("pipboy/machete.png");
+}
+
+# {
+	width: 30px;
+	top: 275px;
+	right: -225px;
+	background-image: url("pipboy/.png");
+}
+
+# {
+	width: 30px;
+	top: 275px;
+	right: -225px;
+	background-image: url("pipboy/.png");
+}
+
+#oldPip{
+	position: fixed;
+	right: -600px;
+	top: 87px;
+	z-index: 0;
+}
 .button{
 	
 	}
 
 .grow2 {
-  -webkit-transform: scale(0.4) translate(-250px, 0);
+  -webkit-transform: scale(1) translate(250px, 0);
   -webkit-transition: height 0.5s ease-in-out;
   -webkit-transition: width 0.5s ease-in-out;
   -webkit-transition: transform 0.5s ease-in-out 0.1s; 
