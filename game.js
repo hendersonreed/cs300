@@ -556,7 +556,6 @@ var game = {
 		}
 		this.mapString = tempMapString;
 		document.getElementById("map").innerHTML = this.mapString;
-
 	},
 
 	changeMapMode: function () {
