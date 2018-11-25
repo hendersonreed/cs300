@@ -106,7 +106,6 @@ function colorRect(leftX, topY, width, height, drawColor) {
 
 }
 var game = {
-var game = {
 	//All the variables are being pulled from cellLoad.js now. We can completely remove them but let's do that later
 	x_coord : startingX,
 	y_coord : startingY,
@@ -335,9 +334,6 @@ var game = {
 				alert("This site contains a trap! All your whiffles are lost!");
 				this.whiffles = 0;
 				break;
-		cellContents = cellContents.split(',');
-
-		switch (cellContents[4]) {
 			case 'Hatchet':
 				if(this.promptPurchase("Hatchet", 50)) {
 					localStorage.setItem(inventory[0], ++this.invArray[0]);
@@ -655,8 +651,7 @@ var game = {
                     break;
             }
         }
-    }
-=======
+    },
 	// Returns true if no water or water and has boat is true.
 	checkWater: function (xcoord, ycoord){
 		cellContents = localStorage.getItem(xcoord + ',' + ycoord);
@@ -679,6 +674,5 @@ var game = {
 			}
 
 		}
-	},
+	}
 };
-
