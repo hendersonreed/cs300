@@ -42,8 +42,8 @@ for (var iLen=splitString.length; i<iLen; i++) {
 	localStorage.setItem(splitCell[0] + ',' + splitCell[1], splitCell); //notice we store the entire cell as an array!
 	}
 //This sets initial values to zero instead of null
-var invArray2 = ['Hatchet', 'Hammer', 'Boat', 'Pickaxe', 'Chainsaw', 'Chisel', 'Sledge', 'Machete', 'Jackhammer', 'Shear', 'Binoluclars']
+var invArray2 = ['Hatchet', 'Hammer', 'Boat', 'Pickaxe', 'Chainsaw', 'Chisel', 'Sledge', 'Machete', 'Jackhammer', 'Shears', 'Binoluclars']
 
-for (var i=0; i<10; ++i) {
+for (var i=0; i<11; ++i) {
 	localStorage.setItem(this.invArray2[i], 0);
 }

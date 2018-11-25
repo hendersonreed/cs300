@@ -22,7 +22,7 @@
 		<div id=title><h1>Frupal - the game ...</h1></div>
 				<div><p id="loc"></p> </div>
 		<div><p id="cell"></p> </div>
-		<button  onclick="ui.ogb()" type="submit" form="form1" value="Submit">original pip-boy</button>
+		<button  onclick="ui.ogb()" type="submit" form="form1" value="Submit" onmouseleave="ui.ogb(1)">original pip-boy</button>
 	</header>
 
 	<div id=wrapper>
@@ -35,30 +35,31 @@
 				<button class="pipWest" onclick="game.go('w')" type="submit" form="form1" value="Submit">-WEST-</button>
 			
 				
-				<div id="Hatchet" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hatchet',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br><br><br>0</div>
+				<div id="Hatchet" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hatchet',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hatchet', 'clear')"><br><br><br>0</div>
 				
-				<div id="Hammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hammer',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br><br>0</div>
+				<div id="Hammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hammer',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hammer', 'clear')"><br><br>0</div>
 				
-				<div id="Boat" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Boat', 'special')" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br><br>0</div>
+				<div id="Boat" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Boat', 'special')" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Boat', 'clear')"><br><br>0</div>
 				
-				<div id="Pickaxe" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Pickaxe',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br><br>0</div>
+				<div id="Pickaxe" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Pickaxe',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Pickaxe', 'clear')"><br><br>0</div>
 				
-				<div id="ChainsawOuter" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chainsaw', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><span id="Chainsaw"><br>0</span></div>
+				<div id="ChainsawOuter" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chainsaw', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chainsaw', 'clear')"><span class="inventory-icon" id="Chainsaw"><br>0</span></div>
 				
-				<div id="Chisel" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chisel',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br>0</div>
+				<div id="Chisel" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chisel',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chisel', 'clear')"><br>0</div>
 				
-				<div id="Sledge" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Sledge',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br><br>0</div>
+				<div id="Sledge" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Sledge',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Sledge', 'clear')"><br><br>0</div>
 				
-				<div id="Machete" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Machete',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br>0</div>
+				<div id="Machete" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Machete',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Machete', 'clear')"><br>0</div>
 				
-				<div id="Jackhammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Jackhammer',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br><br><br>0</div>
+				<div id="Jackhammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Jackhammer', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Jackhammer', 'clear')"><br><br><br>0</div>
 				
-				<div id="Shear" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Shear',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br>0</div>
+				<div id="Shears" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Shears',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Shears', 'clear')"><br><br>0</div>
 				
-				<div id="Binoluclars" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Binoluclars',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('clear',)"><br>0</div>
+				<div id="Binoculars" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Binoculars', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Binoculars', 'clear')"><br><br>0</div>
 				
 				
-				<div id="oldPip"><img src="pipboy/oldboy.gif"></div>
+				
+				<div id="oldPip"></div>
 
 			</div><!--end pipFixedelements-->
 			
@@ -73,7 +74,7 @@
 						<div class="screen">
 							<div class="screen-reflection"></div>
 							<div class="scan"></div>
-							<nav><span class="stat"></span><span class="active inv"></span><span class="data"></span><span class="map"></span><span class="radio"></span><p><span id="special" class="off special"></span><span id="status"></span></p>
+							<nav><span class="stat"></span><span class="active inv"></span><span class="data"></span><span class="map"></span><span class="radio"></span><p><span id="special" class="off special active"></span><span id="status"></span></p>
 							</nav>
 							<div class="vaultboy">
 								<div class="bar1"></div>
@@ -149,18 +150,6 @@
 		game.displayEnergy();
         game.displayMap();
 	</script>
-	<div id="hide">	
-		<div><p id="loc"></p> </div>
-		<div><p id="cell"></p> </div>
-		<div><p id="Hammer"></p> </div>
-		<div><p id="Boat"></p> </div>
-		<div><p id="Chainsaw"></p> </div>
-		<div><p id="Chisel"></p> </div>
-		<div><p id="Sledge"></p> </div>
-		<div><p id="Machete"></p> </div>
-		<div><p id="Jackhammer"></p> </div>
-		<div><p id="Shear"></p> </div>
-	</div>
 </body>
 
 </html>

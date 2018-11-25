@@ -1,5 +1,5 @@
 @charset "utf-8";
-bodt{
+body{
 	position:relative;
 }
 #wrapper{
@@ -14,7 +14,7 @@ bodt{
 position:fixed;
     top: 18%;
     left: 0px;
-background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font-weight:700;text-transform:uppercase;
+	font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font-weight:700;text-transform:uppercase;
 }
 
 #container2 {
@@ -51,13 +51,19 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 	z-index: 1;
 }
 
+.inventory-icon-on{
+		position: fixed;height: auto;z-index: 1;background-size: contain;background-repeat: no-repeat;text-align: right;text-align: bottom;	-webkit-transition: transform 0.1s;
+		opacity: 1;
+}
+
 .inventory-icon{
-		position: fixed;height: auto;z-index: 1;background-size: contain;background-repeat: no-repeat;text-align: right;text-align: bottom;
+		position: fixed;height: auto;z-index: 1;background-size: contain;background-repeat: no-repeat;text-align: right;text-align: bottom;	-webkit-transition: transform 0.1s; opacity: .2;
 }
 
 #Hatchet {
 	width: 30px;
-	top: 155px;
+	height: 50px;
+	top: 159px;
 	right: -160px;
 	background-image: url("pipboy/hatchet.png");
 
@@ -65,7 +71,7 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 
 #Hammer {
 	width: 40px;
-	top: 217px;
+	top: 223px;
 	right: -160px;
 	background-image: url("pipboy/hammer.png");
 
@@ -73,7 +79,7 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 
 #boat {
 	width: 43px;
-	top: 263px;
+	top: 273px;
 	right: -160px;
 	background-image: url("pipboy/boat.png");
 }
@@ -126,37 +132,41 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 #Machete {
 	width: 40px;
 	height: 60px;
-	top: 150px;
-	right: -335px;
+	top: 157px;
+	right: -348px;
 	background-image: url("pipboy/machete.png");
 }
 
-# {
-	width: 30px;
-	top: 275px;
-	right: -225px;
-	background-image: url("pipboy/.png");
+#Shears {
+	width: 60px;
+	top: 157px;
+	right: -232px;
+	background-image: url("pipboy/shears.png");
 }
 
-# {
-	width: 30px;
-	top: 275px;
-	right: -225px;
-	background-image: url("pipboy/.png");
+#Binoculars {
+	width: 32px;
+	top: 175px;
+	right: -277px;
+	background-image: url("pipboy/binoculars.png");
 }
 
 #oldPip{
+	width:527px;
+	height: 384px;
 	position: fixed;
-	right: -600px;
-	top: 87px;
+	right: -601px;
+	top: 86px;
 	z-index: 0;
+	background-image: url("pipboy/oldboy.gif");
+	background-size: contain;background-repeat: no-repeat;
 }
 .button{
 	
 	}
 
 .grow2 {
-  -webkit-transform: scale(1) translate(250px, 0);
+  -webkit-transform: scale(0.4) translate(-250px, 0);
   -webkit-transition: height 0.5s ease-in-out;
   -webkit-transition: width 0.5s ease-in-out;
   -webkit-transition: transform 0.5s ease-in-out 0.1s; 
@@ -164,7 +174,12 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 
 }
 .grow2:hover {
-	-webkit-transform: scale(1) translate(49px, 60px);
+	-webkit-transform: scale(1.1) translate(49px, 60px);
+}
+/*not a repeat*/
+.grow2-hover {
+	-webkit-transform: scale(1.1) translate(49px, 60px);
+	  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
 }
 
 .pip{
@@ -177,4 +192,8 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 	border-bottom-right-radius:90px;
 	border-top:2px solid #c3bfb4;
 	position:absolute;
+	}
+
+	#pipFixedElements{
+		font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font-weight:700;text-transform:uppercase;
 	}

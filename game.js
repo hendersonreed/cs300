@@ -19,7 +19,7 @@ var game = {
 	y_coord : 0,
 	whiffles: 1000,
 	energy : 100,
-	invArray: [0,0,0,0,0,0,0,0,0],
+	invArray: [0,0,0,0,0,0,0,0,0,0,0],
 
 	mapString: "",
 	mapMode : 0, //0 for mini-map, 1 for full map
@@ -162,7 +162,7 @@ var game = {
 		let key = this.x_coord + ',' + this.y_coord; //should merge into another function
 		let cellContents = localStorage.getItem(key);
 		 cellContents = cellContents.split(',');
-		let count = 0;
+		let count = 0;// count makes it so you can go back and unpurchased item will be there still
 		 switch (cellContents[4]){
 			case 'Hatchet':
 				if(this.whiffles >= 50){
@@ -252,17 +252,27 @@ var game = {
 					}
 				}
 				break;
-			case 'Shear':
+			case 'Shears':
 			if(this.whiffles >= 50){
-				if(this.promptPurchase("Shear", 50)) {
-					localStorage.setItem(Shear, ++this.invArray[9]);
-					document.getElementById("Shear").innerHTML = '<br><br><br>' + this.invArray[9];
+				if(this.promptPurchase("Shears", 50)) {
+					localStorage.setItem(Shears, ++this.invArray[9]);
+					document.getElementById("Shears").innerHTML = '<br><br>' + this.invArray[9];
 					this.whiffles -= 50; this.count=1;
 				}
 			}
 				break;
-		 }
+			case 'Binoculars':
+			if(this.whiffles >= 100){//need to make this only one binoc possible
+				if(this.promptPurchase("Binoculars", 100)) {
+					localStorage.setItem(Binoculars, ++this.invArray[9]);
+					document.getElementById("Binoculars").innerHTML = '<br><br><br>' + this.invArray[10];
+					this.whiffles -= 100; this.count=1;
+				}
+			}
+				break;
+		 }/* end switch statement */
 		if(this.count == 1){
+			document.getElementById(cellContents[4]).className = "inventory-icon-on";
 			cellContents[4] = 'None';
 			localStorage.setItem(key, cellContents);
 			document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
