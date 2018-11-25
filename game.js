@@ -11,13 +11,14 @@
 	because the page is broken, well, that's to be expected.
 */
 
-const MAX = 20;
-const MAPSIZE = 5; //Distance from the player that tiles should be drawn
+const MAX = mapSize; //ADDED FROM CELLLOAD.JS NOW THAT ITS FIXED
+const MAPSIZE = 5; //Distance from the player that tiles should be drawn. THIS CONST ISN'T USED ANYWHERE AS OF NOW
 var game = {
-	x_coord : 0,
-	y_coord : 0,
-	whiffles: 10000,
-	energy : 100,
+	//All the variables are being pulled from cellLoad.js now. We can completely remove them but let's do that later
+	x_coord : startingX,
+	y_coord : startingY,
+	whiffles: startingWhiffles,
+	energy : startingEnergy,
 	invArray: [0,0,0,0,0,0,0,0,0],
 
 	mapString: "",
@@ -26,7 +27,7 @@ var game = {
 	// Comment the below line, if we choose to add the jewels as an
 	//  item in the map file.
 	//jewels : {x: Math.round((Math.random() * 1000) % (MAX + 1)), y: Math.round((Math.random() * 1000) % (MAX + 1))},
-	jewels: {x: 15, y: 9},
+	jewels : jewelLoc,
 
 	//This is our "main" function. It is run every time a button is pressed on our html page.
 	go : function(direc) {
@@ -206,6 +207,14 @@ var game = {
 		 cellContents = cellContents.split(',');
 		 
 		 switch (cellContents[4]){
+			case 'Chest1':
+				alert("You have visited a site with treasure! Adding 100 whiffles to your stash."); //adding treasure cases here itself just to reduce code bloat
+				this.whiffles += 100;
+				break;
+			case 'Chest2':
+				alert("This site contains a trap! All your whiffles are lost!");
+				this.whiffles = 0;
+				break;
 			case 'Hatchet':
 				if(this.promptPurchase("Hatchet", 50)) {
 					localStorage.setItem(inventory[0], ++this.invArray[0]);
@@ -527,19 +536,3 @@ var game = {
         }
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

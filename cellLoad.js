@@ -23,9 +23,17 @@ i += 2 //skip the first hash mark separator.
 var playerCoords = splitString[i].split(',');
 var startingX = playerCoords[0];
 var startingY = playerCoords[1];
+++i;
 var startingEnergy = splitString[i];
 ++i;
 var startingWhiffles = splitString[i];
+++i;
+
+// My suggestion is to add the jewels location uniquely as the
+//  first line after the starting whiffles. Once we do that,
+//  simply uncomment the lines below.
+var jewelString = splitString[i].split(",");
+var jewelLoc = {x: jewelString[0], y: jewelString[1]};
 ++i;
 
 var inventory = []
