@@ -71,6 +71,16 @@ position:fixed;
 font-family:DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
 	background-color:blue;
 }
+
+#gameCanvas {
+position: absolute;
+top: 20%;
+left: 60%;
+z-index: 100;
+width: "500";
+height: "500";
+	
+}
 #img {
 	opacity: .4;
 	position:fixed;
