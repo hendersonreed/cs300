@@ -319,6 +319,56 @@ var game = {
 			document.getElementById("cell").innerHTML = "Cell Details: " + newCell;
 		}
 	},
+addInventory2 : function() {
+		let key = this.x_coord + ',' + this.y_coord; //dumb repeat but making it work
+		let cellContents = localStorage.getItem(key);
+		 cellContents = cellContents.split(',');
+		 
+		 switch (cellContents[4]){
+			case 'Chest1':
+				alert("You have visited a site with treasure! Adding 100 whiffles to your stash."); //adding treasure cases here itself just to reduce code bloat
+				this.whiffles += 100;
+				break;
+			case 'Chest2':
+				alert("This site contains a trap! All your whiffles are lost!");
+				this.whiffles = 0;
+				break;
+			case 'Hatchet':
+				if(this.promptPurchase("Hatchet", 50)) {
+					localStorage.setItem(inventory[0], ++this.invArray[0]);
+					document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
+					this.whiffles -= 50;
+				}
+				break;
+			case 'Hammer':
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Hammer", 50)) {
+						localStorage.setItem(Hammer, ++this.invArray[1]);
+						document.getElementById("Hammer").innerHTML = '<br>' + this.invArray[1];
+						this.whiffles -= 50;
+					}
+				}
+				break;
+			case 'Boat':
+				if(this.whiffles >=100) {
+					if(this.promptPurchase("Boat", 100)) {
+						localStorage.setItem("Boat", ++this.invArray[2]);
+						document.getElementById("Boat").innerHTML = 'Boats: ' + this.invArray[2];
+						this.whiffles -= 100;
+					}
+				}
+				break;
+			case 'Power Bar':
+				if(this.whiffles >= 20){
+					if(this.promptPurchase("Power Bar", 20)) {
+						this.energy += 20;
+						this.whiffles -= 20;
+					}
+				}
+			case 'Axe':
+				if(this.whiffles >= 50) {
+					if(this.promptPurchase("Axe", 50)) {
+						localStorage.setItem("Axe", ++this.invArray[3]);
 
 	addInventory : function() {
 		let key = this.x_coord + ',' + this.y_coord; //should merge into another function
