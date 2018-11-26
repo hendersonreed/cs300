@@ -369,6 +369,56 @@ addInventory2 : function() {
 				if(this.whiffles >= 50) {
 					if(this.promptPurchase("Axe", 50)) {
 						localStorage.setItem("Axe", ++this.invArray[3]);
+					}
+				}
+				break;
+			case 'Chainsaw':
+				if(this.whiffles >= 50) {
+					if(this.promptPurchase("Chainsaw", 50)) {
+						localStorage.setItem("Chainsaw", ++this.invArray[4]);
+						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
+						this.whiffles -= 50;
+					}
+				}
+				break;
+			case 'Chisel':
+				if(this.whiffles >= 50) {
+					if(this.promptPurchase("Chisel", 50)) {
+						localStorage.setItem("Chisel", ++this.invArray[5]);
+						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
+						this.whiffles -= 50;
+					}
+				}
+				break;
+			case 'Sledge':
+				if(this.whiffles >= 50) {
+					if(this.promptPurchase("Sledge", 50)) {
+						localStorage.setItem("Sledge", ++this.invArray[6]);
+						document.getElementById("Sledge").innerHTML = '<br>' + this.invArray[6];
+						this.whiffles -= 50;
+					}
+				}
+				break;
+			case 'Machete':
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Machete", 50)) {
+						localStorage.setItem("Machete", ++this.invArray[7]);
+						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
+						this.whiffles -= 50;
+					}
+				}
+				break;
+			case 'Jackhammer':
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Jackhammer", 50)) {
+						localStorage.setItem("Jackhammer", ++this.invArray[8]);
+						document.getElementById("Jackhammer").innerHTML = '<br>' + this.invArray[8];
+						this.whiffles -= 50;
+					}
+				}
+				break;
+			case 'Shear':
+			if(this.whiffles >= 50){
 
 	addInventory : function() {
 		let key = this.x_coord + ',' + this.y_coord; //should merge into another function
