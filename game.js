@@ -24,7 +24,7 @@ var canvasContext;
 document.addEventListener('DOMContentLoaded', function () {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
-	var gameString = document.getElementById('map');
+	var gameString = game.mapSring; //document.getElementById('map');
 	drawEverything(gameString);
 })
 
@@ -35,14 +35,19 @@ var topY = 0;
 const tileWidth = 20;
 const tileHeight = 20;
 
-function drawEverything() {
+function drawEverything(gameString) {
 	colorRect(0, 0, canvas.width, canvas.height, 'grey')
-	drawMeadow();
+	for(let i = 0; i > mapSize; ++i){
+		if(gameSring[0] == 'M'){
+			drawMeadow();
+		}
+	}
+	/*drawMeadow();
 	drawForest();
 	drawWater();
 	drawWall();
 	drawBog();
-	drawSwap();
+	drawSwap();*/
 }
 function drawMeadow() {
 	canvasContext.fillStyle = 'lawngreen';
@@ -591,7 +596,7 @@ addInventory : function() {
 			tempMapString += "<br>";
 		}
 		this.mapString = tempMapString;
-		document.getElementById("map").innerHTML = this.mapString;
+		//document.getElementById("map").innerHTML = this.mapString;
 	},
 
 	changeMapMode: function () {
