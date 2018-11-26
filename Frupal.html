@@ -18,7 +18,8 @@
 
 <body>
 <!--<script>game.checkFrom()</script>-->
-
+<span id="img"></span>
+<span id="img2"></span>
 		<div id="container1" class="grow2">
 			<div id="pipFixedelements">
 				<button class="pipNorth" onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
@@ -56,6 +57,11 @@
 			</div><!--end pipFixedelements-->
 			
 			<div class="pip">
+
+
+	<div><p id="loc">Current Location:  0,0</p> </div>
+	<div><p id="cell">Cell Details: </p> </div>
+			
 				<div class="pipfront">
 					<div class="top">
 					<div class="top-panel"></div>
@@ -135,6 +141,7 @@
 <img src="pipboy/hand.png" id="hand">
 	</div><!--end wrapper-->
 	<div></div>
+	
 	<script>
 		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.

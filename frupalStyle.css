@@ -7,7 +7,7 @@ body{
     margin-right: 0px;
     padding: 0;
 	overflow-x: hidden;	
-	overflow-y: hidden;	
+	overflow-y: hidden;
 }
 
 #wrapper {
@@ -21,7 +21,6 @@ right:-7.8%;
 	  background-image: url("mario-trimet.jpg");
 	  background-color:grey;	 
   background-repeat: no-repeat;
-  background-size: 100%;
   z-index:0;
   background-size: 100% 100%;
   	-webkit-transform: scale(0.9) translate(-13%,0px);
@@ -68,6 +67,28 @@ position:fixed;
 	z-index:9;
 }
 
+
+#img {
+	opacity: .4;
+	position:fixed;
+		height:100%;
+	width:100%;
+	background-image: url("pipboy/tree.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;	
+}
+
+#img2 {
+	opacity: .9;
+	position:fixed;
+		height:100%;
+	width:100%;
+	background-image: url("pipboy/tree-Blur.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;	
+}
+
+
 .pipNorth{
 	position: fixed;
 	right: -582px;
@@ -105,7 +126,7 @@ position:fixed;
 #Hatchet {
 	width: 30px;
 	height: 50px;
-	top: 159px;
+	top: 223px;
 	right: -160px;
 	background-image: url("pipboy/hatchet.png");
 
@@ -113,7 +134,7 @@ position:fixed;
 
 #Hammer {
 	width: 40px;
-	top: 223px;
+	top: 287px;
 	right: -160px;
 	background-image: url("pipboy/hammer.png");
 
@@ -121,14 +142,14 @@ position:fixed;
 
 #boat {
 	width: 43px;
-	top: 273px;
+	top: 337px;
 	right: -160px;
 	background-image: url("pipboy/boat.png");
 }
 
 #Pickaxe {
 	width: 30px;
-	top: 275px;
+	top: 339px;
 	right: -225px;
 	background-image: url("pipboy/pickaxe.png");
 }
@@ -136,21 +157,21 @@ position:fixed;
 #ChainsawOuter {
 	width: 80px;
 	height:40;
-	top: 275px;
+	top: 339px;
 	right: -350px;
 	background-image: url("pipboy/chainsaw.png");
 }
 
 #Chainsaw {
 	position: fixed;
-	top: 288px;
+	top: 332px;
 	right: -300px;
 }
 
 #Chisel {
 	width: 50px;
 	height:40;
-	top: 251px;
+	top: 315px;
 	right: -395px;
 	background-image: url("pipboy/chisel.png");
 }
@@ -158,7 +179,7 @@ position:fixed;
 #Sledge {
 	width: 40px;
 	height: 50px;
-	top: 272px;
+	top: 335px;
 	right: -395px;
 	background-image: url("pipboy/sledge.png");
 }
@@ -166,7 +187,7 @@ position:fixed;
 #Jackhammer {
 	width: 30px;
 	height: 60px;
-	top: 175px;
+	top: 239px;
 	right: -395px;
 	background-image: url("pipboy/jackhammer.png");
 }
@@ -174,21 +195,21 @@ position:fixed;
 #Machete {
 	width: 40px;
 	height: 60px;
-	top: 157px;
+	top: 221px;
 	right: -348px;
 	background-image: url("pipboy/machete.png");
 }
 
 #Shears {
 	width: 60px;
-	top: 157px;
+	top: 221px;
 	right: -232px;
 	background-image: url("pipboy/shears.png");
 }
 
 #Binoculars {
 	width: 31px;
-	top: 175px;
+	top: 239px;
 	right: -277px;
 	background-image: url("pipboy/binoculars.png");
 }
