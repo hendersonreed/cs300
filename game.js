@@ -330,7 +330,7 @@ addInventory : function() {
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Hatchet", 50)) {
 						localStorage.setItem(Hatchet, ++this.invArray[0]);
-						document.getElementById("Hatchet").innerHTML = '<br><br><br>' + this.invArray[0];
+						document.getElementById("Hatchet").innerHTML = '<br><br>' + this.invArray[0];
 						this.whiffles -= 50; count=1;
 				}
 			}
@@ -364,7 +364,7 @@ addInventory : function() {
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Pickaxe", 50)) {
 						localStorage.setItem('Pickaxe', ++this.invArray[3]);
-						document.getElementById("Pickaxe").innerHTML = '<br><br><br>' + this.invArray[3];
+						document.getElementById("Pickaxe").innerHTML = '<br><br>' + this.invArray[3];
 						this.whiffles -= 50; count=1;
 					}
 				}
