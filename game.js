@@ -18,9 +18,6 @@ const MAPSIZE = 5; //Distance from the player that tiles should be drawn. THIS C
 	height: 400,
 };*/
 
-var canvas;
-var canvasContext;
-
 /*document.addEventListener('DOMContentLoaded',function(){
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -34,8 +31,14 @@ var canvasContext;
 //canvas.height = 400;
 var leftX = 0;
 var topY = 0;
-const tileWidth = 20;
-const tileHeight = 20;
+const tileWidth = 32;
+const tileHeight = 32;
+const rowSize = 20;
+const columnSize = 10;
+var canvas = document.getElementById("map");
+canvas.width = rowSize*32;
+canvas.height = columnSize*32;
+var canvasContext = canvas.getContext('2d');
 
 function drawEverything() {
 	colorRect(0, 0, canvas.width, canvas.height, 'grey')
@@ -518,13 +521,11 @@ addInventory : function() {
 		for (let i = 0; i < MAX; i++) {
 			for (let j = 0; j < MAX; j++) {
 				let currCell = localStorage.getItem(j + ',' + i);
-				if (j == this.x_coord && i == this.y_coord)
-					tempMapString += 'C';
-				else if (currCell != null) {
+				if (currCell != null) {
 					currCell = currCell.split(",");
 
 					if (currCell[2] == '0')
-						tempMapString += 'X'
+						tempMapString += 'XX'
 					else switch (currCell[3]) {
 						case '0':
 							tempMapString += 'M';
@@ -554,15 +555,93 @@ addInventory : function() {
 							tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
 							break;
 					}
+					if (j == this.x_coord && i == this.y_coord)
+						tempMapString += 'C';
+					else switch(currCell[4]) 
+					{
+							case "Tree":
+								tempMapString += 'T';
+								break;
+							case "Boulder":
+								tempMapString += 'R';
+								break;
+							case "Blackberry Bushes":
+								tempMapString += 'L';
+								break;
+					}
 				}
 				else {
-					tempMapString += 'X';
+					tempMapString += 'XX';
 				}
 			}
-			tempMapString += "<br>";
+			
 		}
 		this.mapString = tempMapString;
-		document.getElementById("map").innerHTML = this.mapString;
+		this.drawMap();
+		
+	},
+	
+	drawMap : function () {
+		var stringPos = 0;
+		var imageobj;
+		var obstacle;
+		
+		for(i = 0; i < columnSize;i++)
+			{
+				for(j = 0; j < rowSize; j++)
+				{
+					stringPos = ((i*rowSize) + j)*2;
+					imageobj = new Image();
+					switch(this.mapString.charAt(stringPos))
+					{
+						case 'X':
+							imageobj.src = "tiles/unexplored.png";
+							break;
+						case 'F':
+							imageobj.src = "tiles/forest.png";
+							break;
+						case 'M':
+							imageobj.src = "tiles/desert.png";
+							break;
+						case 'w':
+							imageobj.src = "tiles/water.png";
+							break;
+						case 'W':
+							imageobj.src = "tiles/wall.png";
+							break;
+						case 'B':
+							imageobj.src = "tiles/bog.png";
+							break;
+						case 'S':
+							imageobj.src = "tiles/swamp.png";
+							break;
+					}
+					canvasContext.drawImage(imageobj, j*tileWidth, i*tileHeight);
+					/*if(this.mapString.charAt(stringPos+1) != 'X')
+					{
+						obstacle = new Image();
+						obstacle.onload = function() {
+							canvasContext.drawImage(obstacle, j*tileWidth, i*tileHeight);
+						}
+						switch(this.mapString.charAt(stringPos+1))
+						{
+							case 'C':
+								obstacle.src = "tiles/hero.png";
+								break;
+							case 'T':
+								obstacle.src = "tiles/tree.png";
+								break;
+							case 'B':
+								obstacle.src = "tiles/boulder.png";
+								break;
+							case 'L':
+								obstacle.src = "tiles/bush.png"
+								break;
+						}
+					} */
+				}
+			}
+		
 	},
 
 	changeMapMode: function () {

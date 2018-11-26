@@ -10,7 +10,6 @@
 		<script>localStorage.clear();</script>
 	<script src="mapLoad.js"></script>
 	<script src="cellLoad.js"></script>
-	<script src="game.js"></script>
 	<script src="frontEnd.js"></script>
 		
 	</head>
@@ -137,11 +136,12 @@
 			
 			</div> <!--end pipdiv-->
 		</div><!--end container 1-->
-<div id="wrapper-new" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)"><span id="map"></span>
+<div id="wrapper-new" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)"><canvas id="map"></canvas>
 <img src="pipboy/hand.png" id="hand">
 	</div><!--end wrapper-->
 	<div></div>
 	
+	<script src="game.js"></script>
 	<script>
 		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
