@@ -362,9 +362,9 @@ addInventory : function() {
 				}
 			case 'Pickaxe':
 				if(this.whiffles >= 50){
-					if(this.promptPurchase("Axe", 50)) {
-						localStorage.setItem(Axe, ++this.invArray[3]);
-						document.getElementById("Axe").innerHTML = '<br><br><br>' + this.invArray[3];
+					if(this.promptPurchase("Pickaxe", 50)) {
+						localStorage.setItem("Pickaxe", ++this.invArray[3]);
+						document.getElementById("Pickaxe").innerHTML = '<br><br><br>' + this.invArray[3];
 						this.whiffles -= 50; this.count=1;
 					}
 				}
