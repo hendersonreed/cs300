@@ -310,8 +310,8 @@ var game = {
 			cellContents[2] = 1;
 			localStorage.setItem(key, cellContents);
 			document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
-			//if(this.x_coord > 0 && this.y_coord > 0){
-				this.addInventory(); //adds to inventory duh..bad comment i know
+
+				this.addInventory();
 		}
 		else {
 			var newCell = key + ",1,0,None";
@@ -338,7 +338,7 @@ addInventory : function() {
 			case 'Hammer':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Hammer", 50)) {
-						localStorage.setItem(Hammer, ++this.invArray[1]);
+						localStorage.setItem('Hammer', ++this.invArray[1]);
 						document.getElementById("Hammer").innerHTML = '<br><br>' + this.invArray[1];
 						this.whiffles -= 50; count=1;
 					}
@@ -347,7 +347,7 @@ addInventory : function() {
 			case 'Boat':
 				if(this.whiffles >= 100){
 					if(this.promptPurchase("Boat", 100)) {
-						localStorage.setItem(Boat, ++this.invArray[2]);
+						localStorage.setItem('Boat', ++this.invArray[2]);
 						document.getElementById("Boat").innerHTML = '<br><br>' + this.invArray[2];
 						this.whiffles -= 100; count=1;
 					}
@@ -362,9 +362,9 @@ addInventory : function() {
 				}
 			case 'Pickaxe':
 				if(this.whiffles >= 50){
-					if(this.promptPurchase("Axe", 50)) {
-						localStorage.setItem(Axe, ++this.invArray[3]);
-						document.getElementById("Axe").innerHTML = '<br><br><br>' + this.invArray[3];
+					if(this.promptPurchase("Pickaxe", 50)) {
+						localStorage.setItem('Pickaxe', ++this.invArray[3]);
+						document.getElementById("Pickaxe").innerHTML = '<br><br><br>' + this.invArray[3];
 						this.whiffles -= 50; count=1;
 					}
 				}
@@ -372,7 +372,7 @@ addInventory : function() {
 			case 'Chainsaw':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Chainsaw", 50)) {
-						localStorage.setItem(Chainsaw, ++this.invArray[4]);
+						localStorage.setItem('Chainsaw', ++this.invArray[4]);
 						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
 						this.whiffles -= 50; count=1;
 					}
@@ -381,7 +381,7 @@ addInventory : function() {
 			case 'Chisel':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Chisel", 50)) {
-						localStorage.setItem(Chisel, ++this.invArray[5]);
+						localStorage.setItem('Chisel', ++this.invArray[5]);
 						document.getElementById("Chisel").innerHTML = '<br><br><br>' + this.invArray[5];
 						this.whiffles -= 50; count=1;
 					}
@@ -390,7 +390,7 @@ addInventory : function() {
 			case 'Sledge':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Sledge", 50)) {
-						localStorage.setItem(Sledge, ++this.invArray[6]);
+						localStorage.setItem('Sledge', ++this.invArray[6]);
 						document.getElementById("Sledge").innerHTML = '<br><br><br>' + this.invArray[6];
 						this.whiffles -= 50; count=1;
 					}
@@ -399,7 +399,7 @@ addInventory : function() {
 			case 'Machete':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Machete", 50)) {
-						localStorage.setItem(Machete, ++this.invArray[7]);
+						localStorage.setItem('Machete', ++this.invArray[7]);
 						document.getElementById("Machete").innerHTML = '<br><br><br>' + this.invArray[7];
 						this.whiffles -= 50; count=1;
 					}
@@ -408,7 +408,7 @@ addInventory : function() {
 			case 'Jackhammer':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Jackhammer", 50)) {
-						localStorage.setItem(Jackhammer, ++this.invArray[8]);
+						localStorage.setItem('Jackhammer', ++this.invArray[8]);
 						document.getElementById("Jackhammer").innerHTML = '<br><br><br>' + this.invArray[8];
 						this.whiffles -= 50; count=1;
 					}
@@ -417,7 +417,7 @@ addInventory : function() {
 			case 'Shears':
 			if(this.whiffles >= 50){
 				if(this.promptPurchase("Shears", 50)) {
-					localStorage.setItem(Shears, ++this.invArray[9]);
+					localStorage.setItem('Shears', ++this.invArray[9]);
 					document.getElementById("Shears").innerHTML = '<br><br>' + this.invArray[9];
 					this.whiffles -= 50; count=1;
 				}
@@ -426,7 +426,7 @@ addInventory : function() {
 			case 'Binoculars':
 			if(this.whiffles >= 100){//need to make this only one binoc possible
 				if(this.promptPurchase("Binoculars", 100)) {
-					localStorage.setItem(Binoculars, ++this.invArray[9]);
+					localStorage.setItem('Binoculars', ++this.invArray[9]);
 					document.getElementById("Binoculars").innerHTML = '<br><br><br>' + this.invArray[10];
 					this.whiffles -= 100; count=1;
 				}
@@ -663,7 +663,7 @@ addInventory : function() {
 		cellContents = localStorage.getItem(xcoord + ',' + ycoord);
 		if (cellContents != null) {
 			var cell = cellContents.split(',');
-			check = localStorage.getItem('Boat');
+			check = localStorage.getItem('Boat');// was('Boat');
 			if (cell[3] == 2){
 				if (check > 0){
 					return true;
