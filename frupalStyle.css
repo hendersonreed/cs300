@@ -9,8 +9,7 @@ body{
 	overflow-x: hidden;	
 	overflow-y: hidden;
 }
-
-#wrapper {
+.wrapper{
 	margin-right:-1%;
 	margin-bottom:5%;
 	position: absolute;
@@ -19,10 +18,22 @@ body{
 	max-height:970px; /*adjust max height of map */
 right:-7.8%;
 	  /*background-image: url("mario-trimet.jpg");*/
-	  background-color:grey;	 
+background-color: rgba(235,235,235,0.84); 
   background-repeat: no-repeat;
   z-index:0;
-  background-size: 100% 100%;
+  background-size: 100% 100%;	
+
+}
+
+#wrapper {
+  	-webkit-transform: scale(0.9) translate(-13%,0px);
+	  -webkit-transition: height 0.5s ease-in-out;
+  -webkit-transition: width 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
+ 
+}
+
+#wrapper-new {
   	-webkit-transform: scale(0.9) translate(-13%,0px);
 	  -webkit-transition: height 0.5s ease-in-out;
   -webkit-transition: width 0.5s ease-in-out;
@@ -30,23 +41,10 @@ right:-7.8%;
  
 }
 #wrapper-out {
-		margin-right:-1%;
-	margin-bottom:5%;
-	position: absolute;
-	height:100%;
-	width:100%;
-	max-height:970px; /*adjust max height of map */
-right:-7.8%;
-	  /*background-image: url("mario-trimet.jpg");*/
-	  background-color:grey;	 
-  background-repeat: no-repeat;
-  background-size: 100%;
-  z-index:0;
-  background-size: 100% 100%;
-	 	  -webkit-transform: scale(0.8) translate(-5%, 0);
-  -webkit-transition: height 0.5s ease-in-out;
-  -webkit-transition: width 0.5s ease-in-out;
-  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
+	-webkit-transform: scale(0.8) translate(-5%, 0);
+    -webkit-transition: height 0.5s ease-in-out;
+    -webkit-transition: width 0.5s ease-in-out;
+    -webkit-transition: transform 0.5s ease-in-out 0.1s; 
 
 }
 
@@ -81,6 +79,42 @@ width: "500";
 height: "500";
 	
 }
+#img {
+	opacity: .4;
+	position:fixed;
+		height:100%;
+	width:100%;
+	background-image: url("pipboy/tree.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;	
+}
+
+#img2 {
+	opacity: .9;
+	position:fixed;
+		height:100%;
+	width:100%;
+	background-image: url("pipboy/tree-Blur.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;	
+}
+
+
+#info-box {
+	position: fixed;
+}
+
+#map {
+
+		position: absolute;
+	-webkit-transform: scale(3.9, 1.7) translate(-9px, -29px);
+	bottom: 20%;
+	right: 25%;
+font-family:DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+color: black;
+
+}
+
 #img {
 	opacity: .4;
 	position:fixed;
@@ -137,32 +171,31 @@ height: "500";
 }
 
 #Hatchet {
-	width: 30px;
-	height: 50px;
-	top: 223px;
+	width:30px;
+	height: 0px;
+	top: 163px;
 	right: -160px;
 	background-image: url("pipboy/hatchet.png");
-
 }
 
 #Hammer {
 	width: 40px;
-	top: 287px;
+	top: 223px;
 	right: -160px;
 	background-image: url("pipboy/hammer.png");
-
 }
 
 #boat {
+	height:43px;
 	width: 43px;
-	top: 337px;
-	right: -160px;
+	top: 273px;
+	right: -166px;
 	background-image: url("pipboy/boat.png");
 }
 
 #Pickaxe {
 	width: 30px;
-	top: 339px;
+	top: 273px;
 	right: -225px;
 	background-image: url("pipboy/pickaxe.png");
 }
@@ -170,21 +203,21 @@ height: "500";
 #ChainsawOuter {
 	width: 80px;
 	height:40;
-	top: 339px;
+	top: 275px;
 	right: -350px;
 	background-image: url("pipboy/chainsaw.png");
 }
 
 #Chainsaw {
 	position: fixed;
-	top: 332px;
+	top: 268px;
 	right: -300px;
 }
 
 #Chisel {
 	width: 50px;
 	height:40;
-	top: 315px;
+	top: 251px;
 	right: -395px;
 	background-image: url("pipboy/chisel.png");
 }
@@ -192,7 +225,7 @@ height: "500";
 #Sledge {
 	width: 40px;
 	height: 50px;
-	top: 335px;
+	top: 271px;
 	right: -395px;
 	background-image: url("pipboy/sledge.png");
 }
@@ -200,7 +233,7 @@ height: "500";
 #Jackhammer {
 	width: 30px;
 	height: 60px;
-	top: 239px;
+	top: 175px;
 	right: -395px;
 	background-image: url("pipboy/jackhammer.png");
 }
@@ -208,21 +241,21 @@ height: "500";
 #Machete {
 	width: 40px;
 	height: 60px;
-	top: 221px;
+	top: 157px;
 	right: -348px;
 	background-image: url("pipboy/machete.png");
 }
 
 #Shears {
 	width: 60px;
-	top: 221px;
+	top:157px;
 	right: -232px;
 	background-image: url("pipboy/shears.png");
 }
 
 #Binoculars {
 	width: 31px;
-	top: 239px;
+	top: 175px;
 	right: -277px;
 	background-image: url("pipboy/binoculars.png");
 }

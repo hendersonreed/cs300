@@ -37,14 +37,20 @@
 			}
 		},
 		
+				//zero is mouse enter and one is mouse leave
 		pipMotion : function(set){
-			if(set==1){
+			if(set==0){//mouse in
+				if(document.getElementById("wrapper-new")){
+					document.getElementById("wrapper-new").id="wrapper";
+					document.getElementById("container1").className="grow2";
+				}else{
+					document.getElementById("wrapper-out").id="wrapper";
+					document.getElementById("container1").className="grow2";
+				}
+			}
+			if(set==1){//mouse out
 				document.getElementById("wrapper").id="wrapper-out";
 				document.getElementById("container1").className="grow2-hover";				
-			}
-			if(set==0){
-				document.getElementById("wrapper-out").id="wrapper";
-				document.getElementById("container1").className="grow2";	
 			}
 		},
 	};

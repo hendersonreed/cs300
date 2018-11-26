@@ -12,6 +12,7 @@
 	<script src="cellLoad.js"></script>
 	<script src="game.js"></script>
 	<script src="frontEnd.js"></script>
+		
 	</head>
 
 
@@ -19,7 +20,7 @@
 <!--<script>game.checkFrom()</script>-->
 <span id="img"></span>
 <span id="img2"></span>
-		<div id="container1" class="grow2">
+		<div id="container1" class="grow2-hover">
 			<div id="pipFixedelements">
 				<button class="pipNorth" onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
 				<button class="pipSouth" onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
@@ -27,11 +28,11 @@
 				<button class="pipWest" onclick="game.go('w')" type="submit" form="form1" value="Submit">-WEST-</button>
 			
 				
-				<div id="Hatchet" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hatchet',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hatchet', 'clear')"><br><br><br>0</div>
+				<div id="Hatchet" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hatchet',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hatchet', 'clear')"><br><br>0</div>
 				
 				<div id="Hammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hammer',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hammer', 'clear')"><br><br>0</div>
 				
-				<div id="Boat" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Boat', 'special')" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Boat', 'clear')"><br><br>0</div>
+				<div id="Boat" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Boat', 'special')" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Boat', 'clear')"></div>
 				
 				<div id="Pickaxe" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Pickaxe',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Pickaxe', 'clear')"><br><br>0</div>
 				
@@ -56,10 +57,6 @@
 			</div><!--end pipFixedelements-->
 			
 			<div class="pip">
-
-
-	<div><p id="loc">Current Location:  0,0</p> </div>
-	<div><p id="cell">Cell Details: </p> </div>
 			
 				<div class="pipfront">
 					<div class="top">
@@ -136,13 +133,12 @@
 			
 			</div> <!--end pipdiv-->
 		</div><!--end container 1-->
-
-
-<div id="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)"><span id="map"></span>
+<div id="wrapper-new" class="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)"><span id="info-box"><h1>Frupal, The Game</h1>
+	<div><p id="loc">Current Location:  0,0</p> </div>
+	<div><p id="cell">Cell Details: </p> </div></span><span id="map"></span>
 <img src="pipboy/hand.png" id="hand">
 	</div><!--end wrapper-->
 	<div></div>
-<canvas id = "gameCanvas" ></canvas>	
 	
 	<script>
 		//console.log(game.jewels.x + ',' + game.jewels.y);
