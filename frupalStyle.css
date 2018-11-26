@@ -67,7 +67,10 @@ position:fixed;
 	z-index:9;
 }
 
-
+#map {
+font-family:DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+	background-color:blue;
+}
 #img {
 	opacity: .4;
 	position:fixed;
