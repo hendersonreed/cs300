@@ -18,7 +18,27 @@ body{
 	width:100%;
 	max-height:970px; /*adjust max height of map */
 right:-7.8%;
-	  background-image: url("mario-trimet.jpg");
+	  /*background-image: url("mario-trimet.jpg");*/
+	  background-color:grey;	 
+  background-repeat: no-repeat;
+  z-index:0;
+  background-size: 100% 100%;
+  	-webkit-transform: scale(0.9) translate(-13%,0px);
+	  -webkit-transition: height 0.5s ease-in-out;
+  -webkit-transition: width 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
+ 
+}
+
+#wrapper-new {
+	margin-right:-1%;
+	margin-bottom:5%;
+	position: absolute;
+	height:100%;
+	width:100%;
+	max-height:970px; /*adjust max height of map */
+right:-7.8%;
+	  /*background-image: url("mario-trimet.jpg");*/
 	  background-color:grey;	 
   background-repeat: no-repeat;
   z-index:0;
@@ -37,7 +57,7 @@ right:-7.8%;
 	width:100%;
 	max-height:970px; /*adjust max height of map */
 right:-7.8%;
-	  background-image: url("mario-trimet.jpg");
+	  /*background-image: url("mario-trimet.jpg");*/
 	  background-color:grey;	 
   background-repeat: no-repeat;
   background-size: 100%;
@@ -67,6 +87,10 @@ position:fixed;
 	z-index:9;
 }
 
+#map {
+font-family:DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+	background-color:blue;
+}
 
 #img {
 	opacity: .4;

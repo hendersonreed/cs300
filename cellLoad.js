@@ -23,9 +23,17 @@ i += 2 //skip the first hash mark separator.
 var playerCoords = splitString[i].split(',');
 var startingX = playerCoords[0];
 var startingY = playerCoords[1];
+++i;
 var startingEnergy = splitString[i];
 ++i;
 var startingWhiffles = splitString[i];
+++i;
+
+// My suggestion is to add the jewels location uniquely as the
+//  first line after the starting whiffles. Once we do that,
+//  simply uncomment the lines below.
+var jewelString = splitString[i].split(",");
+var jewelLoc = {x: jewelString[0], y: jewelString[1]};
 ++i;
 
 var inventory = []
@@ -40,10 +48,12 @@ while (splitString[i][0] != '#' ) { //store the players inventory.
 for (var iLen=splitString.length; i<iLen; i++) {
 	splitCell = splitString[i].split(',');
 	localStorage.setItem(splitCell[0] + ',' + splitCell[1], splitCell); //notice we store the entire cell as an array!
-	}
-//This sets initial values to zero instead of null
+}
+
+//This sets initial values to zero instead of null for inventory
 var invArray2 = ['Hatchet', 'Hammer', 'Boat', 'Pickaxe', 'Chainsaw', 'Chisel', 'Sledge', 'Machete', 'Jackhammer', 'Shears', 'Binoluclars']
 
 for (var i=0; i<11; ++i) {
 	localStorage.setItem(this.invArray2[i], 0);
 }
+
