@@ -1,20 +1,93 @@
 @charset "utf-8";
+body{
+		position:relative;
+	 margin-top: 0px; 
+    margin-bottom: 0px; 
+    margin-left: 0px; 
+    margin-right: 0px;
+    padding: 0;
+	overflow-x: hidden;	
+	overflow-y: hidden;
+}
 
-#wrapper{
+#wrapper {
+	margin-right:-1%;
+	margin-bottom:5%;
+	position: absolute;
 	height:100%;
-	width:95%;
-	margin-left:2.5%;
-	position:relative;
-	background-color:green;
-	}
+	width:100%;
+	max-height:970px; /*adjust max height of map */
+right:-7.8%;
+	  background-image: url("mario-trimet.jpg");
+	  background-color:grey;	 
+  background-repeat: no-repeat;
+  z-index:0;
+  background-size: 100% 100%;
+  	-webkit-transform: scale(0.9) translate(-13%,0px);
+	  -webkit-transition: height 0.5s ease-in-out;
+  -webkit-transition: width 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
+ 
+}
+#wrapper-out {
+		margin-right:-1%;
+	margin-bottom:5%;
+	position: absolute;
+	height:100%;
+	width:100%;
+	max-height:970px; /*adjust max height of map */
+right:-7.8%;
+	  background-image: url("mario-trimet.jpg");
+	  background-color:grey;	 
+  background-repeat: no-repeat;
+  background-size: 100%;
+  z-index:0;
+  background-size: 100% 100%;
+	 	  -webkit-transform: scale(0.8) translate(-5%, 0);
+  -webkit-transition: height 0.5s ease-in-out;
+  -webkit-transition: width 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
+
+}
+
+#hand{
+	position: absolute;
+	z-index:99;
+	height:auto;
+	width:15%;
+	bottom:-5%;
+	right:-10.8%;
+}
 	
-#container {
+#container1 {
 position:fixed;
     top: 18%;
     left: 0px;
-background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font-weight:700;text-transform:uppercase;
-	
+	font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font-weight:700;text-transform:uppercase;
+	z-index:9;
 }
+
+
+#img {
+	opacity: .4;
+	position:fixed;
+		height:100%;
+	width:100%;
+	background-image: url("pipboy/tree.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;	
+}
+
+#img2 {
+	opacity: .9;
+	position:fixed;
+		height:100%;
+	width:100%;
+	background-image: url("pipboy/tree-Blur.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;	
+}
+
 
 .pipNorth{
 	position: fixed;
@@ -41,8 +114,116 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 	z-index: 1;
 }
 
-#map {float:right;
-	}
+.inventory-icon-on{
+		position: fixed;height: auto;z-index: 1;background-size: contain;background-repeat: no-repeat;text-align: right;text-align: bottom;	-webkit-transition: transform 0.1s;
+		opacity: 1;
+}
+
+.inventory-icon{
+		position: fixed;height: auto;z-index: 1;background-size: contain;background-repeat: no-repeat;text-align: right;text-align: bottom;	-webkit-transition: transform 0.1s; opacity: .2;
+}
+
+#Hatchet {
+	width: 30px;
+	height: 50px;
+	top: 223px;
+	right: -160px;
+	background-image: url("pipboy/hatchet.png");
+
+}
+
+#Hammer {
+	width: 40px;
+	top: 287px;
+	right: -160px;
+	background-image: url("pipboy/hammer.png");
+
+}
+
+#boat {
+	width: 43px;
+	top: 337px;
+	right: -160px;
+	background-image: url("pipboy/boat.png");
+}
+
+#Pickaxe {
+	width: 30px;
+	top: 339px;
+	right: -225px;
+	background-image: url("pipboy/pickaxe.png");
+}
+
+#ChainsawOuter {
+	width: 80px;
+	height:40;
+	top: 339px;
+	right: -350px;
+	background-image: url("pipboy/chainsaw.png");
+}
+
+#Chainsaw {
+	position: fixed;
+	top: 332px;
+	right: -300px;
+}
+
+#Chisel {
+	width: 50px;
+	height:40;
+	top: 315px;
+	right: -395px;
+	background-image: url("pipboy/chisel.png");
+}
+
+#Sledge {
+	width: 40px;
+	height: 50px;
+	top: 335px;
+	right: -395px;
+	background-image: url("pipboy/sledge.png");
+}
+
+#Jackhammer {
+	width: 30px;
+	height: 60px;
+	top: 239px;
+	right: -395px;
+	background-image: url("pipboy/jackhammer.png");
+}
+
+#Machete {
+	width: 40px;
+	height: 60px;
+	top: 221px;
+	right: -348px;
+	background-image: url("pipboy/machete.png");
+}
+
+#Shears {
+	width: 60px;
+	top: 221px;
+	right: -232px;
+	background-image: url("pipboy/shears.png");
+}
+
+#Binoculars {
+	width: 31px;
+	top: 239px;
+	right: -277px;
+	background-image: url("pipboy/binoculars.png");
+}
+
+#oldPip{
+	width:527px;
+	height: 384px;
+	position: fixed;
+	right: -601px;
+	top: 86px;
+	z-index: 0;
+	background-image: url("pipboy/oldboy.gif");
+	background-size: contain;background-repeat: no-repeat;
+}
 .button{
 	
 	}
@@ -56,9 +237,109 @@ background:;font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font
 
 }
 .grow2:hover {
-	-webkit-transform: scale(1) translate(49px, 60px);
-
-
+	-webkit-transform: scale(1.1) translate(49px, 60px);
+		  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
+}
+/*not a repeat*/
+.grow2-hover {
+	-webkit-transform: scale(1.1) translate(49px, 60px);
+	  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
 }
 
-.pip{width:630px;height:400px;background:#8b7867;background: linear-gradient(#8b7867,#4f4138);margin:100px auto 0 auto;border-radius:50px;border-bottom-right-radius:90px;border-top:2px solid #c3bfb4;position:absolute;}
+.pip{
+	width:630px;
+	height:400px;
+	background:#8b7867;
+	background: linear-gradient(#8b7867,#4f4138);
+	margin:100px auto 0 auto;
+	border-radius:50px;
+	border-bottom-right-radius:90px;
+	border-top:2px solid #c3bfb4;
+	position:absolute;
+	}
+
+	#pipFixedElements{
+		font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font-weight:700;text-transform:uppercase;
+	}
+	
+/*#container2 {
+	position:relative;
+  background-image: url("mario-trimet.jpg");
+
+width: 100%;
+  height:100%; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index:0;
+  
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
