@@ -1,6 +1,6 @@
 /*
 	File: Frupal.html
-	Authors: Henderson Hummel, James Hiebert, Cody Jeffries
+	Authors: Henderson Hummel, James Hiebert, Cody Jeffries, Eric Frazier, Suliman Alsarraf, Dante Kiaunis, Tejas Menon
 	Date 10/27/2018
 
 	Purpose: display the game to user.
