@@ -320,7 +320,7 @@ var game = {
 			document.getElementById("cell").innerHTML = "Cell Details: " + newCell;
 		}
 	},
-
+	
 	treasureEncounter : function() {
 		let key = this.x_coord + ',' + this.y_coord; //dumb repeat but making it work
 		let cellContents = localStorage.getItem(key);
@@ -347,6 +347,26 @@ var game = {
 		let cellContents = localStorage.getItem(key);
 		 cellContents = cellContents.split(',');
 		 count = 0;// count makes it so you can go back and unpurchased item will be there still
+		 switch (cellContents[4]){
+			case 'Chest1':
+				alert("You have visited a site with treasure! Adding 100 whiffles to your stash.");
+				this.whiffles += 100;
+				break;
+			case 'Chest2':
+				alert("This site contains a trap! All your whiffles are lost!");
+				this.whiffles = 0;
+				break;
+		 }
+		 cellContents[4] = 'None';
+		 localStorage.setItem(key, cellContents);
+		 document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
+	},
+
+	addInventory : function() {
+		let key = this.x_coord + ',' + this.y_coord; //should merge into another function
+		let cellContents = localStorage.getItem(key);
+		 cellContents = cellContents.split(',');
+		let count = 0;// count makes it so you can go back and unpurchased item will be there still
 		 switch (cellContents[4]){
 			case 'Hatchet':
 				if(this.whiffles >= 50){
