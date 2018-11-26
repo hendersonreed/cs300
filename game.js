@@ -312,6 +312,7 @@ var game = {
 			document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
 			//if(this.x_coord > 0 && this.y_coord > 0){
 				this.addInventory(); //adds to inventory duh..bad comment i know
+				this.treasureEncounter();
 		}
 		else {
 			var newCell = key + ",1,0,None";
@@ -319,106 +320,26 @@ var game = {
 			document.getElementById("cell").innerHTML = "Cell Details: " + newCell;
 		}
 	},
-addInventory2 : function() {
+	
+	treasureEncounter : function() {
 		let key = this.x_coord + ',' + this.y_coord; //dumb repeat but making it work
 		let cellContents = localStorage.getItem(key);
 		 cellContents = cellContents.split(',');
 		 
 		 switch (cellContents[4]){
 			case 'Chest1':
-				alert("You have visited a site with treasure! Adding 100 whiffles to your stash."); //adding treasure cases here itself just to reduce code bloat
+				alert("You have visited a site with treasure! Adding 100 whiffles to your stash.");
 				this.whiffles += 100;
 				break;
 			case 'Chest2':
 				alert("This site contains a trap! All your whiffles are lost!");
 				this.whiffles = 0;
 				break;
-			case 'Hatchet':
-				if(this.promptPurchase("Hatchet", 50)) {
-					localStorage.setItem(inventory[0], ++this.invArray[0]);
-					document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
-					this.whiffles -= 50;
-				}
-				break;
-			case 'Hammer':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Hammer", 50)) {
-						localStorage.setItem(Hammer, ++this.invArray[1]);
-						document.getElementById("Hammer").innerHTML = '<br>' + this.invArray[1];
-						this.whiffles -= 50;
-					}
-				}
-				break;
-			case 'Boat':
-				if(this.whiffles >=100) {
-					if(this.promptPurchase("Boat", 100)) {
-						localStorage.setItem("Boat", ++this.invArray[2]);
-						document.getElementById("Boat").innerHTML = 'Boats: ' + this.invArray[2];
-						this.whiffles -= 100;
-					}
-				}
-				break;
-			case 'Power Bar':
-				if(this.whiffles >= 20){
-					if(this.promptPurchase("Power Bar", 20)) {
-						this.energy += 20;
-						this.whiffles -= 20;
-					}
-				}
-			case 'Axe':
-				if(this.whiffles >= 50) {
-					if(this.promptPurchase("Axe", 50)) {
-						localStorage.setItem("Axe", ++this.invArray[3]);
-					}
-				}
-				break;
-			case 'Chainsaw':
-				if(this.whiffles >= 50) {
-					if(this.promptPurchase("Chainsaw", 50)) {
-						localStorage.setItem("Chainsaw", ++this.invArray[4]);
-						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
-						this.whiffles -= 50;
-					}
-				}
-				break;
-			case 'Chisel':
-				if(this.whiffles >= 50) {
-					if(this.promptPurchase("Chisel", 50)) {
-						localStorage.setItem("Chisel", ++this.invArray[5]);
-						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
-						this.whiffles -= 50;
-					}
-				}
-				break;
-			case 'Sledge':
-				if(this.whiffles >= 50) {
-					if(this.promptPurchase("Sledge", 50)) {
-						localStorage.setItem("Sledge", ++this.invArray[6]);
-						document.getElementById("Sledge").innerHTML = '<br>' + this.invArray[6];
-						this.whiffles -= 50;
-					}
-				}
-				break;
-			case 'Machete':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Machete", 50)) {
-						localStorage.setItem("Machete", ++this.invArray[7]);
-						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
-						this.whiffles -= 50;
-					}
-				}
-				break;
-			case 'Jackhammer':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Jackhammer", 50)) {
-						localStorage.setItem("Jackhammer", ++this.invArray[8]);
-						document.getElementById("Jackhammer").innerHTML = '<br>' + this.invArray[8];
-						this.whiffles -= 50;
-					}
-				}
-				break;
-			case 'Shear':
-			if(this.whiffles >= 50){
+		 }
+		 cellContents[4] = 'None';
+		 localStorage.setItem(key, cellContents);
+		 document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
+	},
 
 	addInventory : function() {
 		let key = this.x_coord + ',' + this.y_coord; //should merge into another function
