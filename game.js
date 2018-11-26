@@ -111,7 +111,7 @@ var game = {
 	y_coord : startingY,
 	whiffles: startingWhiffles,
 	energy : startingEnergy,
-	invArray: [0,0,0,0,0,0,0,0,0],
+	invArray: [0,0,0,0,0,0,0,0,0,0,0],
 
 	mapString: "",
 	mapMode : 0, //0 for mini-map, 1 for full map
@@ -320,42 +320,36 @@ var game = {
 		}
 	},
 
-	addInventory: function () {
-		let key = this.x_coord + ',' + this.y_coord; //dumb repeat but making it work
+addInventory : function() {
+		let key = this.x_coord + ',' + this.y_coord; //should merge into another function
 		let cellContents = localStorage.getItem(key);
 		 cellContents = cellContents.split(',');
-		 
+		let count = 0;// count makes it so you can go back and unpurchased item will be there still
 		 switch (cellContents[4]){
-			case 'Chest1':
-				alert("You have visited a site with treasure! Adding 100 whiffles to your stash."); //adding treasure cases here itself just to reduce code bloat
-				this.whiffles += 100;
-				break;
-			case 'Chest2':
-				alert("This site contains a trap! All your whiffles are lost!");
-				this.whiffles = 0;
-				break;
 			case 'Hatchet':
-				if(this.promptPurchase("Hatchet", 50)) {
-					localStorage.setItem(inventory[0], ++this.invArray[0]);
-					document.getElementById("Hatchet").innerHTML = 'Hatchets: ' + localStorage.getItem(inventory[0]);
-					this.whiffles -= 50;
+				if(this.whiffles >= 50){
+					if(this.promptPurchase("Hatchet", 50)) {
+						localStorage.setItem(Hatchet, ++this.invArray[0]);
+						document.getElementById("Hatchet").innerHTML = '<br><br><br>' + this.invArray[0];
+						this.whiffles -= 50; this.count=1;
 				}
+			}
 				break;
 			case 'Hammer':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Hammer", 50)) {
 						localStorage.setItem(Hammer, ++this.invArray[1]);
-						document.getElementById("Hammer").innerHTML = '<br>' + this.invArray[1];
-						this.whiffles -= 50;
+						document.getElementById("Hammer").innerHTML = '<br><br>' + this.invArray[1];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
 			case 'Boat':
-				if(this.whiffles >=100) {
+				if(this.whiffles >= 100){
 					if(this.promptPurchase("Boat", 100)) {
-						localStorage.setItem("Boat", ++this.invArray[2]);
-						document.getElementById("Boat").innerHTML = 'Boats: ' + this.invArray[2];
-						this.whiffles -= 100;
+						localStorage.setItem(Boat, ++this.invArray[2]);
+						document.getElementById("Boat").innerHTML = '<br><br>' + this.invArray[2];
+						this.whiffles -= 100; this.count=1;
 					}
 				}
 				break;
@@ -363,75 +357,88 @@ var game = {
 				if(this.whiffles >= 20){
 					if(this.promptPurchase("Power Bar", 20)) {
 						this.energy += 20;
-						this.whiffles -= 20;
+						this.whiffles -= 20; this.count=1;
 					}
 				}
-			case 'Axe':
-				if(this.whiffles >= 50) {
+			case 'Pickaxe':
+				if(this.whiffles >= 50){
 					if(this.promptPurchase("Axe", 50)) {
-						localStorage.setItem("Axe", ++this.invArray[3]);
-						document.getElementById("Axe").innerHTML = '<br>' + this.invArray[3];
+						localStorage.setItem(Axe, ++this.invArray[3]);
+						document.getElementById("Axe").innerHTML = '<br><br><br>' + this.invArray[3];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
 			case 'Chainsaw':
-				if(this.whiffles >= 50) {
+				if(this.whiffles >= 50){
 					if(this.promptPurchase("Chainsaw", 50)) {
-						localStorage.setItem("Chainsaw", ++this.invArray[4]);
+						localStorage.setItem(Chainsaw, ++this.invArray[4]);
 						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
-						this.whiffles -= 50;
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
 			case 'Chisel':
-				if(this.whiffles >= 50) {
+				if(this.whiffles >= 50){
 					if(this.promptPurchase("Chisel", 50)) {
-						localStorage.setItem("Chisel", ++this.invArray[5]);
-						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
-						this.whiffles -= 50;
+						localStorage.setItem(Chisel, ++this.invArray[5]);
+						document.getElementById("Chisel").innerHTML = '<br><br><br>' + this.invArray[5];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
 			case 'Sledge':
-				if(this.whiffles >= 50) {
+				if(this.whiffles >= 50){
 					if(this.promptPurchase("Sledge", 50)) {
-						localStorage.setItem("Sledge", ++this.invArray[6]);
-						document.getElementById("Sledge").innerHTML = '<br>' + this.invArray[6];
-						this.whiffles -= 50;
+						localStorage.setItem(Sledge, ++this.invArray[6]);
+						document.getElementById("Sledge").innerHTML = '<br><br><br>' + this.invArray[6];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
 			case 'Machete':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Machete", 50)) {
-						localStorage.setItem("Machete", ++this.invArray[7]);
-						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
-						this.whiffles -= 50;
+						localStorage.setItem(Machete, ++this.invArray[7]);
+						document.getElementById("Machete").innerHTML = '<br><br><br>' + this.invArray[7];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
 			case 'Jackhammer':
 				if(this.whiffles >= 50){
 					if(this.promptPurchase("Jackhammer", 50)) {
-						localStorage.setItem("Jackhammer", ++this.invArray[8]);
-						document.getElementById("Jackhammer").innerHTML = '<br>' + this.invArray[8];
-						this.whiffles -= 50;
+						localStorage.setItem(Jackhammer, ++this.invArray[8]);
+						document.getElementById("Jackhammer").innerHTML = '<br><br><br>' + this.invArray[8];
+						this.whiffles -= 50; this.count=1;
 					}
 				}
 				break;
-			case 'Shear':
+			case 'Shears':
 			if(this.whiffles >= 50){
-					if(this.promptPurchase("Shear", 50)) {
-						localStorage.setItem(Shear, ++this.invArray[9]);
-						document.getElementById("Shear").innerHTML = '<br>' + this.invArray[9];
-						this.whiffles -= 50;
-					}
+				if(this.promptPurchase("Shears", 50)) {
+					localStorage.setItem(Shears, ++this.invArray[9]);
+					document.getElementById("Shears").innerHTML = '<br><br>' + this.invArray[9];
+					this.whiffles -= 50; this.count=1;
 				}
+			}
 				break;
-		 }
-		 cellContents[4] = 'None';
-		 localStorage.setItem(key, cellContents);
-		 this.dispWhif();
+			case 'Binoculars':
+			if(this.whiffles >= 100){//need to make this only one binoc possible
+				if(this.promptPurchase("Binoculars", 100)) {
+					localStorage.setItem(Binoculars, ++this.invArray[9]);
+					document.getElementById("Binoculars").innerHTML = '<br><br><br>' + this.invArray[10];
+					this.whiffles -= 100; this.count=1;
+				}
+			}
+				break;
+		 }/* end switch statement */
+		if(this.count == 1){
+			document.getElementById(cellContents[4]).className = "inventory-icon-on";
+			cellContents[4] = 'None';
+			localStorage.setItem(key, cellContents);
+			document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
+		}
 	},
 
 	promptPurchase : function(name, price) {         
