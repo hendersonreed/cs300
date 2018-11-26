@@ -320,7 +320,7 @@ var game = {
 		}
 	},
 
-addInventory : function() {
+	addInventory : function() {
 		let key = this.x_coord + ',' + this.y_coord; //should merge into another function
 		let cellContents = localStorage.getItem(key);
 		 cellContents = cellContents.split(',');
