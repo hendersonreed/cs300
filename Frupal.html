@@ -18,16 +18,8 @@
 
 <body>
 <!--<script>game.checkFrom()</script>-->
-	<header>
-		<div id=title><h1>Frupal - the game ...</h1></div>
-				<div><p id="loc"></p> </div>
-		<div><p id="cell"></p> </div>
-		<button  onclick="ui.ogb()" type="submit" form="form1" value="Submit" onmouseleave="ui.ogb(1)">original pip-boy</button>
-	</header>
 
-	<div id=wrapper>
-	
-		<div class="grow2" id="container1">
+		<div id="container1" class="grow2">
 			<div id="pipFixedelements">
 				<button class="pipNorth" onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
 				<button class="pipSouth" onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
@@ -55,7 +47,7 @@
 				
 				<div id="Shears" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Shears',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Shears', 'clear')"><br><br>0</div>
 				
-				<div id="Binoculars" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Binoculars', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Binoculars', 'clear')"><br><br>0</div>
+				<div id="Binoculars" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Binoculars', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Binoculars', 'clear')"><br><br></div>
 				
 				
 				
@@ -139,9 +131,10 @@
 			
 			</div> <!--end pipdiv-->
 		</div><!--end container 1-->
-		<div id="container2">
-		</div>
+<div id="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)">
+<img src="pipboy/hand.png" id="hand">
 	</div><!--end wrapper-->
+	<div></div>
 	<script>
 		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.

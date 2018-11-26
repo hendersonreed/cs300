@@ -36,4 +36,15 @@
 				document.getElementById("oldPip").style.zIndex="0";
 			}
 		},
+		
+		pipMotion : function(set){
+			if(set==1){
+				document.getElementById("wrapper").id="wrapper-out";
+				document.getElementById("container1").className="grow2-hover";				
+			}
+			if(set==0){
+				document.getElementById("wrapper-out").id="wrapper";
+				document.getElementById("container1").className="grow2";	
+			}
+		},
 	};
