@@ -624,7 +624,7 @@ addInventory : function() {
 							break;
 					}
 					stringPos++;
-					canvasContext.drawImage(imageobj, i*columnSize, j*rowSize);
+					canvasContext.drawImage(imageobj, i*rowSize, j*columnSize);
 					/*if(this.mapString.charAt(stringPos+1) != 'X')
 					{
 						obstacle = new Image();
