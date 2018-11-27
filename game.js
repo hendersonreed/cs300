@@ -33,8 +33,8 @@ var leftX = 0;
 var topY = 0;
 const tileWidth = 32;
 const tileHeight = 32;
-const rowSize = 20;
-const columnSize = 10;
+const rowSize = 25;
+const columnSize = 25;
 var canvas = document.getElementById("map");
 canvas.width = rowSize*32;
 canvas.height = columnSize*32;
@@ -518,6 +518,7 @@ addInventory : function() {
 	displayMap: function () {
 		var rowSize = (2 * MAPSIZE) + 1;
 		let tempMapString = "";
+		console.log("string size: " + tempMapString.length);
 		for (let i = 0; i < MAX; i++) {
 			for (let j = 0; j < MAX; j++) {
 				let currCell = localStorage.getItem(j + ',' + i);
@@ -556,7 +557,9 @@ addInventory : function() {
 							break;
 					}
 					if (j == this.x_coord && i == this.y_coord)
+					{
 						tempMapString += 'C';
+					}
 					else switch(currCell[4]) 
 					{
 							case "Tree":
@@ -567,6 +570,9 @@ addInventory : function() {
 								break;
 							case "Blackberry Bushes":
 								tempMapString += 'L';
+								break;
+							default:
+								tempMapString += 'X';
 								break;
 					}
 				}
@@ -582,15 +588,16 @@ addInventory : function() {
 	},
 	
 	drawMap : function () {
+		canvasContext.clearRect(0,0,canvas.width, canvas.height);
 		var stringPos = 0;
 		var imageobj;
 		var obstacle;
+		console.log(this.mapString.length);
 		
 		for(i = 0; i < columnSize;i++)
 			{
 				for(j = 0; j < rowSize; j++)
 				{
-					stringPos = ((i*rowSize) + j)*2;
 					imageobj = new Image();
 					switch(this.mapString.charAt(stringPos))
 					{
@@ -616,7 +623,8 @@ addInventory : function() {
 							imageobj.src = "tiles/swamp.png";
 							break;
 					}
-					canvasContext.drawImage(imageobj, j*tileWidth, i*tileHeight);
+					stringPos++;
+					canvasContext.drawImage(imageobj, i*columnSize, j*rowSize);
 					/*if(this.mapString.charAt(stringPos+1) != 'X')
 					{
 						obstacle = new Image();
@@ -639,7 +647,12 @@ addInventory : function() {
 								break;
 						}
 					} */
+					stringPos++;
+					topY += 32;
+					if(topY >= (rowSize*32))
+						topY = 0;
 				}
+			leftX += 32;
 			}
 		
 	},
