@@ -24,96 +24,106 @@ var canvasContext;
 document.addEventListener('DOMContentLoaded', function () {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
-	var gameString = game.mapSring; //document.getElementById('map');
-	drawEverything(gameString);
+	//var gameString = game.mapSring; //document.getElementById('map');
+	//drawEverything(gameString);
+	game.drawMap();
 })
 
 //canas.width = 400;
 //canvas.height = 400;
 var leftX = 0;
 var topY = 0;
+//const width = document.getElementById('gameCanvas.width');
+//const height = document.getElementById('gameCanvas.height');
 const tileWidth = 20;
 const tileHeight = 20;
+const rowSize = 25;
+const columnSize = 25;
+//var canvas = document.getElementById("map");
+//canvas.width = rowSize*32;
+//canvas.height = columnSize*32;
+//var canvasContext = canvas.getContext('2d');
 
-function drawEverything(gameString) {
+/*function drawEverything(gameString) {
 	colorRect(0, 0, canvas.width, canvas.height, 'grey')
 	for(let i = 0; i > mapSize; ++i){
-		if(gameSring[0] == 'M'){
+		if(gameString.charAt(0) == 'M'){
 			drawMeadow();
 		}
 	}
-	/*drawMeadow();
+	drawMeadow();
 	drawForest();
 	drawWater();
 	drawWall();
 	drawBog();
-	drawSwap();*/
-}
+	drawSwap();
+}*/
 function drawMeadow() {
 	canvasContext.fillStyle = 'lawngreen';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += tileWidth;
-	if (topY >= tileWidth) {
-		leftX += tileHeight;
+	topY += canvas.width;
+	if (topY >= canvas.width) {
+		leftX += canvas.height;
 		topY = 0;
 	}
 }
 function drawForest() {
 	canvasContext.fillStyle = 'forestgreen';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += tileWidth;
-	if (topY >= tileWidth) {
-		leftX += tileHeight;
+	topY += canvas.width;
+	if (topY >= canvas.width) {
+		leftX += canvas.height;
 		topY = 0;
 	}
 }
 function drawWater() {
 	canvasContext.fillStyle = 'aqua';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += tileWidth;
-	if (topY >= tileWidth) {
-		leftX += tileHeight;
+	topY += canvas.width;
+	if (topY >= canvas.width) {
+		leftX += canvas.height;
 		topY = 0;
 	}
 }
 function drawWall() {
 	canvasContext.fillStyle = 'gainsboro';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += tileWidth;
-	if (topY >= tileWidth) {
-		leftX += tileHeight;
+	topY += canvas.width;
+	if (topY >= canvas.width) {
+		leftX += canvas.height;
 		topY = 0;
 	}
 }
 function drawBog() {
 	canvasContext.fillStyle = 'darkolivegreen';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += tileWidth;
-	if (topY >= tileWidth) {
-		leftX += tileHeight;
+	topY += canvas.width;
+	if (topY >= canvas.width) {
+		leftX += canvas.height;
 		topY = 0;
 	}
+
 }
 function drawSwap() {
 	canvasContext.fillStyle = 'olive';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += tileWidth;
-	if (topY >= tileWidth) {
-		leftX += tileHeight;
+	topY += canvas.width;
+	if (topY >= canvas.width) {
+		leftX += canvas.height;
 		topY = 0;
 	}
 }
 function drawBlank() {
 	canvasContext.fillStyle = 'black';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += tileWidth;
-	if (topY >= tileWidth) {
-		leftX += tileHeight;
+	topY += canvas.width;
+	if (topY >= canvas.width) {
+		leftX += canvas.height;
 		topY = 0;
 	}
 }
-function colorRect(leftX, topY, width, height, drawColor) {
-	canvasContext.fillStyle = drawColor;
+function colorRect(leftX, topY, width, height) {
+	canvasContext.fillStyle = 'black';
 	canvasContext.fillRect(leftX, topY, width, height);
 
 }
@@ -551,13 +561,11 @@ addInventory : function() {
 		for (let i = 0; i < MAX; i++) {
 			for (let j = 0; j < MAX; j++) {
 				let currCell = localStorage.getItem(j + ',' + i);
-				if (j == this.x_coord && i == this.y_coord)
-					tempMapString += 'C';
-				else if (currCell != null) {
+				if (currCell != null) {
 					currCell = currCell.split(",");
 
 					if (currCell[2] == '0')
-						tempMapString += 'X'
+						tempMapString += 'XX'
 					else switch (currCell[3]) {
 						case '0':
 							tempMapString += 'M';
@@ -587,16 +595,105 @@ addInventory : function() {
 							tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
 							break;
 					}
+					if (j == this.x_coord && i == this.y_coord)
+						tempMapString += 'C';
+					else switch(currCell[4]) 
+					{
+							case "Tree":
+								tempMapString += 'T';
+								break;
+							case "Boulder":
+								tempMapString += 'R';
+								break;
+							case "Blackberry Bushes":
+								tempMapString += 'L';
+								break;
+					}
 				}
 				else {
-					tempMapString += 'X';
-					//drawBlank();
+					tempMapString += 'XX';
 				}
 			}
-			tempMapString += "<br>";
+			
 		}
 		this.mapString = tempMapString;
-		//document.getElementById("map").innerHTML = this.mapString;
+		//this.drawMap();
+		
+	},
+	
+	drawMap : function () {
+
+
+		var stringPos = 0;
+		var imageobj;
+		var obstacle;
+		colorRect(0, 0, canvas.width, canvas.height)
+		
+		for(i = 0; i < columnSize;i++)
+			{
+				for(j = 0; j < rowSize; j++)
+				{
+					stringPos = ((i*rowSize) + j)*2;
+					imageobj = new Image();
+					switch(this.mapString.charAt(stringPos))
+					{
+						case 'X':
+							drawBlank();
+							//imageobj.src = "tiles/unexplored.png";
+							break;
+						case 'F':
+							drawForest();
+							//imageobj.src = "tiles/forest.png";
+							break;
+						case 'M':
+							drawMeadow();
+							//imageobj.src = "tiles/desert.png";
+							break;
+						case 'w':
+							drawWater();
+							//imageobj.src = "tiles/water.png";
+							break;
+						case 'W':
+							drawWall();
+							//imageobj.src = "tiles/wall.png";
+							break;
+						case 'B':
+							drawBog();
+							//imageobj.src = "tiles/bog.png";
+							break;
+						case 'S':
+							drawSwap();
+							//imageobj.src = "tiles/swamp.png";
+							break;
+					}
+					++stringPos;
+
+					//canvasContext.drawImage(imageobj, j*tileWidth, i*tileHeight);
+					/*if(this.mapString.charAt(stringPos+1) != 'X')
+					{
+						obstacle = new Image();
+						obstacle.onload = function() {
+							canvasContext.drawImage(obstacle, j*tileWidth, i*tileHeight);
+						}
+						switch(this.mapString.charAt(stringPos+1))
+						{
+							case 'C':
+								obstacle.src = "tiles/hero.png";
+								break;
+							case 'T':
+								obstacle.src = "tiles/tree.png";
+								break;
+							case 'B':
+								obstacle.src = "tiles/boulder.png";
+								break;
+							case 'L':
+								obstacle.src = "tiles/bush.png"
+								break;
+						}
+					} */
+				}
+			}
+		
 	},
 
 	changeMapMode: function () {

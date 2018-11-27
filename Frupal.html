@@ -10,7 +10,6 @@
 		<script>localStorage.clear();</script>
 	<script src="mapLoad.js"></script>
 	<script src="cellLoad.js"></script>
-	<script src="game.js"></script>
 	<script src="frontEnd.js"></script>
 		
 	</head>
@@ -133,7 +132,7 @@
 			
 			</div> <!--end pipdiv-->
 		</div><!--end container 1-->
-		<canvas id= "gameCanvas"></canvas>
+		<canvas id= "gameCanvas" width = "500" height = "500"></canvas>
 <div id="wrapper-new" class="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)"><span id="info-box"><h1>Frupal, The Game</h1>
 	<div><p id="loc">Current Location:  0,0</p> </div>
 	<div><p id="cell">Cell Details: </p> </div></span><span id="map"></span>
@@ -141,14 +140,16 @@
 	</div><!--end wrapper-->
 	<div></div>
 	
+	<script src="game.js"></script>
 	<script>
 		//console.log(game.jewels.x + ',' + game.jewels.y);
 		console.log(game.jewels);
+
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
 		game.energy++; //Energy was decrementing by 1 on startup // why do this instead of +1 on starting energy
 		game.checkLoc(); //displaying the cell contents of the initial location.
 		game.displayEnergy();
-        game.displayMap();
+		game.displayMap();
 	</script>
 </body>
 
