@@ -141,8 +141,8 @@
 	
 	<script src="game.js"></script>
 	<script>
+		game.checkFrom()	
 		console.log(game.jewels);
-
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
 		game.energy++; //Energy was decrementing by 1 on startup // why do this instead of +1 on starting energy
 		game.checkLoc(); //displaying the cell contents of the initial location.
