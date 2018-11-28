@@ -250,7 +250,7 @@ var game = {
 	alterFlags: function () {
 
 		// If true, then the player can see two coords in each direction. this line will change later and will be linked to the inventory system
-		let hasBinoculars = localStorage.getItem("Binocular");
+		let hasBinoculars = localStorage.getItem("Binoculars");
 
 		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
 		let x = this.x_coord; let y = this.y_coord;
@@ -581,7 +581,7 @@ var game = {
 					currCell = currCell.split(",");
 
 					if (currCell[2] == '0')
-						tempMapString += 'XX'
+						tempMapString += 'i'
 					else switch (currCell[3]) {
 						case '0':
 							tempMapString += 'M';
@@ -611,7 +611,7 @@ var game = {
 							tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
 							break;
 					}
-					if (j == this.x_coord && i == this.y_coord)
+					/*if (j == this.x_coord && i == this.y_coord)
 						tempMapString += 'C';
 					else switch (currCell[4]) {
 						case "Tree":
@@ -623,16 +623,15 @@ var game = {
 						case "Blackberry Bushes":
 							tempMapString += 'L';
 							break;
-					}
+					}*/
 				}
 				else {
-					tempMapString += 'XX';
+					tempMapString += 'i';
 				}
 			}
 
 		}
 		this.mapString = tempMapString;
-		//this.drawMap();
 
 	},
 
@@ -647,7 +646,6 @@ var game = {
 		leftX = 0;
 		topY = 0;
 		colorRect(0, 0, canvas.width, canvas.height, 'white');
-		//colorCircle(tileWidth/2 + this.x_coord, tileHeight/2 + this.y_coord, 15, 'gold')
 
 		for (let i = 0; i < 625/*columnSize*/; ++i) {
 			//for (j = 0; j < rowSize; j++) {
@@ -680,6 +678,17 @@ var game = {
 						break;
 					case 'S':
 						drawSwap();
+						//imageobj.src = "tiles/swamp.png";
+						break;
+					case 'i':
+						canvasContext.fillStyle = 'pink';
+						canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
+						leftX += tileWidth;
+						if (leftX >= canvas.width) {
+							topY += tileHeight;
+							leftX = 0;
+						}
+
 						//imageobj.src = "tiles/swamp.png";
 						break;
 				}
