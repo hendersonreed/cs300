@@ -6,16 +6,11 @@
 				document.getElementById("status").innerHTML = item;
 				document.getElementById(item).style.transform = "rotate(7deg)";
 			}else{
-			if(item == 'Chainsaw'){
-				document.getElementById("ChainsawOuter").style.transform = "scale(1.3)";
-				document.getElementById("status").innerHTML = item;
-				document.getElementById("special").className = "on special active";
-			}else{
 				document.getElementById("status").innerHTML = item;
 				document.getElementById("special").className = "on special active";
 				document.getElementById(item).style.transform = "scale(1.3)";
 			}
-			}
+			
 			if(special == 'clear'){
 				document.getElementById("status").innerHTML = "";
 				document.getElementById("special").className = "off special";

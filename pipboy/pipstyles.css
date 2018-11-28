@@ -11,7 +11,7 @@
 .top:before{position:absolute;right:-1px;border-top-right-radius:10px;border-top-left-radius:30px;}
 .top-panel{width:130px;height:40px;background:#5a5f5b;position:absolute;border-top-left-radius:15px;border-top-right-radius:15px;left:-5px;top:15px;}
 .top-panel:before{content:"";display:block;background:#272b2a;width:130px;height:30px;margin: 15px auto 0 auto;position:relative;z-index:99;border-top-right-radius:15px;border-top-left-radius:15px;border-bottom-right-radius:5px;border-bottom-left-radius:5px;}
-.top-panel:after{content:"Pip-Boy";color:#151515;font-family:'Courier New',sans-serif;letter-spacing:2px;font-size:12pt;text-shadow:0px 0px 0.5px #444;position:absolute;top:23px;left:26px;z-index:99;}
+.top-panel:after{content:"Frup-Boy";color:#151515;font-family:'Courier New',sans-serif;letter-spacing:2px;font-size:12pt;text-shadow:0px 0px 0.5px #444;position:absolute;top:23px;left:26px;z-index:99;}
 .top-button{width:55px;height:13px;background:#000;position:absolute;right:5px;top:3px;border-top-right-radius:20px;border-top-left-radius:20px;border-top:1px solid #444;transform:rotate(27deg)}
 .top-button:after{content:"";display:block;width:30px;height:7px;background:linear-gradient(to right, rgba(0,0,0,0.0),rgba(255,255,255,0.8));margin-left:13px;margin-top:-7px;border-radius:2px;border:1px solid #333;}
 

@@ -1,5 +1,6 @@
 @charset "utf-8";
 body{
+		color:#151515;font-family:'Courier New',sans-serif;letter-spacing:;font-size:12pt;text-shadow:0px 0px 0.5px #444;
 		position:relative;
 	 margin-top: 0px; 
     margin-bottom: 0px; 
@@ -8,20 +9,45 @@ body{
     padding: 0;
 	overflow-x: hidden;	
 	overflow-y: hidden;
+	background-color:beige;
 }
+
+#footer {
+	font-size:10pt;
+	position: fixed;
+background-color: rgba(235,235,235,0.84); 
+	bottom:0px;
+	right:0px;
+	width: 80%;
+	margin: 0 10% 0;
+	padding: 20px;
+	
+}
+
+.button{
+    background-color: black; /* Green */
+    border: ;
+    color:#8df776;
+    padding: 2px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+
 .wrapper{
 	margin-right:-1%;
 	margin-bottom:5%;
 	position: absolute;
-	height:100%;
-	width:100%;
+	height:90%;
+	width:90%;
 	max-height:970px; /*adjust max height of map */
 right:-7.8%;
 	  /*background-image: url("mario-trimet.jpg");*/
 background-color: rgba(235,235,235,0.84); 
   background-repeat: no-repeat;
   z-index:0;
-  background-size: 100% 100%;	
 
 }
 
@@ -41,7 +67,7 @@ background-color: rgba(235,235,235,0.84);
  
 }
 #wrapper-out {
-	-webkit-transform: scale(0.8) translate(-5%, 0);
+	-webkit-transform: scale(0.8) translate(-0%, 0);
     -webkit-transition: height 0.5s ease-in-out;
     -webkit-transition: width 0.5s ease-in-out;
     -webkit-transition: transform 0.5s ease-in-out 0.1s; 
@@ -67,6 +93,8 @@ position:fixed;
 
 #info-box {
 	position: fixed;
+	background-color: rgba(230,230,230,1);
+padding:10px;	
 }
 
 /*#inner-wrapper {
@@ -81,12 +109,12 @@ position:fixed;
 }*/
 
 #gameCanvas {
-		position: absolute;
-			height:80%;
-	width:50%;
-
-			bottom: 0%;
-	right: 0%;
+	position: absolute;
+	height:80%;
+	width:40%;
+	bottom: 10%;
+	right: 10%;
+	border-radius: 45px;
 }
 
 #img {
@@ -112,13 +140,13 @@ position:fixed;
 
 .pipNorth{
 	position: fixed;
-	right: -582px;
+	right: -582.6px;
 	top: 110px;
 	z-index: 1;
 }
 .pipSouth{
 	position: fixed;
-	right: -582px;
+	right: -582.5px;
 	top: 130px;
 	z-index: 1;
 }
@@ -141,7 +169,7 @@ position:fixed;
 }
 
 .inventory-icon{
-		position: fixed;height: auto;z-index: 1;background-size: contain;background-repeat: no-repeat;text-align: right;text-align: bottom;	-webkit-transition: transform 0.1s; opacity: .2;
+		position: fixed;height: auto;z-index: 1;background-size: contain;background-repeat: no-repeat;text-align: right;text-align: bottom;	-webkit-transition: transform 0.1s; opacity: .4;
 }
 
 #Hatchet {
@@ -174,7 +202,7 @@ position:fixed;
 	background-image: url("pipboy/pickaxe.png");
 }
 
-#ChainsawOuter {
+#Chainsaw {
 	width: 80px;
 	height:40;
 	top: 275px;
@@ -182,11 +210,7 @@ position:fixed;
 	background-image: url("pipboy/chainsaw.png");
 }
 
-#Chainsaw {
-	position: fixed;
-	top: 268px;
-	right: -300px;
-}
+
 
 #Chisel {
 	width: 50px;
@@ -257,12 +281,12 @@ position:fixed;
 
 }
 .grow2:hover {
-	-webkit-transform: scale(0.4) translate(49px, 60px);
+	-webkit-transform: scale(0.9) translate(249px, 60px);
 		  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
 }
 /*not a repeat*/
 .grow2-hover {
-	-webkit-transform: scale(0.4) translate(49px, 60px);
+	-webkit-transform: scale(0.9) translate(249px, 60px);
 	  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
 }
 
