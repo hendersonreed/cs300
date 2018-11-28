@@ -174,7 +174,7 @@ var game = {
 
 		this.alterFlags(); //edits visibility for fog of war.
 		this.dispLoc(); //adds player location to <div> in html.
-		this.dispWhif();
+		//this.dispWhif();
 		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
         this.checkObstacle();
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
@@ -212,7 +212,7 @@ var game = {
 	alterFlags : function() {
 
 		// If true, then the player can see two coords in each direction. this line will change later and will be linked to the inventory system
-		let hasBinoculars = localStorage.getItem("Binocular");
+		let hasBinoculars = localStorage.getItem("Binoculars");
 
 		//stores the surround cells of the current hero coord (stores a 3X3 matrix of coords)
 		let x = this.x_coord; let y = this.y_coord;
@@ -297,9 +297,9 @@ var game = {
 		document.getElementById("loc").innerHTML = "Current Location:  " + this.x_coord + ',' + this.y_coord;
 	},
 
-	dispWhif: function () {
-		document.getElementById("whif").innerHTML = "Whiffles: " + this.whiffles;
-	},
+	//dispWhif: function () {
+	//	document.getElementById("whif").innerHTML = "Whiffles: " + this.whiffles;
+	//},
 
 	//displays cell contents to user in html page. TODO: shouldn't be in final product.
 	checkLoc: function () {
@@ -432,8 +432,20 @@ addInventory : function() {
 				}
 			}
 				break;
+			case 'Chest1':
+				alert("You have visited a site with treasure! Adding 100 whiffles to your stash.");
+				this.whiffles += 100;
+				console.log(this.whiffles);
+				document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
+				break;
+			case 'Chest2':
+				alert("This site contains a trap! All your whiffles are lost!");
+				this.whiffles = 0;
+				document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
+				break;
+		 
 		 }/* end switch statement */
-		if(count == 1){
+		if(count == 1){//if inventory was added to
 			document.getElementById(cellContents[4]).className = "inventory-icon-on";
 			cellContents[4] = 'None';
 			localStorage.setItem(key, cellContents);

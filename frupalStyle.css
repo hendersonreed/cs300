@@ -59,7 +59,7 @@ background-color: rgba(235,235,235,0.84);
 	
 #container1 {
 position:fixed;
-    top: 18%;
+    top: 19%;
     left: 0px;
 	font-family:'Droid Sans',sans-serif;font-size:9pt;color:#d8c99e;font-weight:700;text-transform:uppercase;
 	z-index:9;
@@ -72,8 +72,8 @@ position:fixed;
 #map {
 
 		position: absolute;
-	-webkit-transform: scale(3.9, 1.7) translate(-9px, -29px);
-	bottom: 20%;
+	-webkit-transform: scale(3.7, 1.2) translate(-9px, -1px);
+	bottom: 15%;
 	right: 25%;
 font-family:DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
 color: black;
