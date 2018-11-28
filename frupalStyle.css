@@ -20,7 +20,7 @@ background-color: rgba(235,235,235,0.84);
 	right:0px;
 	width: 80%;
 	margin: 0 10% 0;
-	padding: 20px;
+	padding: 0 20px;
 	
 }
 
@@ -281,12 +281,12 @@ padding:10px;
 
 }
 .grow2:hover {
-	-webkit-transform: scale(0.9) translate(249px, 60px);
+	-webkit-transform: scale(0.8) translate(290px, 60px);
 		  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
 }
 /*not a repeat*/
 .grow2-hover {
-	-webkit-transform: scale(0.9) translate(249px, 60px);
+	-webkit-transform: scale(0.8) translate(290px, 60px);
 	  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
 }
 

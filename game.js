@@ -418,7 +418,7 @@ var game = {
 				if (this.whiffles >= 60) {
 					if (this.promptPurchase("Chainsaw", 60)) {
 						localStorage.setItem('Chainsaw', ++this.invArray[4]);
-						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
+						document.getElementById("Chainsaw").innerHTML = '<br><br>' + this.invArray[4];
 						this.whiffles -= 60; count = 1;
 					}
 				}
@@ -427,7 +427,7 @@ var game = {
 				if (this.whiffles >= 15) {
 					if (this.promptPurchase("Chisel", 15)) {
 						localStorage.setItem('Chisel', ++this.invArray[5]);
-						document.getElementById("Chisel").innerHTML = '<br><br><br>' + this.invArray[5];
+						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
 						this.whiffles -= 15; count = 1;
 					}
 				}
@@ -436,7 +436,7 @@ var game = {
 				if (this.whiffles >= 25) {
 					if (this.promptPurchase("Sledge", 25)) {
 						localStorage.setItem('Sledge', ++this.invArray[6]);
-						document.getElementById("Sledge").innerHTML = '<br><br><br>' + this.invArray[6];
+						document.getElementById("Sledge").innerHTML = '<br><br>' + this.invArray[6];
 						this.whiffles -= 25; count = 1;
 					}
 				}
@@ -445,7 +445,7 @@ var game = {
 				if (this.whiffles >= 25) {
 					if (this.promptPurchase("Machete", 25)) {
 						localStorage.setItem('Machete', ++this.invArray[7]);
-						document.getElementById("Machete").innerHTML = '<br><br><br>' + this.invArray[7];
+						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
 						this.whiffles -= 25; count = 1;
 					}
 				}
