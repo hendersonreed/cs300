@@ -479,9 +479,7 @@ var game = {
 				break;
 		}/* end switch statement */
 		if (count == 1) {
-			var contents = document.getElementById(cellContents[4])
-			if(contents == null) {return 0;}
-			document.getElementById(contents).className = "inventory-icon-on";
+			document.getElementById(cellContents[4]).className = "inventory-icon-on";
 			cellContents[4] = 'None';
 			localStorage.setItem(key, cellContents);
 			document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;

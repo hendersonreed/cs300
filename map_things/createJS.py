@@ -11,10 +11,9 @@
 #
 ###############################################################################
 
-mapFile = open("map_file")
-redirectURL = "http://web.cecs.pdx.edu/~hhummel/frupal/map_extended.html"
+mapFile = open("final_map.txt")
 storageLine = ""
 for mapLine in mapFile:
-	storageLine = storageLine + "[" + mapLine.rstrip() + "]"
+    storageLine = storageLine + "[" + mapLine.rstrip() + "]"
 mapFile.closed
 print("localStorage.setItem('map','"+storageLine+"')")

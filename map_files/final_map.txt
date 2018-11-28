@@ -8,10 +8,20 @@ Map Name
 #################
 1,1,0,0,Hatchet
 1,2,0,0,Tree
-2,1,0,0,Hammer
+1,3,0,0,Pickaxe
+1,4,0,0,Tree
+1,5,0,0,Chainsaw
+1,6,0,0,Tree
+2,1,0,0,Chisel
 2,2,0,0,Boulder
+2,3,0,0,Sledge
+2,4,0,0,Boulder
+2,5,0,0,Jackhammer
+2,6,0,0,Boulder
 3,1,0,0,Machete
 3,2,0,0,Blackberry Bushes
+3,3,0,0,Shears
+3,4,0,0,Blackberry Bushes
 5,1,0,0,Binoculars
 6,1,0,0,Power Bar
 7,1,0,0,Chest1
