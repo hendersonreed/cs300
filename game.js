@@ -362,7 +362,7 @@ var game = {
 				break;
  		}
 		localStorage.setItem(key, cellContents);
-		document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
+		document.getElementById("whif").innerHTML = '| Whiffles: ' + this.whiffles;
 		},
 
 	addInventory: function () {
@@ -531,7 +531,7 @@ var game = {
 	},
 
 	displayEnergy: function () {
-		document.getElementById("energy").innerHTML = "Energy: " + this.energy;
+		document.getElementById("energy").innerHTML = "Energy: " + this.energy + " |";
 	},
 	checkEnergy: function () {
 		cellContents = localStorage.getItem(this.x_coord + ',' + this.y_coord);
