@@ -69,15 +69,22 @@ position:fixed;
 	position: fixed;
 }
 
-#map {
-
+#gameCanvas {
 		position: absolute;
-	-webkit-transform: scale(3.7, 1.2) translate(-9px, -1px);
-	bottom: 15%;
-	right: 25%;
-font-family:DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
-color: black;
+		z-index:100;
+					background-color:red;
+}
 
+#inner-wrapper {
+	position: relative;
+	height:900px;
+	width:500px;
+		-webkit-transform: scale(1, 1) translate(0px, 0px);
+	bottom: 0%;
+	right: 0%;
+			z-index:99;
+			background-color:blue;
+}
 }
 
 #img {
@@ -248,12 +255,12 @@ color: black;
 
 }
 .grow2:hover {
-	-webkit-transform: scale(1.1) translate(49px, 60px);
+	-webkit-transform: scale(0.4) translate(49px, 60px);
 		  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
 }
 /*not a repeat*/
 .grow2-hover {
-	-webkit-transform: scale(1.1) translate(49px, 60px);
+	-webkit-transform: scale(0.4) translate(49px, 60px);
 	  -webkit-transition: transform 0.5s ease-in-out 0.1s; 
 }
 

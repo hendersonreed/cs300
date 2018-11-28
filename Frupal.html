@@ -10,7 +10,6 @@
 		<script>localStorage.clear();</script>
 	<script src="mapLoad.js"></script>
 	<script src="cellLoad.js"></script>
-	<script src="game.js"></script>
 	<script src="frontEnd.js"></script>
 		
 	</head>
@@ -133,13 +132,59 @@
 			
 			</div> <!--end pipdiv-->
 		</div><!--end container 1-->
-<div id="wrapper-new" class="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)"><span id="info-box"><h1>Frupal, The Game</h1>
+<div id="wrapper-new" class="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)">
+<span id="info-box"><h1>Frupal, The Game</h1>
 	<div><p id="loc">Current Location:  0,0</p> </div>
-	<div><p id="cell">Cell Details: </p> </div></span><span id="map"></span>
+	<div><p id="cell">Cell Details: </p> </div>
+	</span>
+	
+	
+	<div id="inner-wrapper">
+	<canvas id= "gameCanvas"></canvas>
+	
+	    <script>
+    (function() {
+        var
+        // Obtain a reference to the canvas element using its id.
+        htmlCanvas = document.getElementById('gameCanvas'),
+        // Obtain a graphics context on the canvas element for drawing.
+        context = htmlCanvas.getContext('2d');
+
+       // Start listening to resize events and draw canvas.
+       initialize();
+
+       function initialize() {
+           // Register an event listener to call the resizeCanvas() function 
+           // each time the window is resized.
+           window.addEventListener('resize', resizeCanvas, false);
+           // Draw canvas border for the first time.
+           resizeCanvas();
+        }
+
+        // Display custom canvas. In this case it's a blue, 5 pixel 
+        // border that resizes along with the browser window.
+        function redraw() {
+           context(window.innerWidth, window.innerHeight);
+        }
+
+        // Runs each time the DOM window resize event fires.
+        // Resets the canvas dimensions to match window,
+        // then draws the new borders accordingly.
+        function resizeCanvas() {
+            htmlCanvas.width = window.innerWidth;
+            htmlCanvas.height = window.innerHeight;
+            redraw();
+        }
+    })();
+
+    </script>
+	
+	</div><!--end inner wrapper-->
 <img src="pipboy/hand.png" id="hand">
 	</div><!--end wrapper-->
 	<div></div>
 	
+	<script src="game.js"></script>
 	<script>
 		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
