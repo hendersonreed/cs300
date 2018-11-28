@@ -69,22 +69,24 @@ position:fixed;
 	position: fixed;
 }
 
-#gameCanvas {
-		position: absolute;
-		z-index:100;
-					background-color:red;
-}
-
-#inner-wrapper {
+/*#inner-wrapper {
 	position: relative;
-	height:900px;
-	width:500px;
+	height:100%;
+	width:100%;
 		-webkit-transform: scale(1, 1) translate(0px, 0px);
 	bottom: 0%;
 	right: 0%;
 			z-index:99;
 			background-color:blue;
-}
+}*/
+
+#gameCanvas {
+		position: absolute;
+			height:80%;
+	width:50%;
+
+			bottom: 0%;
+	right: 0%;
 }
 
 #img {
@@ -92,7 +94,7 @@ position:fixed;
 	position:fixed;
 		height:100%;
 	width:100%;
-	background-image: url("pipboy/tree.jpg");
+	/*background-image: url("pipboy/tree.jpg");*/
   background-repeat: no-repeat;
   background-size: 100% 100%;	
 }
@@ -102,7 +104,7 @@ position:fixed;
 	position:fixed;
 		height:100%;
 	width:100%;
-	background-image: url("pipboy/tree-Blur.jpg");
+/*	background-image: url("pipboy/tree-Blur.jpg");  */
   background-repeat: no-repeat;
   background-size: 100% 100%;	
 }
