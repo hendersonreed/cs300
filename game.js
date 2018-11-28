@@ -125,7 +125,8 @@ function drawHero(centerX, centerY) {
 	canvasContext.fillStyle = 'gold';
 	canvasContext.beginPath();
 	//x and y coord, center circle, angles in radian of circle, clockwise from angle
-	canvasContext.arc(centerX, centerY, 10, 0, Math.PI * 2, true);
+	//canvasContext.arc(centerX, centerY, 10, 0, Math.PI * 2, true);
+	canvasContext.arc(centerX + tileWidth/2, centerY + tileHeight/2, 5, 0, Math.PI * 2, true);
 	canvasContext.fill();
 
 }
@@ -648,7 +649,7 @@ var game = {
 		colorRect(0, 0, canvas.width, canvas.height, 'white');
 		//colorCircle(tileWidth/2 + this.x_coord, tileHeight/2 + this.y_coord, 15, 'gold')
 
-		for (let i = 0; i < 625/*columnSize*/; i++) {
+		for (let i = 0; i < 625/*columnSize*/; ++i) {
 			//for (j = 0; j < rowSize; j++) {
 				//stringPos = ((i*rowSize) + j)*2;
 				//imageobj = new Image();
