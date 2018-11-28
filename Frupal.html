@@ -19,12 +19,12 @@
 <!--<script>game.checkFrom()</script>-->
 <span id="img"></span>
 <span id="img2"></span>
-		<div id="container1" class="grow2-hover">
+		<div id="container1" class="grow2">
 			<div id="pipFixedelements">
-				<button class="pipNorth" onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
-				<button class="pipSouth" onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
-				<button class="pipEast" onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">-EAST . </button>
-				<button class="pipWest" onclick="game.go('w')" type="submit" form="form1" value="Submit">-WEST-</button>
+				<button class="pipNorth button" onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
+				<button class="pipSouth button" onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
+				<button class="pipEast button" onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">-EAST . </button>
+				<button class="pipWest button" onclick="game.go('w')" type="submit" form="form1" value="Submit">-WEST-</button>
 			
 				
 				<div id="Hatchet" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hatchet',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hatchet', 'clear')"><br><br>0</div>
@@ -32,9 +32,10 @@
 				<div id="Hammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hammer',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hammer', 'clear')"><br><br>0</div>
 				
 				<div id="Boat" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Boat', 'special')" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Boat', 'clear')"></div>
+				
 				<div id="Pickaxe" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Pickaxe',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Pickaxe', 'clear')"><br><br>0</div>
 				
-				<div id="ChainsawOuter" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chainsaw', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chainsaw', 'clear')"><span class="inventory-icon" id="Chainsaw"><br>0</span></div>
+				<div id="Chainsaw" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chainsaw', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chainsaw', 'clear')"><br><br>0</div>
 				
 				<div id="Chisel" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chisel',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chisel', 'clear')"><br>0</div>
 				
@@ -131,23 +132,32 @@
 			
 			</div> <!--end pipdiv-->
 		</div><!--end container 1-->
-		<canvas id= "gameCanvas" width = "500" height = "500"></canvas>
-<div id="wrapper-new" class="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)"><span id="info-box"><h1>Frupal, The Game</h1>
+<div id="wrapper-new" class="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)">
+<span id="info-box"><h1>Frupal, The Game</h1>
 	<div><p id="loc">Current Location:  0,0</p> </div>
-	<div><p id="cell">Cell Details: </p> </div></span><span id="map"></span>
+	<div><p id="cell">Cell Details: </p> </div>
+	</span>
+	
+	
+
+	<canvas id= "gameCanvas" height="500" width="500"></canvas>	
+
+	
 <img src="pipboy/hand.png" id="hand">
 	</div><!--end wrapper-->
-	<div></div>
+	<div id="footer">
+	Frupal was created by: Suliman Alsarraf, Eric Frazier, Henderson Hummel, James Hiebert, Cody Jeffries, Dante Kiaunis, Tejas Menon
+	<br><br>Pip Boy Template created by STIX and found at https://codepen.io/stix/pen/KdJEwB/ <span id="oldPip"></span>
+	</div>
 	
 	<script src="game.js"></script>
 	<script>
-		game.checkFrom()	
-		console.log(game.jewels);
+		console.log(game.jewels.x + ',' + game.jewels.y);
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
 		game.energy++; //Energy was decrementing by 1 on startup // why do this instead of +1 on starting energy
 		game.checkLoc(); //displaying the cell contents of the initial location.
 		game.displayEnergy();
-		game.displayMap();
+        game.displayMap();
 	</script>
 </body>
 

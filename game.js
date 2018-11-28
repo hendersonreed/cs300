@@ -537,7 +537,7 @@ var game = {
 		cellContents = localStorage.getItem(this.x_coord + ',' + this.y_coord);
 		if (cellContents != null) {
 			var cell = cellContents.split(',');
-			if ((cell[3] == 4) || (cell[3] == 5))
+			if ((cell[3] == 1) || (cell[3] == 4))
 				this.energy = this.energy - 2;
 			else
 				--this.energy;
@@ -664,34 +664,8 @@ var game = {
 						}
 						break;
 				}
-
-				//canvasContext.drawImage(imageobj, j*tileWidth, i*tileHeight);
-				/*if(this.mapString.charAt(stringPos+1) != 'X')
-				{
-					obstacle = new Image();
-					obstacle.onload = function() {
-						canvasContext.drawImage(obstacle, j*tileWidth, i*tileHeight);
-					}
-					switch(this.mapString.charAt(stringPos+1))
-					{
-						case 'C':
-							obstacle.src = "tiles/hero.png";
-							break;
-						case 'T':
-							obstacle.src = "tiles/tree.png";
-							break;
-						case 'B':
-							obstacle.src = "tiles/boulder.png";
-							break;
-						case 'L':
-							obstacle.src = "tiles/bush.png"
-							break;
-					}
-				} */
-			//}
 		}
 		drawHero(this.x_coord * (tileWidth), this.y_coord * (tileHeight));
-
 	},
 
 	changeMapMode: function () {
