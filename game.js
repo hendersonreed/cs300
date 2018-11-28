@@ -142,6 +142,7 @@ function colorCircle(centerX, centerY, radius, drawColor) {
 	canvasContext.arc(centerX + tileWidth/2, centerY + tileHeight/2, radius, 0, Math.PI * 2, true);
 	canvasContext.fill();
 }
+
 var game = {
 	//All the variables are being pulled from cellLoad.js now. We can completely remove them but let's do that later
 	x_coord: startingX,
@@ -164,40 +165,47 @@ var game = {
 		switch (direc) {
 			case 'n':
 				this.goNorth();
-				water = this.checkWater(this.x_coord, this.y_coord);
-				if (water == true) {
-					break;
+				water = this.checkWater(this.x_coord, this.y_coord); //water is 0 if not water, 1 if we have no boat, and 2 if we have a boat.
+				if(water == 0) {break;} //if no water, break.
+				else if(water == 2) {  //if we have a boat, then we're good to go.
+				   ++this.energy; //making up for the fact that goNorth will take away 1 energy.
 				}
-				this.goSouth();
-				water = this.checkWater(this.x_coord, this.y_coord);
-				if (water == true) {
-					break;
+				else {
+					this.goSouth();
 				}
-				this.goNorth();
 				break;
 			case 'e':
 				this.goEast();
 				water = this.checkWater(this.x_coord, this.y_coord);
-				if (water == true) {
-					break;
+				if(water == 0) {break;} //if no water, break.
+				else if(water == 2) {  //if we have a boat, then we're good to go.
+				   ++this.energy; //making up for the fact that goNorth will take away 1 energy.
 				}
-				this.goWest();
+				else {
+					this.goWest();
+				}
 				break;
 			case 'w':
 				this.goWest();
 				water = this.checkWater(this.x_coord, this.y_coord);
-				if (water == true) {
-					break;
+				if(water == 0) {break;} //if no water, break.
+				else if(water == 2) {  //if we have a boat, then we're good to go.
+				   ++this.energy; //making up for the fact that goNorth will take away 1 energy.
 				}
-				this.goEast();
+				else {
+					this.goEast();
+				}
 				break;
 			case 's':
 				this.goSouth();
 				water = this.checkWater(this.x_coord, this.y_coord);
-				if (water == true) {
-					break;
+				if(water == 0) {break;} //if no water, break.
+				else if(water == 2) {  //if we have a boat, then we're good to go.
+				   ++this.energy; //making up for the fact that goNorth will take away 1 energy.
 				}
-				this.goNorth();
+				else {
+					this.goNorth();
+				}
 				break;
 			default:
 				this.y_coord = 0;
@@ -386,11 +394,11 @@ var game = {
 		count = 0;// count makes it so you can go back and unpurchased item will be there still
 		switch (cellContents[4]) {
 			case 'Hatchet':
-				if (this.whiffles >= 50) {
-					if (this.promptPurchase("Hatchet", 50)) {
+				if (this.whiffles >= 15) {
+					if (this.promptPurchase("Hatchet", 15)) {
 						localStorage.setItem(Hatchet, ++this.invArray[0]);
 						document.getElementById("Hatchet").innerHTML = '<br><br>' + this.invArray[0];
-						this.whiffles -= 50; count = 1;
+						this.whiffles -= 15; count = 1;
 					}
 				}
 				break;
@@ -404,19 +412,19 @@ var game = {
 				}
 				break;
 			case 'Boat':
-				if (this.whiffles >= 100) {
-					if (this.promptPurchase("Boat", 100)) {
+				if (this.whiffles >= 250) {
+					if (this.promptPurchase("Boat", 250)) {
 						localStorage.setItem('Boat', ++this.invArray[2]);
 						document.getElementById("Boat").innerHTML = '<br><br>' + this.invArray[2];
-						this.whiffles -= 100; count = 1;
+						this.whiffles -= 250; count = 1;
 					}
 				}
 				break;
 			case 'Power Bar':
-				if (this.whiffles >= 20) {
-					if (this.promptPurchase("Power Bar", 20)) {
+				if (this.whiffles >= 10) {
+					if (this.promptPurchase("Power Bar", 1)) {
 						this.energy += 20;
-						this.whiffles -= 20; count = 1;
+						this.whiffles -= 1; count = 1;
 					}
 				}
 			case 'Pickaxe':
@@ -429,65 +437,65 @@ var game = {
 				}
 				break;
 			case 'Chainsaw':
-				if (this.whiffles >= 50) {
-					if (this.promptPurchase("Chainsaw", 50)) {
+				if (this.whiffles >= 60) {
+					if (this.promptPurchase("Chainsaw", 60)) {
 						localStorage.setItem('Chainsaw', ++this.invArray[4]);
 						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
-						this.whiffles -= 50; count = 1;
+						this.whiffles -= 60; count = 1;
 					}
 				}
 				break;
 			case 'Chisel':
-				if (this.whiffles >= 50) {
-					if (this.promptPurchase("Chisel", 50)) {
+				if (this.whiffles >= 15) {
+					if (this.promptPurchase("Chisel", 15)) {
 						localStorage.setItem('Chisel', ++this.invArray[5]);
 						document.getElementById("Chisel").innerHTML = '<br><br><br>' + this.invArray[5];
-						this.whiffles -= 50; count = 1;
+						this.whiffles -= 15; count = 1;
 					}
 				}
 				break;
 			case 'Sledge':
-				if (this.whiffles >= 50) {
-					if (this.promptPurchase("Sledge", 50)) {
+				if (this.whiffles >= 25) {
+					if (this.promptPurchase("Sledge", 25)) {
 						localStorage.setItem('Sledge', ++this.invArray[6]);
 						document.getElementById("Sledge").innerHTML = '<br><br><br>' + this.invArray[6];
-						this.whiffles -= 50; count = 1;
+						this.whiffles -= 25; count = 1;
 					}
 				}
 				break;
 			case 'Machete':
-				if (this.whiffles >= 50) {
-					if (this.promptPurchase("Machete", 50)) {
+				if (this.whiffles >= 25) {
+					if (this.promptPurchase("Machete", 25)) {
 						localStorage.setItem('Machete', ++this.invArray[7]);
 						document.getElementById("Machete").innerHTML = '<br><br><br>' + this.invArray[7];
-						this.whiffles -= 50; count = 1;
+						this.whiffles -= 25; count = 1;
 					}
 				}
 				break;
 			case 'Jackhammer':
-				if (this.whiffles >= 50) {
-					if (this.promptPurchase("Jackhammer", 50)) {
+				if (this.whiffles >= 100) {
+					if (this.promptPurchase("Jackhammer", 100)) {
 						localStorage.setItem('Jackhammer', ++this.invArray[8]);
 						document.getElementById("Jackhammer").innerHTML = '<br><br><br>' + this.invArray[8];
-						this.whiffles -= 50; count = 1;
+						this.whiffles -= 100; count = 1;
 					}
 				}
 				break;
 			case 'Shears':
-				if (this.whiffles >= 50) {
-					if (this.promptPurchase("Shears", 50)) {
+				if (this.whiffles >= 35) {
+					if (this.promptPurchase("Shears", 35)) {
 						localStorage.setItem('Shears', ++this.invArray[9]);
 						document.getElementById("Shears").innerHTML = '<br><br>' + this.invArray[9];
-						this.whiffles -= 50; count = 1;
+						this.whiffles -= 35; count = 1;
 					}
 				}
 				break;
 			case 'Binoculars':
 				if (this.whiffles >= 100) {//need to make this only one binoc possible
-					if (this.promptPurchase("Binoculars", 100)) {
+					if (this.promptPurchase("Binoculars", 50)) {
 						localStorage.setItem('Binoculars', ++this.invArray[9]);
 						document.getElementById("Binoculars").innerHTML = '<br><br><br>' + this.invArray[10];
-						this.whiffles -= 100; count = 1;
+						this.whiffles -= 50; count = 1;
 					}
 				}
 				break;
@@ -815,28 +823,19 @@ var game = {
 			}
 		}
 	},
-	// Returns true if no water or water and has boat is true.
+	// Returns 0 if not water or 1 if water and no boat and 2 if water and has boat is true.
 	checkWater: function (xcoord, ycoord) {
 		cellContents = localStorage.getItem(xcoord + ',' + ycoord);
 		if (cellContents != null) {
 			var cell = cellContents.split(',');
-			check = localStorage.getItem('Boat');// was('Boat');
-			if (cell[3] == 2) {
-				if (check > 0) {
-					return true;
-				}
-				else {
-					alert("You encoutered water without a boat!");
-					--this.energy;
-					return false;
-				}
-
+			check = localStorage.getItem('Boat');
+			if(cell[3] == 2 && check > 0) //water and boat
+				return 2;
+			if(cell[3] == 2) { //water no boat.
+				return 1;
 			}
-			else {
-				return true;
+			return 0;
 			}
-
-		}
 	}
 };
 
