@@ -26,9 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	canvasContext = canvas.getContext('2d');
 	//var gameString = game.mapSring; //document.getElementById('map');
 	//drawEverything(gameString);
-	game.drawMap();
+	//game.drawMap();
 })
-
 //canas.width = 400;
 //canvas.height = 400;
 var leftX = 0;
@@ -61,79 +60,94 @@ const columnSize = 25;
 function drawMeadow() {
 	canvasContext.fillStyle = 'lawngreen';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += canvas.width;
-	if (topY >= canvas.width) {
-		leftX += canvas.height;
-		topY = 0;
+	leftX += tileWidth;
+	if (leftX >= canvas.width) {
+		topY += tileHeight;
+		leftX = 0;
 	}
 }
 function drawForest() {
 	canvasContext.fillStyle = 'forestgreen';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += canvas.width;
-	if (topY >= canvas.width) {
-		leftX += canvas.height;
-		topY = 0;
+	leftX += tileWidth;
+	if (leftX >= canvas.width) {
+		topY += tileHeight;
+		leftX = 0;
 	}
 }
 function drawWater() {
 	canvasContext.fillStyle = 'aqua';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += canvas.width;
-	if (topY >= canvas.width) {
-		leftX += canvas.height;
-		topY = 0;
+	leftX += tileWidth;
+	if (leftX >= canvas.width) {
+		topY += tileHeight;
+		leftX = 0;
 	}
 }
 function drawWall() {
 	canvasContext.fillStyle = 'gainsboro';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += canvas.width;
-	if (topY >= canvas.width) {
-		leftX += canvas.height;
-		topY = 0;
+	leftX += tileWidth;
+	if (leftX >= canvas.width) {
+		topY += tileHeight;
+		leftX = 0;
 	}
 }
 function drawBog() {
 	canvasContext.fillStyle = 'darkolivegreen';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += canvas.width;
-	if (topY >= canvas.width) {
-		leftX += canvas.height;
-		topY = 0;
+	leftX += tileWidth;
+	if (leftX >= canvas.width) {
+		topY += tileHeight;
+		leftX = 0;
 	}
 
 }
 function drawSwap() {
 	canvasContext.fillStyle = 'olive';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += canvas.width;
-	if (topY >= canvas.width) {
-		leftX += canvas.height;
-		topY = 0;
+	leftX += tileWidth;
+	if (leftX >= canvas.width) {
+		topY += tileHeight;
+		leftX = 0;
 	}
 }
 function drawBlank() {
 	canvasContext.fillStyle = 'black';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
-	topY += canvas.width;
-	if (topY >= canvas.width) {
-		leftX += canvas.height;
-		topY = 0;
+	leftX += tileWidth;
+	if (leftX >= canvas.width) {
+		topY += tileHeight;
+		leftX = 0;
 	}
 }
-function colorRect(leftX, topY, width, height) {
-	canvasContext.fillStyle = 'black';
-	canvasContext.fillRect(leftX, topY, width, height);
+function drawHero(centerX, centerY) {
+	canvasContext.fillStyle = 'gold';
+	canvasContext.beginPath();
+	//x and y coord, center circle, angles in radian of circle, clockwise from angle
+	canvasContext.arc(centerX, centerY, 10, 0, Math.PI * 2, true);
+	canvasContext.fill();
 
+}
+function colorRect(leftX, topY, width, height, drawColor) {
+	canvasContext.fillStyle = drawColor;
+	canvasContext.fillRect(leftX, topY, width, height);
+}
+
+function colorCircle(centerX, centerY, radius, drawColor) {
+	canvasContext.fillStyle = drawColor;
+	canvasContext.beginPath();
+	//x and y coord, center circle, angles in radian of circle, clockwise from angle
+	canvasContext.arc(centerX + tileWidth/2, centerY + tileHeight/2, radius, 0, Math.PI * 2, true);
+	canvasContext.fill();
 }
 var game = {
 	//All the variables are being pulled from cellLoad.js now. We can completely remove them but let's do that later
-	x_coord : startingX,
-	y_coord : startingY,
+	x_coord: startingX,
+	y_coord: startingY,
 	whiffles: startingWhiffles,
-	energy : startingEnergy,
-	invArray: [0,0,0,0,0,0,0,0,0,0,0],
+	energy: startingEnergy,
+	invArray: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
 	mapString: "",
 	mapMode: 0, //0 for mini-map, 1 for full map
@@ -150,12 +164,12 @@ var game = {
 			case 'n':
 				this.goNorth();
 				water = this.checkWater(this.x_coord, this.y_coord);
-				if(water == true){
+				if (water == true) {
 					break;
 				}
 				this.goSouth();
 				water = this.checkWater(this.x_coord, this.y_coord);
-				if(water == true){
+				if (water == true) {
 					break;
 				}
 				this.goNorth();
@@ -163,7 +177,7 @@ var game = {
 			case 'e':
 				this.goEast();
 				water = this.checkWater(this.x_coord, this.y_coord);
-				if(water == true){
+				if (water == true) {
 					break;
 				}
 				this.goWest();
@@ -171,7 +185,7 @@ var game = {
 			case 'w':
 				this.goWest();
 				water = this.checkWater(this.x_coord, this.y_coord);
-				if(water == true){
+				if (water == true) {
 					break;
 				}
 				this.goEast();
@@ -179,7 +193,7 @@ var game = {
 			case 's':
 				this.goSouth();
 				water = this.checkWater(this.x_coord, this.y_coord);
-				if(water == true){
+				if (water == true) {
 					break;
 				}
 				this.goNorth();
@@ -198,11 +212,12 @@ var game = {
 		this.dispLoc(); //adds player location to <div> in html.
 		this.dispWhif();
 		this.checkLoc(); //displays cell contents to player. TODO: Shouldn't be in our final product.
-        this.checkObstacle();
+		this.checkObstacle();
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
 		this.displayEnergy(); //adds energy to <div> in html.
 		//drawEverything();
 		this.displayMap(); //creates our map string, and displays to user.
+		this.drawMap();
 
 		if (this.atJewels()) {
 			alert("You've found the jewels! Use them wisely!");
@@ -211,13 +226,13 @@ var game = {
 	},
 
 	//edits visibility for fog of war.
-	correctCoord : function(coord) {
+	correctCoord: function (coord) {
 		// sometimes X/Y can be either -1 or -2, the next two statments statment fixes this problem since we can wrap around the map and we can't have negative coord  
-		if (coord == -2) { 
+		if (coord == -2) {
 			//alert("WE ARE IN X-2 OR Y-2");
 			return (MAX - 2);
 		}
-		if (coord == -1) { 
+		if (coord == -1) {
 			return (MAX - 1);
 		}
 
@@ -281,17 +296,17 @@ var game = {
 
 			surroundingCellsCoord[18] = xminustwo + ',' + yplusone;
 			surroundingCellsCoord[19] = xplustwo + ',' + yplusone;
-			
+
 			surroundingCellsCoord[20] = xminustwo + ',' + yplustwo;
 			surroundingCellsCoord[21] = xminusone + ',' + yplustwo;
 			surroundingCellsCoord[22] = x + ',' + yplustwo;
 			surroundingCellsCoord[23] = xplusone + ',' + yplustwo;
 			surroundingCellsCoord[24] = xplustwo + ',' + yplustwo;
 		}
-		
+
 		//A for loop that goes through the 1-D array, and pushes/modfies cells to the local storage
 		//All the new/modfied cells that are pushed have their visibility flag value set to 1
-		
+
 		for (let i = 0; i < MaxVisibility; i++) {
 			let cell = localStorage.getItem(surroundingCellsCoord[i]);
 
@@ -333,8 +348,8 @@ var game = {
 			localStorage.setItem(key, cellContents);
 			document.getElementById("cell").innerHTML = "Cell Details: " + cellContents;
 			//if(this.x_coord > 0 && this.y_coord > 0){
-				this.addInventory(); //adds to inventory duh..bad comment i know
-				this.treasureEncounter();
+			this.addInventory(); //adds to inventory duh..bad comment i know
+			this.treasureEncounter();
 		}
 		else {
 			var newCell = key + ",1,0,None";
@@ -342,13 +357,13 @@ var game = {
 			document.getElementById("cell").innerHTML = "Cell Details: " + newCell;
 		}
 	},
-	
-	treasureEncounter : function() {
+
+	treasureEncounter: function () {
 		let key = this.x_coord + ',' + this.y_coord; //dumb repeat but making it work
 		let cellContents = localStorage.getItem(key);
-		 cellContents = cellContents.split(',');
-		 
-		 switch (cellContents[4]){
+		cellContents = cellContents.split(',');
+
+		switch (cellContents[4]) {
 			case 'Chest1':
 				alert("You have visited a site with treasure! Adding 100 whiffles to your stash.");
 				this.whiffles += 100;
@@ -357,42 +372,42 @@ var game = {
 				alert("This site contains a trap! All your whiffles are lost!");
 				this.whiffles = 0;
 				break;
-		 }
-		 cellContents[4] = 'None';
-		 localStorage.setItem(key, cellContents);
-		 document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
+		}
+		cellContents[4] = 'None';
+		localStorage.setItem(key, cellContents);
+		document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
 	},
 
-addInventory : function() {
+	addInventory: function () {
 		let key = this.x_coord + ',' + this.y_coord; //should merge into another function
 		let cellContents = localStorage.getItem(key);
-		 cellContents = cellContents.split(',');
-		 count = 0;// count makes it so you can go back and unpurchased item will be there still
-		 switch (cellContents[4]){
+		cellContents = cellContents.split(',');
+		count = 0;// count makes it so you can go back and unpurchased item will be there still
+		switch (cellContents[4]) {
 			case 'Hatchet':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Hatchet", 50)) {
+				if (this.whiffles >= 50) {
+					if (this.promptPurchase("Hatchet", 50)) {
 						localStorage.setItem(Hatchet, ++this.invArray[0]);
 						document.getElementById("Hatchet").innerHTML = '<br><br>' + this.invArray[0];
-						this.whiffles -= 50; count=1;
+						this.whiffles -= 50; count = 1;
+					}
 				}
-			}
 				break;
 			case 'Hammer':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Hammer", 50)) {
+				if (this.whiffles >= 50) {
+					if (this.promptPurchase("Hammer", 50)) {
 						localStorage.setItem('Hammer', ++this.invArray[1]);
 						document.getElementById("Hammer").innerHTML = '<br><br>' + this.invArray[1];
-						this.whiffles -= 50; count=1;
+						this.whiffles -= 50; count = 1;
 					}
 				}
 				break;
 			case 'Boat':
-				if(this.whiffles >= 100){
-					if(this.promptPurchase("Boat", 100)) {
+				if (this.whiffles >= 100) {
+					if (this.promptPurchase("Boat", 100)) {
 						localStorage.setItem('Boat', ++this.invArray[2]);
 						document.getElementById("Boat").innerHTML = '<br><br>' + this.invArray[2];
-						this.whiffles -= 100; count=1;
+						this.whiffles -= 100; count = 1;
 					}
 				}
 				break;
@@ -400,83 +415,83 @@ addInventory : function() {
 				if (this.whiffles >= 20) {
 					if (this.promptPurchase("Power Bar", 20)) {
 						this.energy += 20;
-						this.whiffles -= 20; count=1;
+						this.whiffles -= 20; count = 1;
 					}
 				}
 			case 'Pickaxe':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Pickaxe", 50)) {
+				if (this.whiffles >= 50) {
+					if (this.promptPurchase("Pickaxe", 50)) {
 						localStorage.setItem('Pickaxe', ++this.invArray[3]);
 						document.getElementById("Pickaxe").innerHTML = '<br><br>' + this.invArray[3];
-						this.whiffles -= 50; count=1;
+						this.whiffles -= 50; count = 1;
 					}
 				}
 				break;
 			case 'Chainsaw':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Chainsaw", 50)) {
+				if (this.whiffles >= 50) {
+					if (this.promptPurchase("Chainsaw", 50)) {
 						localStorage.setItem('Chainsaw', ++this.invArray[4]);
 						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
-						this.whiffles -= 50; count=1;
+						this.whiffles -= 50; count = 1;
 					}
 				}
 				break;
 			case 'Chisel':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Chisel", 50)) {
+				if (this.whiffles >= 50) {
+					if (this.promptPurchase("Chisel", 50)) {
 						localStorage.setItem('Chisel', ++this.invArray[5]);
 						document.getElementById("Chisel").innerHTML = '<br><br><br>' + this.invArray[5];
-						this.whiffles -= 50; count=1;
+						this.whiffles -= 50; count = 1;
 					}
 				}
 				break;
 			case 'Sledge':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Sledge", 50)) {
+				if (this.whiffles >= 50) {
+					if (this.promptPurchase("Sledge", 50)) {
 						localStorage.setItem('Sledge', ++this.invArray[6]);
 						document.getElementById("Sledge").innerHTML = '<br><br><br>' + this.invArray[6];
-						this.whiffles -= 50; count=1;
+						this.whiffles -= 50; count = 1;
 					}
 				}
 				break;
 			case 'Machete':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Machete", 50)) {
+				if (this.whiffles >= 50) {
+					if (this.promptPurchase("Machete", 50)) {
 						localStorage.setItem('Machete', ++this.invArray[7]);
 						document.getElementById("Machete").innerHTML = '<br><br><br>' + this.invArray[7];
-						this.whiffles -= 50; count=1;
+						this.whiffles -= 50; count = 1;
 					}
 				}
 				break;
 			case 'Jackhammer':
-				if(this.whiffles >= 50){
-					if(this.promptPurchase("Jackhammer", 50)) {
+				if (this.whiffles >= 50) {
+					if (this.promptPurchase("Jackhammer", 50)) {
 						localStorage.setItem('Jackhammer', ++this.invArray[8]);
 						document.getElementById("Jackhammer").innerHTML = '<br><br><br>' + this.invArray[8];
-						this.whiffles -= 50; count=1;
+						this.whiffles -= 50; count = 1;
 					}
 				}
 				break;
 			case 'Shears':
-			if(this.whiffles >= 50){
-				if(this.promptPurchase("Shears", 50)) {
-					localStorage.setItem('Shears', ++this.invArray[9]);
-					document.getElementById("Shears").innerHTML = '<br><br>' + this.invArray[9];
-					this.whiffles -= 50; count=1;
+				if (this.whiffles >= 50) {
+					if (this.promptPurchase("Shears", 50)) {
+						localStorage.setItem('Shears', ++this.invArray[9]);
+						document.getElementById("Shears").innerHTML = '<br><br>' + this.invArray[9];
+						this.whiffles -= 50; count = 1;
+					}
 				}
-			}
 				break;
 			case 'Binoculars':
-			if(this.whiffles >= 100){//need to make this only one binoc possible
-				if(this.promptPurchase("Binoculars", 100)) {
-					localStorage.setItem('Binoculars', ++this.invArray[9]);
-					document.getElementById("Binoculars").innerHTML = '<br><br><br>' + this.invArray[10];
-					this.whiffles -= 100; count=1;
+				if (this.whiffles >= 100) {//need to make this only one binoc possible
+					if (this.promptPurchase("Binoculars", 100)) {
+						localStorage.setItem('Binoculars', ++this.invArray[9]);
+						document.getElementById("Binoculars").innerHTML = '<br><br><br>' + this.invArray[10];
+						this.whiffles -= 100; count = 1;
+					}
 				}
-			}
 				break;
-		 }/* end switch statement */
-		if(count == 1){
+		}/* end switch statement */
+		if (count == 1) {
 			document.getElementById(cellContents[4]).className = "inventory-icon-on";
 			cellContents[4] = 'None';
 			localStorage.setItem(key, cellContents);
@@ -597,103 +612,105 @@ addInventory : function() {
 					}
 					if (j == this.x_coord && i == this.y_coord)
 						tempMapString += 'C';
-					else switch(currCell[4]) 
-					{
-							case "Tree":
-								tempMapString += 'T';
-								break;
-							case "Boulder":
-								tempMapString += 'R';
-								break;
-							case "Blackberry Bushes":
-								tempMapString += 'L';
-								break;
+					else switch (currCell[4]) {
+						case "Tree":
+							tempMapString += 'T';
+							break;
+						case "Boulder":
+							tempMapString += 'R';
+							break;
+						case "Blackberry Bushes":
+							tempMapString += 'L';
+							break;
 					}
 				}
 				else {
 					tempMapString += 'XX';
 				}
 			}
-			
+
 		}
 		this.mapString = tempMapString;
 		//this.drawMap();
-		
-	},
-	
-	drawMap : function () {
 
+	},
+
+	drawMap: function () {
+
+		canvas = document.getElementById('gameCanvas');
+		canvasContext = canvas.getContext('2d');
 
 		var stringPos = 0;
 		var imageobj;
 		var obstacle;
-		colorRect(0, 0, canvas.width, canvas.height)
-		
-		for(i = 0; i < columnSize;i++)
-			{
-				for(j = 0; j < rowSize; j++)
+		leftX = 0;
+		topY = 0;
+		colorRect(0, 0, canvas.width, canvas.height, 'white');
+		//colorCircle(tileWidth/2 + this.x_coord, tileHeight/2 + this.y_coord, 15, 'gold')
+
+		for (let i = 0; i < 625/*columnSize*/; i++) {
+			//for (j = 0; j < rowSize; j++) {
+				//stringPos = ((i*rowSize) + j)*2;
+				//imageobj = new Image();
+				switch (this.mapString.charAt(i/*stringPos*/)) {
+					case 'X':
+						drawBlank();
+						//imageobj.src = "tiles/unexplored.png";
+						break;
+					case 'F':
+						drawForest();
+						//imageobj.src = "tiles/forest.png";
+						break;
+					case 'M':
+						drawMeadow();
+						//imageobj.src = "tiles/desert.png";
+						break;
+					case 'w':
+						drawWater();
+						//imageobj.src = "tiles/water.png";
+						break;
+					case 'W':
+						drawWall();
+						//imageobj.src = "tiles/wall.png";
+						break;
+					case 'B':
+						drawBog();
+						//imageobj.src = "tiles/bog.png";
+						break;
+					case 'S':
+						drawSwap();
+						//imageobj.src = "tiles/swamp.png";
+						break;
+				}
+				//++stringPos;
+
+				//canvasContext.drawImage(imageobj, j*tileWidth, i*tileHeight);
+				/*if(this.mapString.charAt(stringPos+1) != 'X')
 				{
-					stringPos = ((i*rowSize) + j)*2;
-					imageobj = new Image();
-					switch(this.mapString.charAt(stringPos))
+					obstacle = new Image();
+					obstacle.onload = function() {
+						canvasContext.drawImage(obstacle, j*tileWidth, i*tileHeight);
+					}
+					switch(this.mapString.charAt(stringPos+1))
 					{
-						case 'X':
-							drawBlank();
-							//imageobj.src = "tiles/unexplored.png";
+						case 'C':
+							obstacle.src = "tiles/hero.png";
 							break;
-						case 'F':
-							drawForest();
-							//imageobj.src = "tiles/forest.png";
-							break;
-						case 'M':
-							drawMeadow();
-							//imageobj.src = "tiles/desert.png";
-							break;
-						case 'w':
-							drawWater();
-							//imageobj.src = "tiles/water.png";
-							break;
-						case 'W':
-							drawWall();
-							//imageobj.src = "tiles/wall.png";
+						case 'T':
+							obstacle.src = "tiles/tree.png";
 							break;
 						case 'B':
-							drawBog();
-							//imageobj.src = "tiles/bog.png";
+							obstacle.src = "tiles/boulder.png";
 							break;
-						case 'S':
-							drawSwap();
-							//imageobj.src = "tiles/swamp.png";
+						case 'L':
+							obstacle.src = "tiles/bush.png"
 							break;
 					}
-					++stringPos;
+				} */
+			//}
+		}
+		drawHero(this.x_coord * (tileWidth), this.y_coord * (tileHeight));
 
-					//canvasContext.drawImage(imageobj, j*tileWidth, i*tileHeight);
-					/*if(this.mapString.charAt(stringPos+1) != 'X')
-					{
-						obstacle = new Image();
-						obstacle.onload = function() {
-							canvasContext.drawImage(obstacle, j*tileWidth, i*tileHeight);
-						}
-						switch(this.mapString.charAt(stringPos+1))
-						{
-							case 'C':
-								obstacle.src = "tiles/hero.png";
-								break;
-							case 'T':
-								obstacle.src = "tiles/tree.png";
-								break;
-							case 'B':
-								obstacle.src = "tiles/boulder.png";
-								break;
-							case 'L':
-								obstacle.src = "tiles/bush.png"
-								break;
-						}
-					} */
-				}
-			}
-		
 	},
 
 	changeMapMode: function () {
@@ -710,106 +727,104 @@ addInventory : function() {
 			window.location.href = "Frupalsplash.html";
 	},
 
-    checkObstacle : function()
-    {
+	checkObstacle: function () {
 		let currCell = localStorage.getItem(this.x_coord + ',' + this.y_coord);
-		if(currCell != null)
-		{	
+		if (currCell != null) {
 			currCell = currCell.split(',');
-            switch(currCell[4])
-            {
-                case "Tree":
-                    if(this.invArray[4] > 0) //if user has chainsaw
-                    {
-                        this.invArray[4]--;
-                        this.energy -= 2;
-                    }
-                    else if(this.invArray[3] > 0) // if axe
-                    {
-                        this.invArray[3]--;
-                        this.energy -= 5;
-                    }
-                    else if(this.invArray[0] > 0) // if hatchet
-                    {
-                        this.invArray[0]--;
-                        this.energy -= 8;
-                    }
-                    else // no tools
-                        this.energy -= 10;
+			switch (currCell[4]) {
+				case "Tree":
+					if (this.invArray[4] > 0) //if user has chainsaw
+					{
+						this.invArray[4]--;
+						this.energy -= 2;
+					}
+					else if (this.invArray[3] > 0) // if axe
+					{
+						this.invArray[3]--;
+						this.energy -= 5;
+					}
+					else if (this.invArray[0] > 0) // if hatchet
+					{
+						this.invArray[0]--;
+						this.energy -= 8;
+					}
+					else // no tools
+						this.energy -= 10;
 
-                    currCell[4] = "None";
-                    localStorage.setItem(this.x_coord + ',' + this.y_coord, currCell);
-                    break;
-                case "Boulder":
-                    if(this.invArray[8] > 0)// if jackhammer
-                    {
-                        this.invArray[8]--;
-                        this.energy -= 4;
-                    }
-                    else if(this.invArray[6] > 0)// if sledge hammer
-                    {
-                        this.invArray[6]--;
-                        this.energy -= 9;
-                    }
-                    else if(this.invArray[1] > 0) //if hammer
-                    {
-                        this.invArray[1]--;
-                        this.energy -= 12;
-                    }
-                    else if(this.invArray[5] > 0) // if chisel
-                    {
-                        this.invArray[5]--;
-                        this.energy -= 14;
-                    }
-                    else // no tools
-                        this.energy -= 16;
+					currCell[4] = "None";
+					localStorage.setItem(this.x_coord + ',' + this.y_coord, currCell);
+					break;
+				case "Boulder":
+					if (this.invArray[8] > 0)// if jackhammer
+					{
+						this.invArray[8]--;
+						this.energy -= 4;
+					}
+					else if (this.invArray[6] > 0)// if sledge hammer
+					{
+						this.invArray[6]--;
+						this.energy -= 9;
+					}
+					else if (this.invArray[1] > 0) //if hammer
+					{
+						this.invArray[1]--;
+						this.energy -= 12;
+					}
+					else if (this.invArray[5] > 0) // if chisel
+					{
+						this.invArray[5]--;
+						this.energy -= 14;
+					}
+					else // no tools
+						this.energy -= 16;
 
-                    currCell[4] = "None";
-                    localStorage.setItem(this.x_coord + ',' + this.y_coord, currCell);
-                    break;
-                case "Blackberry Bushes":
-                    if(this.invArray[9] > 0) // if shears
-                    {
-                        this.invArray[9]--;
-                        this.energy -= 1;
-                    }
-                    else if(this.invArray[7] > 0) // if machete
-                    {
-                        this.invArray[7]--;
-                        this.energy -= 3;
-                    }
-                    else
-                        this.energy -= 4;
+					currCell[4] = "None";
+					localStorage.setItem(this.x_coord + ',' + this.y_coord, currCell);
+					break;
+				case "Blackberry Bushes":
+					if (this.invArray[9] > 0) // if shears
+					{
+						this.invArray[9]--;
+						this.energy -= 1;
+					}
+					else if (this.invArray[7] > 0) // if machete
+					{
+						this.invArray[7]--;
+						this.energy -= 3;
+					}
+					else
+						this.energy -= 4;
 
-                    currCell[4] = "None";
-                    localStorage.setItem(this.x_coord + ',' + this.y_coord, currCell);
-                    break;
-                default:
-                    break;
-            }
-        }
-    },
+					currCell[4] = "None";
+					localStorage.setItem(this.x_coord + ',' + this.y_coord, currCell);
+					break;
+				default:
+					break;
+			}
+		}
+	},
 	// Returns true if no water or water and has boat is true.
-	checkWater: function (xcoord, ycoord){
+	checkWater: function (xcoord, ycoord) {
 		cellContents = localStorage.getItem(xcoord + ',' + ycoord);
 		if (cellContents != null) {
 			var cell = cellContents.split(',');
 			check = localStorage.getItem('Boat');// was('Boat');
-			if (cell[3] == 2){
-				if (check > 0){
+			if (cell[3] == 2) {
+				if (check > 0) {
 					return true;
 				}
-				else{
+				else {
 					alert("You encoutered water without a boat!");
 					--this.energy;
 					return false;
 				}
-				
+
 			}
-			else{
+			else {
 				return true;
 			}
 
 		}
 	}
 };
+
