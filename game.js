@@ -561,8 +561,10 @@ var game = {
 		if (this.energy < 1) {
 			var scream = new Audio("wilhelm.mp3");
 			scream.play();
-			alert("You are out of energy!");
-			this.gameOver();
+			setTimeout(function() {
+				alert("You are out of energy!");
+				game.gameOver();
+			}, 2000)
 		}
 	},
 
