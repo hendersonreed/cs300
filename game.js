@@ -713,6 +713,7 @@ var game = {
 					if (this.invArray[8] > 0)// if jackhammer
 					{
 						this.invArray[8]--;
+						document.getElementById("Jackhammer").innerHTML = '<br><br><br>' + this.invArray[8];
 						this.energy -= 4;
 					}
 					else if (this.invArray[6] > 0)// if sledge hammer
