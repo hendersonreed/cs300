@@ -362,7 +362,11 @@ var game = {
 				break;
  		}
 		localStorage.setItem(key, cellContents);
+<<<<<<< HEAD
 		document.getElementById("whif").innerHTML = '| Whiffles: ' + this.whiffles;
+=======
+		document.getElementById("whif").innerHTML = '|Whiffles: ' + this.whiffles;
+>>>>>>> b9194afd697ffa472648535fc086d6813007a9db
 		},
 
 	addInventory: function () {
@@ -418,8 +422,11 @@ var game = {
 				if (this.whiffles >= 60) {
 					if (this.promptPurchase("Chainsaw", 60)) {
 						localStorage.setItem('Chainsaw', ++this.invArray[4]);
+<<<<<<< HEAD
 						document.getElementById("Chainsaw").innerHTML = '<br><br>' + this.invArray[4];
-//						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
+=======
+						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
+>>>>>>> b9194afd697ffa472648535fc086d6813007a9db
 						this.whiffles -= 60; count = 1;
 					}
 				}
@@ -428,8 +435,11 @@ var game = {
 				if (this.whiffles >= 15) {
 					if (this.promptPurchase("Chisel", 15)) {
 						localStorage.setItem('Chisel', ++this.invArray[5]);
+<<<<<<< HEAD
 						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
-						//document.getElementById("Chisel").innerHTML = '<br><br><br>' + this.invArray[5];
+=======
+						document.getElementById("Chisel").innerHTML = '<br><br><br>' + this.invArray[5];
+>>>>>>> b9194afd697ffa472648535fc086d6813007a9db
 						this.whiffles -= 15; count = 1;
 					}
 				}
@@ -438,8 +448,11 @@ var game = {
 				if (this.whiffles >= 25) {
 					if (this.promptPurchase("Sledge", 25)) {
 						localStorage.setItem('Sledge', ++this.invArray[6]);
+<<<<<<< HEAD
 						document.getElementById("Sledge").innerHTML = '<br><br>' + this.invArray[6];
-						//document.getElementById("Sledge").innerHTML = '<br><br><br>' + this.invArray[6];
+=======
+						document.getElementById("Sledge").innerHTML = '<br><br><br>' + this.invArray[6];
+>>>>>>> b9194afd697ffa472648535fc086d6813007a9db
 						this.whiffles -= 25; count = 1;
 					}
 				}
@@ -448,8 +461,11 @@ var game = {
 				if (this.whiffles >= 25) {
 					if (this.promptPurchase("Machete", 25)) {
 						localStorage.setItem('Machete', ++this.invArray[7]);
+<<<<<<< HEAD
 						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
-						//document.getElementById("Machete").innerHTML = '<br><br><br>' + this.invArray[7];
+=======
+						document.getElementById("Machete").innerHTML = '<br><br><br>' + this.invArray[7];
+>>>>>>> b9194afd697ffa472648535fc086d6813007a9db
 						this.whiffles -= 25; count = 1;
 					}
 				}
@@ -668,6 +684,34 @@ var game = {
 						}
 						break;
 				}
+<<<<<<< HEAD
+=======
+
+				//canvasContext.drawImage(imageobj, j*tileWidth, i*tileHeight);
+				/*if(this.mapString.charAt(stringPos+1) != 'X')
+				{
+					obstacle = new Image();
+					obstacle.onload = function() {
+						canvasContext.drawImage(obstacle, j*tileWidth, i*tileHeight);
+					}
+					switch(this.mapString.charAt(stringPos+1))
+					{
+						case 'C':
+							obstacle.src = "tiles/hero.png";
+							break;
+						case 'T':
+							obstacle.src = "tiles/tree.png";
+							break;
+						case 'B':
+							obstacle.src = "tiles/boulder.png";
+							break;
+						case 'L':
+							obstacle.src = "tiles/bush.png"
+							break;
+					}
+				} */
+			//}
+>>>>>>> b9194afd697ffa472648535fc086d6813007a9db
 		}
 		drawHero(this.x_coord * (tileWidth), this.y_coord * (tileHeight));
 	},

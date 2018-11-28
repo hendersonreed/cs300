@@ -150,13 +150,23 @@
 	<br><br><span id="copyright" onclick="ui.ogb()" type="submit" form="form1" value="Submit" onmouseleave="ui.ogb(1)">Pip Boy Template created by STIX and found at https://codepen.io/stix/pen/KdJEwB/</span><span id="oldPip"></span>
 	</div>
 	
+<<<<<<< HEAD
+	<script src="game.js"></script>
 	<script>
 		console.log(game.jewels.x + ',' + game.jewels.y);
+=======
+	<script>	
+		console.log(game.jewels);
+>>>>>>> b9194afd697ffa472648535fc086d6813007a9db
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
 		game.energy++; //Energy was decrementing by 1 on startup // why do this instead of +1 on starting energy
 		game.checkLoc(); //displaying the cell contents of the initial location.
 		game.displayEnergy();
+<<<<<<< HEAD
         game.displayMap();
+=======
+		game.displayMap();
+>>>>>>> b9194afd697ffa472648535fc086d6813007a9db
 	</script>
 </body>
 
