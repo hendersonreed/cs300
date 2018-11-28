@@ -65,6 +65,10 @@ position:fixed;
 	z-index:9;
 }
 
+#info-box {
+	position: fixed;
+}
+
 #map {
 font-family:DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
 	background-color:blue;
@@ -87,6 +91,7 @@ z-index: 100;
   background-size: 100% 100%;	
 }
 
+<<<<<<< HEAD
 #img2 {
 	opacity: .9;
 	position:fixed;

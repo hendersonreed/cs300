@@ -11,12 +11,13 @@
 	<script src="mapLoad.js"></script>
 	<script src="cellLoad.js"></script>
 	<script src="frontEnd.js"></script>
-		
+	<script src="game.js"></script>
+	<script>game.checkFrom();</script>
 	</head>
 
 
 <body>
-<!--<script>game.checkFrom()</script>-->
+	<!--<script>game.checkFrom()</script>-->
 <span id="img"></span>
 <span id="img2"></span>
 		<div id="container1" class="grow2-hover">
@@ -32,7 +33,6 @@
 				<div id="Hammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hammer',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hammer', 'clear')"><br><br>0</div>
 				
 				<div id="Boat" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Boat', 'special')" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Boat', 'clear')"></div>
-				
 				<div id="Pickaxe" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Pickaxe',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Pickaxe', 'clear')"><br><br>0</div>
 				
 				<div id="ChainsawOuter" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chainsaw', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chainsaw', 'clear')"><span class="inventory-icon" id="Chainsaw"><br>0</span></div>
@@ -140,23 +140,13 @@
 	</div><!--end wrapper-->
 	<div></div>
 	
-	<script src="game.js"></script>
-	<script>
-		//console.log(game.jewels.x + ',' + game.jewels.y);
+	<script>	
 		console.log(game.jewels);
-
 		game.go() //by passing no arguments, we ensure we get the default on the switch statement.
 		game.energy++; //Energy was decrementing by 1 on startup // why do this instead of +1 on starting energy
 		game.checkLoc(); //displaying the cell contents of the initial location.
 		game.displayEnergy();
 		game.displayMap();
-		/*window.onload = function(){
- 			//canvas = document.getElementById('gameCanvas');
-  			//canvasContext = canvas.getContext('2d');
-			game.drawMap();
-		}*/
-
-		//game.drawMap();
 	</script>
 </body>
 
