@@ -13,50 +13,26 @@
 
 const MAX = mapSize; //ADDED FROM CELLLOAD.JS NOW THAT ITS FIXED
 const MAPSIZE = 5; //Distance from the player that tiles should be drawn. THIS CONST ISN'T USED ANYWHERE AS OF NOW
-/*var canvas = {
-	width: 400, 
-	height: 400,
-};*/
 
+//Canvas for drawing map
 var canvas;
 var canvasContext;
 
+// Need to allow screen to load before accessing gameCanvas
 document.addEventListener('DOMContentLoaded', function () {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
-	//var gameString = game.mapSring; //document.getElementById('map');
-	//drawEverything(gameString);
-	//game.drawMap();
 })
-//canas.width = 400;
-//canvas.height = 400;
+
+// Var for drawing map
 var leftX = 0;
 var topY = 0;
-//const width = document.getElementById('gameCanvas.width');
-//const height = document.getElementById('gameCanvas.height');
 const tileWidth = 20;
 const tileHeight = 20;
 const rowSize = 25;
 const columnSize = 25;
-//var canvas = document.getElementById("map");
-//canvas.width = rowSize*32;
-//canvas.height = columnSize*32;
-//var canvasContext = canvas.getContext('2d');
 
-/*function drawEverything(gameString) {
-	colorRect(0, 0, canvas.width, canvas.height, 'grey')
-	for(let i = 0; i > mapSize; ++i){
-		if(gameString.charAt(0) == 'M'){
-			drawMeadow();
-		}
-	}
-	drawMeadow();
-	drawForest();
-	drawWater();
-	drawWall();
-	drawBog();
-	drawSwap();
-}*/
+// Below are functions for drawing differnt map terrains.
 function drawMeadow() {
 	canvasContext.fillStyle = 'lawngreen';
 	canvasContext.fillRect(leftX, topY, tileWidth, tileHeight);
@@ -121,20 +97,23 @@ function drawBlank() {
 		leftX = 0;
 	}
 }
+
+// Similar to terrain functions but draws a circle for the character.
 function drawHero(centerX, centerY) {
 	canvasContext.fillStyle = 'gold';
 	canvasContext.beginPath();
-	//x and y coord, center circle, angles in radian of circle, clockwise from angle
-	//canvasContext.arc(centerX, centerY, 10, 0, Math.PI * 2, true);
 	canvasContext.arc(centerX + tileWidth/2, centerY + tileHeight/2, 5, 0, Math.PI * 2, true);
 	canvasContext.fill();
 
 }
+
+// Generic rect funciton
 function colorRect(leftX, topY, width, height, drawColor) {
 	canvasContext.fillStyle = drawColor;
 	canvasContext.fillRect(leftX, topY, width, height);
 }
 
+// Generic circle function
 function colorCircle(centerX, centerY, radius, drawColor) {
 	canvasContext.fillStyle = drawColor;
 	canvasContext.beginPath();
@@ -224,7 +203,6 @@ var game = {
 		this.checkObstacle();
 		this.checkEnergy(); //checks energy and alerts user if energy < 0.
 		this.displayEnergy(); //adds energy to <div> in html.
-		//drawEverything();
 		this.displayMap(); //creates our map string, and displays to user.
 		this.drawMap();
 
@@ -595,27 +573,21 @@ var game = {
 					else switch (currCell[3]) {
 						case '0':
 							tempMapString += 'M';
-							//drawMeadow();
 							break;
 						case '1':
 							tempMapString += 'F';
-							//drawForest();
 							break;
 						case '2':
 							tempMapString += 'w';
-							//drawWater();
 							break;
 						case '3':
 							tempMapString += 'W';
-							//drawWall();
 							break;
 						case '4':
 							tempMapString += 'B';
-							//drawBog();
 							break;
 						case '5':
 							tempMapString += 'S';
-							//drawSwap();
 							break;
 						default:
 							tempMapString += 'E'; // 'E' signifies some sort of error when checking the cell
@@ -657,38 +629,30 @@ var game = {
 		topY = 0;
 		colorRect(0, 0, canvas.width, canvas.height, 'white');
 
-		for (let i = 0; i < 625/*columnSize*/; ++i) {
-			//for (j = 0; j < rowSize; j++) {
-				//stringPos = ((i*rowSize) + j)*2;
+		for (let i = 0; i < 625; ++i) {
 				//imageobj = new Image();
-				switch (this.mapString.charAt(i/*stringPos*/)) {
+				//imageobj.src = "tiles/water.png";
+				switch (this.mapString.charAt(i)) {
 					case 'X':
 						drawBlank();
-						//imageobj.src = "tiles/unexplored.png";
 						break;
 					case 'F':
 						drawForest();
-						//imageobj.src = "tiles/forest.png";
 						break;
 					case 'M':
 						drawMeadow();
-						//imageobj.src = "tiles/desert.png";
 						break;
 					case 'w':
 						drawWater();
-						//imageobj.src = "tiles/water.png";
 						break;
 					case 'W':
 						drawWall();
-						//imageobj.src = "tiles/wall.png";
 						break;
 					case 'B':
 						drawBog();
-						//imageobj.src = "tiles/bog.png";
 						break;
 					case 'S':
 						drawSwap();
-						//imageobj.src = "tiles/swamp.png";
 						break;
 					case 'i':
 						canvasContext.fillStyle = 'pink';
@@ -698,11 +662,8 @@ var game = {
 							topY += tileHeight;
 							leftX = 0;
 						}
-
-						//imageobj.src = "tiles/swamp.png";
 						break;
 				}
-				//++stringPos;
 
 				//canvasContext.drawImage(imageobj, j*tileWidth, i*tileHeight);
 				/*if(this.mapString.charAt(stringPos+1) != 'X')
