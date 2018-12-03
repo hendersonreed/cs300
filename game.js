@@ -345,7 +345,7 @@ var game = {
 	},
 
 	treasureEncounter: function () {
-		let key = this.x_coord + ',' + this.y_coord; //dumb repeat but making it work
+		let key = this.x_coord + ',' + this.y_coord;
 		let cellContents = localStorage.getItem(key);
 		 cellContents = cellContents.split(',');
  
@@ -366,7 +366,7 @@ var game = {
 		},
 
 	addInventory: function () {
-		let key = this.x_coord + ',' + this.y_coord; //should merge into another function
+		let key = this.x_coord + ',' + this.y_coord; 
 		let cellContents = localStorage.getItem(key);
 		cellContents = cellContents.split(',');
 		count = 0;// count makes it so you can go back and unpurchased item will be there still
@@ -390,10 +390,10 @@ var game = {
 				}
 				break;
 			case 'Boat':
-				if (this.whiffles >= 250) {
+				if (this.whiffles >= 250 && localStorage.getItem('Boat') <= 0) {
 					if (this.promptPurchase("Boat", 250)) {
 						localStorage.setItem('Boat', ++this.invArray[2]);
-						document.getElementById("Boat").innerHTML = '<br><br>' + this.invArray[2];
+						document.getElementById("Boat").innerHTML = '<br><br><br>' + this.invArray[2];
 						this.whiffles -= 250; count = 1;
 					}
 				}
@@ -403,6 +403,7 @@ var game = {
 					if (this.promptPurchase("Power Bar", 1)) {
 						this.energy += 20;
 						this.whiffles -= 1; count = 1;
+						this.displayEnergy();
 					}
 				}
 			case 'Pickaxe':
@@ -419,7 +420,6 @@ var game = {
 					if (this.promptPurchase("Chainsaw", 60)) {
 						localStorage.setItem('Chainsaw', ++this.invArray[4]);
 						document.getElementById("Chainsaw").innerHTML = '<br><br>' + this.invArray[4];
-//						document.getElementById("Chainsaw").innerHTML = '<br>' + this.invArray[4];
 						this.whiffles -= 60; count = 1;
 					}
 				}
@@ -429,8 +429,7 @@ var game = {
 					if (this.promptPurchase("Chisel", 15)) {
 						localStorage.setItem('Chisel', ++this.invArray[5]);
 						document.getElementById("Chisel").innerHTML = '<br>' + this.invArray[5];
-						//document.getElementById("Chisel").innerHTML = '<br><br><br>' + this.invArray[5];
-						this.whiffles -= 15; count = 1;
+							this.whiffles -= 15; count = 1;
 					}
 				}
 				break;
@@ -439,7 +438,6 @@ var game = {
 					if (this.promptPurchase("Sledge", 25)) {
 						localStorage.setItem('Sledge', ++this.invArray[6]);
 						document.getElementById("Sledge").innerHTML = '<br><br>' + this.invArray[6];
-						//document.getElementById("Sledge").innerHTML = '<br><br><br>' + this.invArray[6];
 						this.whiffles -= 25; count = 1;
 					}
 				}
@@ -449,7 +447,6 @@ var game = {
 					if (this.promptPurchase("Machete", 25)) {
 						localStorage.setItem('Machete', ++this.invArray[7]);
 						document.getElementById("Machete").innerHTML = '<br>' + this.invArray[7];
-						//document.getElementById("Machete").innerHTML = '<br><br><br>' + this.invArray[7];
 						this.whiffles -= 25; count = 1;
 					}
 				}
@@ -476,13 +473,12 @@ var game = {
 				if (this.whiffles >= 100) {//need to make this only one binoc possible
 					if (this.promptPurchase("Binoculars", 50)) {
 						localStorage.setItem('Binoculars', ++this.invArray[9]);
-						document.getElementById("Binoculars").innerHTML = '<br><br><br>' + this.invArray[10];
 						this.whiffles -= 50; count = 1;
 					}
 				}
 				break;
 		}/* end switch statement */
-		if (count == 1) {
+		if (count == 1) { //if an inventory item was added. 1 for yes
 			document.getElementById(cellContents[4]).className = "inventory-icon-on";
 			cellContents[4] = 'None';
 			localStorage.setItem(key, cellContents);
