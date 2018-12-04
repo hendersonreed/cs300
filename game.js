@@ -695,16 +695,13 @@ var game = {
 					if (this.invArray[4] > 0) //if user has chainsaw
 					{
 						this.invArray[4]--;
+						document.getElementById("Chainsaw").innerHTML = '<br><br><br>' + this.invArray[4];
 						this.energy -= 2;
-					}
-					else if (this.invArray[3] > 0) // if axe
-					{
-						this.invArray[3]--;
-						this.energy -= 5;
 					}
 					else if (this.invArray[0] > 0) // if hatchet
 					{
 						this.invArray[0]--;
+						document.getElementById("Hatchet").innerHTML = '<br><br><br>' + this.invArray[0];
 						this.energy -= 8;
 					}
 					else // no tools
@@ -720,19 +717,28 @@ var game = {
 						document.getElementById("Jackhammer").innerHTML = '<br><br><br>' + this.invArray[8];
 						this.energy -= 4;
 					}
+					else if (this.invArray[3] > 0) // if pickaxe
+					{
+						this.invArray[3]--;
+						document.getElementById("Pickaxe").innerHTML = '<br><br><br>' + this.invArray[3];
+						this.energy -= 5;
+					}
 					else if (this.invArray[6] > 0)// if sledge hammer
 					{
 						this.invArray[6]--;
+						document.getElementById("Sledge").innerHTML = '<br><br><br>' + this.invArray[6];
 						this.energy -= 9;
 					}
 					else if (this.invArray[1] > 0) //if hammer
 					{
 						this.invArray[1]--;
+						document.getElementById("Hammer").innerHTML = '<br><br><br>' + this.invArray[1];
 						this.energy -= 12;
 					}
 					else if (this.invArray[5] > 0) // if chisel
 					{
 						this.invArray[5]--;
+						document.getElementById("Chisel").innerHTML = '<br><br><br>' + this.invArray[5];
 						this.energy -= 14;
 					}
 					else // no tools
@@ -745,11 +751,13 @@ var game = {
 					if (this.invArray[9] > 0) // if shears
 					{
 						this.invArray[9]--;
+						document.getElementById("Shears").innerHTML = '<br><br><br>' + this.invArray[9];
 						this.energy -= 1;
 					}
 					else if (this.invArray[7] > 0) // if machete
 					{
 						this.invArray[7]--;
+						document.getElementById("Machete").innerHTML = '<br><br><br>' + this.invArray[7];
 						this.energy -= 3;
 					}
 					else
