@@ -8,68 +8,71 @@
 		</style>
 		<meta charset="utf-8" />
 		<script>localStorage.clear();</script>
-	<script src="mapLoad.js"></script>
-	<script src="cellLoad.js"></script>
-	<script src="frontEnd.js"></script>
-	<script src="game.js"></script>
-	<script>game.checkFrom();</script>
+		<script src="mapLoad.js"></script>
+		<script src="cellLoad.js"></script>
+		<script src="frontEnd.js"></script>
+		<script src="game.js"></script>
+		<!--script>game.checkFrom();</script-->
 	</head>
 
 
 <body>
 	<!--<script>game.checkFrom()</script>-->
-<span id="img"></span>
-<span id="img2"></span>
-		<div id="container1" class="grow2">
-			<div id="pipFixedelements">
-				<button class="pipNorth button" onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
-				<button class="pipSouth button" onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
-				<button class="pipEast button" onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">-EAST . </button>
-				<button class="pipWest button" onclick="game.go('w')" type="submit" form="form1" value="Submit">-WEST-</button>
+	<span id="img"></span>
+	<span id="img2"></span>
+	
+	<div id="container1" class="grow2">
+		
+        <!-- fixedElements are the images and buttons hard-coded over the template using fixed positioning -->	
+		<div id="pipFixedelements">
+			<button class="pipNorth button" onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
+			<button class="pipSouth button" onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
+			<button class="pipEast button" onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">EAST </button>
+			<button class="pipWest button" onclick="game.go('w')" type="submit" form="form1" value="Submit">WEST</button>
 			
+			<div id="Hatchet" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hatchet',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hatchet', 'clear')"><br><br>0</div>
 				
-				<div id="Hatchet" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hatchet',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hatchet', 'clear')"><br><br>0</div>
+			<div id="Hammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hammer',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hammer', 'clear')"><br><br>0</div>
 				
-				<div id="Hammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Hammer',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Hammer', 'clear')"><br><br>0</div>
-				
-				<div id="Boat" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Boat', 'special')" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Boat', 'clear')"></div>
-				<div id="Pickaxe" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Pickaxe',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Pickaxe', 'clear')"><br><br>0</div>
-				
-				<div id="Chainsaw" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chainsaw', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chainsaw', 'clear')"><br><br>0</div>
-				
-				<div id="Chisel" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chisel',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chisel', 'clear')"><br>0</div>
-				
-				<div id="Sledge" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Sledge',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Sledge', 'clear')"><br><br>0</div>
-				
-				<div id="Machete" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Machete',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Machete', 'clear')"><br>0</div>
-				
-				<div id="Jackhammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Jackhammer', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Jackhammer', 'clear')"><br><br><br>0</div>
-				
-				<div id="Shears" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Shears',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Shears', 'clear')"><br><br>0</div>
-				
-				<div id="Binoculars" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Binoculars', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Binoculars', 'clear')"><br><br></div>
-				
-				
-				
-				<div id="oldPip"></div>
+			<div id="Boat" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Boat', 'special')" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Boat', 'clear')"><br><br><br>0</div>
 
-			</div><!--end pipFixedelements-->
+			<div id="Pickaxe" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Pickaxe',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Pickaxe', 'clear')"><br><br>0</div>
+				
+			<div id="Chainsaw" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chainsaw', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chainsaw', 'clear')"><br><br>0</div>
+				
+			<div id="Chisel" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Chisel',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Chisel', 'clear')"><br>0</div>
+				
+			<div id="Sledge" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Sledge',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Sledge', 'clear')"><br><br>0</div>
+				
+			<div id="Machete" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Machete',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Machete', 'clear')"><br>0</div>
+				
+			<div id="Jackhammer" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Jackhammer', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Jackhammer', 'clear')"><br><br><br>0</div>
+				
+			<div id="Shears" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Shears',)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Shears', 'clear')"><br><br>0</div>
+				
+			<div id="Binoculars" class="inventory-icon" onmouseover="ui.inventoryMouseOver('Binoculars', special)" type="submit" form="form1" value="Submit" onmouseleave="ui.inventoryMouseOver('Binoculars', 'clear')"><br><br></div>
+				
+			<!-- this div holds the original unaltered Frup-boy template from STIX, included as a neat feature to show the diff and work that went into the updated Frup-boy -->
+			<div id="oldPip"></div>
+
+		</div><!--end pipFixedelements-->
 			
-			<div class="pip">
+		<!--this div is the wrapper for the Frup-boy that lies beneath the fixed elements. Some code in this div comes from the original template by STIX. This is the only div with any template code in this file. Many of the lines below have been edited by Dustin Eric Frazier for CS300 -->
+		<div class="pip">
 			
-				<div class="pipfront">
-					<div class="top">
-					<div class="top-panel"></div>
-					</div>
-					<div class="top-button"></div>  
-					<div class="screw1"></div><div class="screw2"></div>
-					<div class="screen-border">
-						<div class="screen">
-							<div class="screen-reflection"></div>
-							<div class="scan"></div>
-							<nav><span class="stat"></span><span class="active inv"></span><span class="data"></span><span class="map"></span><span class="radio"></span><p><span id="special" class="off special active"></span><span id="status"></span></p>
-							</nav>
-							<div class="vaultboy">
+			<div class="pipfront">
+				<div class="top">
+				<div class="top-panel"></div>
+				</div>
+				<div class="top-button"></div>  
+				<div class="screw1"></div><div class="screw2"></div>
+				<div class="screen-border">
+					<div class="screen">
+						<div class="screen-reflection"></div>
+						<div class="scan"></div>
+						<nav><span class="stat"></span><span class="active inv"></span><span class="data"></span><span class="map"></span><span class="radio"></span><p><span id="special" class="off special active"></span><span id="status"></span></p>
+						</nav>
+						<div class="vaultboy">
 								<div class="bar1"></div>
 								<div class="bar2"></div>
 								<div class="bar3"></div>
@@ -132,22 +135,24 @@
 			
 			</div> <!--end pipdiv-->
 		</div><!--end container 1-->
-<div id="wrapper-new" class="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)">
-<span id="info-box"><h1>Frupal, The Game</h1>
-	<div><p id="loc">Current Location:  0,0</p> </div>
-	<div><p id="cell">Cell Details: </p> </div>
-	</span>
+		
+		<!-- This div holds the everything besides the frup-boy and the footer -->
+		<div id="wrapper-new" class="wrapper" onmouseenter="ui.pipMotion(0)" type="submit" form="form1" value="Submit" onmouseleave="ui.pipMotion(1)">
+		
+		<!--This is the area in the upper left that displays location and cell details and title -->
+		<span id="info-box"><h1>Frupal, The Game</h1>
+			<div><p id="loc">Current Location:  0,0</p> </div>
+			<div><p id="cell">Cell Details: </p> </div>
+		</span>
 	
+		<canvas id= "gameCanvas" height="500" width="500"></canvas>	
 	
-
-	<canvas id= "gameCanvas" height="500" width="500"></canvas>	
-
-	
-<img src="pipboy/hand.png" id="hand">
+		<img src="pipboy/hand.png" id="hand">
 	</div><!--end wrapper-->
+	
 	<div id="footer">
-	Frupal was created by: Suliman Alsarraf, Eric Frazier, Henderson Hummel, James Hiebert, Cody Jeffries, Dante Kiaunis, Tejas Menon
-	<br><br><span id="copyright" onclick="ui.ogb()" type="submit" form="form1" value="Submit" onmouseleave="ui.ogb(1)">Pip Boy Template created by STIX and found at https://codepen.io/stix/pen/KdJEwB/</span><span id="oldPip"></span>
+		Frupal was created by: Suliman Alsarraf, Dustin Eric Frazier, Henderson Hummel, James Hiebert, Cody Jeffries, Dante Kiaunis, Tejas Menon
+		<br><br><span id="copyright" onclick="ui.ogb()" type="submit" form="form1" value="Submit" onmouseleave="ui.ogb(1)">Pip Boy Template created by STIX and found at https://codepen.io/stix/pen/KdJEwB/</span><span id="oldPip"></span>
 	</div>
 	
 	<script>
@@ -162,28 +167,3 @@
 
 </html>
 
-	<!--<div>Key: Gold=Hero ?=Unexplored Light Green=Meadow Green=Forest Blu=Water Grey=Wall Dark Green=Bog Purple=Swamp</div-->
-	
-	
-	<!--				<p><h2><span class="copyright">Pip Boy Template created by STIX and found at https://codepen.io/stix/pen/KdJEwB/</span><h2></p>-->
-	
-	
-	
-	
-		<!--<div id = "buttons" style="width:25%;">
-	<div>
-	<div align="middle">
-        <button onclick="game.go('n')" type="submit" form="form1" value="Submit">NORTH</button>
-	</div>
-	<div align="left">
-		<button onclick="game.go('e')" style="float:right" type="submit" form="form1" value="Submit">EAST</button>
-		<button onclick="game.go('w')" type="submit" form="form1" value="Submit">WEST</button>
-	</div>
-	<div align="middle">
-		<button onclick="game.go('s')" type="submit" form="form1" value="Submit">SOUTH</button>
-	</div>
-	</div>-->
-	
-	
-	<!--	<div><button onclick="game.changeMapMode()" type="submit" form="form1" value="Submit">CHANGE MAP VIEW</button>
-	</div>-->

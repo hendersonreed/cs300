@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+
+/* pip-boy template from STIX found at codepen.com. Edited by Dustin Eric Frazier for cs300. The original template below has been heavily edited. */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 ::-moz-selection{background:lightgreen;}
 ::selection{background:lightgreen;}

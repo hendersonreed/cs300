@@ -14,11 +14,10 @@
 			if(special == 'clear'){
 				document.getElementById("status").innerHTML = "";
 				document.getElementById("special").className = "off special";
-				document.getElementById(item).style.transform = "rotate(0deg)";	
-				document.getElementById("ChainsawOuter").style.transform = "scale(1)";		
+				document.getElementById(item).style.transform = "rotate(0deg)";		
 			}
 		},
-	
+//This shows the original, un-altered Frup-boy
 		ogb : function(leave){
 				document.getElementById("oldPip").style.zIndex="1";
 			this.count += 1;
@@ -32,6 +31,7 @@
 			}
 		},
 		
+		//This controls all the motion of the user interface
 				//zero is mouse enter and one is mouse leave
 		pipMotion : function(set){
 			if(set==0){//mouse in
