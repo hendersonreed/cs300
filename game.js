@@ -402,8 +402,10 @@ var game = {
 				if (this.whiffles >= 10) {
 					if (this.promptPurchase("Power Bar", 1)) {
 						this.energy += 20;
-						this.whiffles -= 1; count = 1;
+						this.whiffles -= 1;
 						this.displayEnergy();
+						cellContents[4] = "None";
+						localStorage.setItem(key, cellContents);
 					}
 				}
 			case 'Pickaxe':
